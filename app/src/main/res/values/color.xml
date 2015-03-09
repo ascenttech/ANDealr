@@ -2,5 +2,6 @@
 <resources>
 
     <color name="grey">#777777</color>
+    <color name="github">#809327</color>
 
 </resources>
