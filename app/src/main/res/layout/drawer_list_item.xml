@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/drawer_item_image_custom_list_adapter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        />
+
+
+    <com.ascent.andealr.custom.CustomTextView
+        android:id="@+id/drawer_item_name_custom_list_adapter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:textSize="12pt"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        android:paddingLeft="5dp"
+        android:paddingRight="10dp"
+        android:textColor="#9e9e9e"
+        />
+
+</LinearLayout>

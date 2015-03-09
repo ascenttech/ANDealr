@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/five_dp"
+    android:layout_marginRight="@dimen/five_dp"
+    android:layout_marginTop="@dimen/five_dp"
+    >
+<RelativeLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:padding="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/profile_pic_followers_activity"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="centerCrop"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_launcher"
+        />
+
+    <LinearLayout
+        android:id="@+id/followers_name_and_handle_information_followers_activity"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/profile_pic_followers_activity"
+        android:layout_marginLeft="10dp"
+        >
+
+        <com.ascent.andealr.custom.CustomTextView
+            android:id="@+id/follower_name_followers_activity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="#000"
+            android:text="FOLLOWERS NAME"
+            />
+        <com.ascent.andealr.custom.CustomTextView
+            android:id="@+id/follower_handle_followers_activity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#000"
+            android:text="FOLLOWER HANDLE"
+            />
+
+        </LinearLayout>
+
+
+
+</RelativeLayout>
+</android.support.v7.widget.CardView>

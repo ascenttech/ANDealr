@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.ascent.andealr.custom.CustomEditText
+            android:id="@+id/deal_name_add_dealET"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Deal Name"
+            android:layout_margin="5dp"
+            />
+
+        <com.ascent.andealr.custom.CustomEditText
+            android:id="@+id/deal_description_add_dealET"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Deal Description"
+            android:layout_margin="5dp"
+            />
+        <com.ascent.andealr.custom.CustomTextView
+            android:id="@+id/start_date_add_dealTV"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Date"
+            android:visibility="invisible"
+            android:gravity="center"
+            />
+        <com.ascent.andealr.custom.CustomButton
+            android:id="@+id/start_date_add_dealBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set a Start Date"
+            android:gravity="center"/>
+
+
+        <com.ascent.andealr.custom.CustomTextView
+            android:id="@+id/start_time_add_dealTV"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Time"
+            android:visibility="invisible"
+            android:gravity="center"
+            />
+
+        <com.ascent.andealr.custom.CustomButton
+            android:id="@+id/start_time_add_dealBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Set a Start Time"
+            android:layout_margin="5dp"
+            />
+
+        <com.ascent.andealr.custom.CustomTextView
+            android:id="@+id/end_date_add_dealTV"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="End Date"
+            android:visibility="invisible"
+            android:gravity="center"
+            />
+
+        <com.ascent.andealr.custom.CustomButton
+            android:id="@+id/end_date_add_dealBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Set an End Date"
+            android:layout_margin="5dp"
+            />
+
+        <com.ascent.andealr.custom.CustomTextView
+            android:id="@+id/end_time_add_dealTV"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="End Time"
+            android:visibility="invisible"
+            android:gravity="center"
+            />
+
+        <com.ascent.andealr.custom.CustomButton
+            android:id="@+id/end_time_add_dealBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Set a End Time"
+            android:layout_margin="5dp"
+            />
+
+
+        <com.ascent.andealr.custom.CustomTextView
+            android:id="@+id/reach_textTV"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Set The Reach"
+            android:layout_margin="5dp"
+            />
+        <Spinner
+            android:id="@+id/reach_deal_add_dealS"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            />
+
+        <!--<TextView-->
+        <!--android:id="@+id/end_date_add_dealTV"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="End Date"-->
+        <!--/>-->
+
+        <!--<com.ascent.andealr.custom.CustomButton-->
+        <!--android:id="@+id/make_payment_add_dealBtn"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Make Payment"-->
+        <!--android:layout_margin="5dp"-->
+        <!--/>-->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/upload_image_add_deal_activity"
+                android:layout_width="fill_parent"
+                android:layout_height="300dp"
+                android:src="@drawable/upload_image"
+                android:scaleType="centerCrop"
+                />
+
+            <include
+                android:id="@+id/upload_or_cancel_included"
+                layout="@layout/upload_or_cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="5dp"
+                />
+
+        </RelativeLayout>
+
+        <com.ascent.andealr.custom.CustomButton
+            android:id="@+id/add_deal_add_dealBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Deal"
+            android:layout_margin="5dp"/>
+
+    </LinearLayout>
+</ScrollView>

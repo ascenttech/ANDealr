@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/five_dp"
+    android:layout_marginRight="@dimen/five_dp"
+    android:layout_marginTop="@dimen/five_dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <com.ascent.andealr.custom.CustomTextView
+            android:id="@+id/deal_name_text_notifications_fragment"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="DEAL NAME"
+            android:textSize="24sp"
+            android:textColor="#000"
+            />
+
+    </RelativeLayout>
+
+
+
+</android.support.v7.widget.CardView>

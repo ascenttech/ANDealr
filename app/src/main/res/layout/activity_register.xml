@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#CDCDCD"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/header_register_activity"
+        android:background="#858585"
+        android:layout_height="wrap_content">
+
+
+
+        <com.ascent.andealr.custom.CustomTextView
+            android:layout_height="wrap_content"
+            android:text="SIGN UP"
+            android:layout_centerInParent="true"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textColor="#FFF"
+            android:layout_width="wrap_content"/>
+
+
+
+    </RelativeLayout>
+
+
+
+    <com.ascent.andealr.custom.CustomEditText
+        android:id="@+id/email_register_activity"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="20dip"
+        android:background="#A5A5A5"
+        android:layout_below="@+id/header_register_activity"
+        android:textColorHint="#FFF"
+        android:hint="Email"/>
+
+    <com.ascent.andealr.custom.CustomEditText
+        android:id="@+id/mobile_register_activity"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="20dip"
+        android:maxLength="10"
+        android:background="#A5A5A5"
+        android:layout_below="@+id/email_register_activity"
+        android:textColorHint="#FFF"
+        android:hint="Mobile No"/>
+
+    <com.ascent.andealr.custom.CustomEditText
+        android:id="@+id/password_register_activity"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="20dip"
+        android:inputType="textPassword"
+        android:background="#A5A5A5"
+        android:layout_below="@+id/mobile_register_activity"
+        android:textColorHint="#FFF"
+        android:hint="Password"/>
+
+
+
+
+
+    <com.ascent.andealr.custom.CustomButton
+        android:id="@+id/signup_btn_register_activity"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:background="#808080"
+        android:textColor="#FFF"
+        android:textStyle="bold"
+        android:layout_below="@+id/password_register_activity"
+        android:text="Signup"/>
+
+</RelativeLayout>

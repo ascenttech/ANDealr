@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ANDealr</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">
+        <item>Settings</item>
+    </string>
+
+    <string-array name="reach_options">
+        <item>0-500</item>
+        <item>500-1000</item>
+        <item>1000-1500</item>
+        <item>1500-2000</item>
+        <item>2000-2500</item>
+        <item>Above 2500</item>
+    </string-array>
+    <string name="upload_photo_via">Upload Photo Via</string>
+    <string-array name="navigation_drawer_items_array">
+        <item>Home</item>
+        <item>Scan QR</item>>
+        <item>Followers</item>
+        <item>Payment</item>
+        <!--<item>Rewards</item>-->
+        <item>Notifications</item>
+        <!--<item>Sign Out</item>-->
+        <item>Rate Us</item>
+        <!--<item>Send Feedback</item>-->
+        <item>About</item>
+        <item>Settings</item>
+    </string-array>
+
+    <string-array name="modes">
+        <item>Camera</item>
+        <item>Gallery</item>
+    </string-array>
+
+
+    <string-array name="industry">
+        <item>Business</item>
+        <item>Teacher</item>
+        <item>Jeweller</item>
+        <item>Designer</item>
+    </string-array>
+
+    <color name="dealer">#4274d7</color>
+    <color name="listtext">#969696</color>
+    <string name="logo">
+        <item>@drawable/logo</item>
+    </string>
+</resources>

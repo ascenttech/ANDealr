@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    >
+    
+    <com.ascent.andealr.custom.CustomEditText
+        android:id="@+id/feedback_send_feedback_activity"
+        android:layout_width="fill_parent"
+        android:layout_height="350dp"
+        android:hint="Write to Us"
+        android:gravity="start"
+        android:background="#CECECE"
+        />
+
+    <com.ascent.andealr.custom.CustomTextView
+        android:id="@+id/static_text_send_feedback_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="If you have something to say that doesn't fit here. \nPlease shoot us an email abc@gmail.com"
+        android:layout_below="@id/feedback_send_feedback_activity"
+        />
+    
+
+</RelativeLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/setting_back"
+    >
+
+    <com.ascent.andealr.custom.CustomTextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="T&amp;C"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:id="@+id/terms"
+        android:textColor="#FFF"
+        android:textSize="@dimen/twenty_two_dp"
+        />
+
+
+    <com.ascent.andealr.custom.CustomTextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Privacy Policy"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:id="@+id/privacy_policy_static_text"
+        android:textColor="#FFF"
+        android:textSize="@dimen/twenty_two_dp"
+        />
+
+    <com.ascent.andealr.custom.CustomTextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="About Us"
+        android:textStyle="bold"
+        android:textColor="#FFF"
+        android:id="@+id/about_us_static_text"
+        android:padding="10dp"
+        android:textSize="@dimen/twenty_two_dp"
+        />
+
+    <com.ascent.andealr.custom.CustomTextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
+        android:id="@+id/logout_static_text"
+        android:textStyle="bold"
+        android:textColor="#FFF"
+        android:padding="10dp"
+        android:textSize="@dimen/twenty_two_dp"
+        />
+
+</LinearLayout>
