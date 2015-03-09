@@ -200,51 +200,51 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_below="@+id/merchant_email_id_profile"/>
-                <com.ascent.andealr.custom.CustomTextView
-                    android:id="@+id/merchant_addr1_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Address Line 1"
-                    android:textSize="10pt"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/merchant_email_id_profile"/>
-                <com.ascent.andealr.custom.CustomTextView
-                    android:id="@+id/merchant_addr2_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Address Line 2"
-                    android:textSize="10pt"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/merchant_email_id_profile"/>
-                <com.ascent.andealr.custom.CustomTextView
-                    android:id="@+id/merchant_city_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="City"
-                    android:textSize="10pt"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/merchant_email_id_profile"/>
-                <com.ascent.andealr.custom.CustomTextView
-                    android:id="@+id/merchant_State_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="State"
-                    android:textSize="10pt"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/merchant_email_id_profile"/>
-                <com.ascent.andealr.custom.CustomTextView
-                    android:id="@+id/merchant_country_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Country"
-                    android:textSize="10pt"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/merchant_email_id_profile"/>
+                <!--<com.ascent.andealr.custom.CustomTextView-->
+                    <!--android:id="@+id/merchant_addr1_profile"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Address Line 1"-->
+                    <!--android:textSize="10pt"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_below="@+id/merchant_email_id_profile"/>-->
+                <!--<com.ascent.andealr.custom.CustomTextView-->
+                    <!--android:id="@+id/merchant_addr2_profile"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Address Line 2"-->
+                    <!--android:textSize="10pt"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_below="@+id/merchant_email_id_profile"/>-->
+                <!--<com.ascent.andealr.custom.CustomTextView-->
+                    <!--android:id="@+id/merchant_city_profile"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="City"-->
+                    <!--android:textSize="10pt"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_below="@+id/merchant_email_id_profile"/>-->
+                <!--<com.ascent.andealr.custom.CustomTextView-->
+                    <!--android:id="@+id/merchant_State_profile"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="State"-->
+                    <!--android:textSize="10pt"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_below="@+id/merchant_email_id_profile"/>-->
+                <!--<com.ascent.andealr.custom.CustomTextView-->
+                    <!--android:id="@+id/merchant_country_profile"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Country"-->
+                    <!--android:textSize="10pt"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_below="@+id/merchant_email_id_profile"/>-->
 
             </LinearLayout>
 
@@ -318,22 +318,30 @@
                     android:hint="Date of birth"/>
 
                 <com.ascent.andealr.custom.CustomEditText
-                    android:id="@+id/merchant_addr1_user_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:layout_margin="10dp"
-                    android:layout_below="@+id/merchant_DOB"
-                    android:hint="Address Line 1"/>
+                android:id="@+id/merchant_gender_user_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/merchant_DOB"
+                android:hint="Gender"/>
 
-                <com.ascent.andealr.custom.CustomEditText
-                    android:id="@+id/merchant_addr2_user_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:layout_margin="10dp"
-                    android:layout_below="@+id/merchant_addr1_user_profile"
-                    android:hint="Address Line 2"/>
+                <!--<com.ascent.andealr.custom.CustomEditText-->
+                    <!--android:id="@+id/merchant_addr1_user_profile"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:inputType="textMultiLine"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:layout_below="@+id/merchant_DOB"-->
+                    <!--android:hint="Address Line 1"/>-->
+
+                <!--<com.ascent.andealr.custom.CustomEditText-->
+                    <!--android:id="@+id/merchant_addr2_user_profile"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:inputType="textMultiLine"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:layout_below="@+id/merchant_addr1_user_profile"-->
+                    <!--android:hint="Address Line 2"/>-->
 
                 <!--<com.ascent.andealr.custom.CustomEditText-->
                     <!--android:id="@+id/merchant_city_user_profile"-->
@@ -369,7 +377,7 @@
                     android:textColor="#FFF"
                     android:onClick="UpdateProfile"
                     android:layout_margin="10dp"
-                    android:layout_below="@+id/merchant_confirm_password_user_profile"
+                    android:layout_below="@+id/merchant_gender_user_profile"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
 

@@ -50,8 +50,10 @@ public class UserProfileFragment extends Fragment {
     Button updateprofile;
     int serverResponseCode = 0;
     ImageLoader imageLoader;
-    String firstName, lastName, contactNo, alternateNo, emailID, dateOfBirth, address1, address2, city, state, country, merchantHandle, photo, dealsPushed, dealLikes, dealRedeems = null;
-    TextView name_tv, contactNo_tv, emailID_tv, dateOfBirth_tv, address1_tv, address2_tv, city_tv, state_tv, country_tv, merchantHandle_tv;
+    String firstName, lastName, contactNo, alternateNo, emailID, dateOfBirth, merchantHandle, photo, dealsPushed, dealLikes, dealRedeems = null;
+//    address1, address2, city, state, country,
+    TextView name_tv, contactNo_tv, emailID_tv, dateOfBirth_tv, merchantHandle_tv;
+//    address1_tv, address2_tv, city_tv, state_tv, country_tv;
     EditText fname_et,lname_et, alternateNo_et, dateOfBirth_et, address1_et, address2_et, city_et, state_et, country_et, merchantHandle_et;
 
     @Override
@@ -96,12 +98,12 @@ public class UserProfileFragment extends Fragment {
         contactNo_tv = (TextView) v.findViewById(R.id.merchant_mobile_profile);
 //        alternateNo_tv=(TextView)v.findViewById(R.id.d_id);
         emailID_tv = (TextView) v.findViewById(R.id.merchant_email_id_profile);
-        dateOfBirth_tv = (TextView) v.findViewById(R.id.merchant_DOB_profile);
-        address1_tv = (TextView) v.findViewById(R.id.merchant_addr1_profile);
-        address2_tv = (TextView) v.findViewById(R.id.merchant_addr2_profile);
-        city_tv = (TextView) v.findViewById(R.id.merchant_city_profile);
-        state_tv = (TextView) v.findViewById(R.id.merchant_State_profile);
-        country_tv = (TextView) v.findViewById(R.id.merchant_country_profile);
+//        dateOfBirth_tv = (TextView) v.findViewById(R.id.merchant_DOB_profile);
+//        address1_tv = (TextView) v.findViewById(R.id.merchant_addr1_profile);
+//        address2_tv = (TextView) v.findViewById(R.id.merchant_addr2_profile);
+//        city_tv = (TextView) v.findViewById(R.id.merchant_city_profile);
+//        state_tv = (TextView) v.findViewById(R.id.merchant_State_profile);
+//        country_tv = (TextView) v.findViewById(R.id.merchant_country_profile);
         merchantHandle_tv = (TextView) v.findViewById(R.id.merchant_handle_profile);
         imageLoader = new ImageLoader(getActivity().getApplicationContext());
 
@@ -110,11 +112,11 @@ public class UserProfileFragment extends Fragment {
         lname_et=(EditText) v.findViewById(R.id.merchant_lastname_activty_register);
         alternateNo_et=(EditText) v.findViewById(R.id.merchant_alternate);
         dateOfBirth_et=(EditText) v.findViewById(R.id.merchant_DOB);
-        address1_et=(EditText) v.findViewById(R.id.merchant_addr1_user_profile);
-        address2_et=(EditText) v.findViewById(R.id.merchant_addr2_user_profile);
-        city_et=(EditText) v.findViewById(R.id.merchant_city_user_profile);
-        state_et=(EditText) v.findViewById(R.id.merchant_State_user_profile);
-        country_et=(EditText) v.findViewById(R.id.merchant_country_user_profile);
+//        address1_et=(EditText) v.findViewById(R.id.merchant_addr1_user_profile);
+//        address2_et=(EditText) v.findViewById(R.id.merchant_addr2_user_profile);
+//        city_et=(EditText) v.findViewById(R.id.merchant_city_user_profile);
+//        state_et=(EditText) v.findViewById(R.id.merchant_State_user_profile);
+//        country_et=(EditText) v.findViewById(R.id.merchant_country_user_profile);
         merchantHandle_et=(EditText) v.findViewById(R.id.merchant_handle_profile);
 
 
@@ -204,11 +206,11 @@ public class UserProfileFragment extends Fragment {
                         alternateNo = object.getString("alternateNo");
                         emailID = object.getString("emailID");
                         dateOfBirth = object.getString("dateOfBirth");
-                        address1 = object.getString("address1");
-                        address2 = object.getString("address2");
-                        city = object.getString("city");
-                        state = object.getString("state");
-                        country = object.getString("country");
+//                        address1 = object.getString("address1");
+//                        address2 = object.getString("address2");
+//                        city = object.getString("city");
+//                        state = object.getString("state");
+//                        country = object.getString("country");
                         merchantHandle = object.getString("merchantHandle");
                         photo = object.getString("photo");
 
@@ -233,18 +235,18 @@ public class UserProfileFragment extends Fragment {
 //            dialog.cancel();
             try
             {
-                if(city.equalsIgnoreCase("null")){
+                if(firstName.equalsIgnoreCase("null")){
                 }
                 else {
                     name_tv.setText(firstName + " " + lastName);
                     emailID_tv.setText(emailID);
                     contactNo_tv.setText(contactNo);
                     dateOfBirth_tv.setText(dateOfBirth);
-                    address1_tv.setText(address1);
-                    address2_tv.setText(address2);
-                    city_tv.setText(city);
-                    state_tv.setText(state);
-                    country_tv.setText(country);
+//                    address1_tv.setText(address1);
+//                    address2_tv.setText(address2);
+//                    city_tv.setText(city);
+//                    state_tv.setText(state);
+//                    country_tv.setText(country);
                     merchantHandle_tv.setText(merchantHandle);
                 }
 
@@ -256,11 +258,11 @@ public class UserProfileFragment extends Fragment {
                     lname_et.setText(lastName);
                     dateOfBirth_et.setText(dateOfBirth);
                     alternateNo_et.setText(alternateNo);
-                    address1_et.setText(address1);
-                    address2_et.setText(address2);
-                    city_et.setText(city);
-                    state_et.setText(state);
-                    country_et.setText(country);
+//                    address1_et.setText(address1);
+//                    address2_et.setText(address2);
+//                    city_et.setText(city);
+//                    state_et.setText(state);
+//                    country_et.setText(country);
                     merchantHandle_et.setText(merchantHandle);
                 }
 
@@ -377,11 +379,11 @@ public class UserProfileFragment extends Fragment {
             lastName = String.valueOf(lname_et.getText());
             alternateNo = String.valueOf(alternateNo_et.getText());
             dateOfBirth = String.valueOf(dateOfBirth_et.getText());
-            address1 = String.valueOf(address1_et.getText());
-            address2 = String.valueOf(address2_et.getText());
-            city = String.valueOf(city_et.getText());
-            state = String.valueOf(state_et.getText());
-            country = String.valueOf(country_et.getText());
+//            address1 = String.valueOf(address1_et.getText());
+//            address2 = String.valueOf(address2_et.getText());
+//            city = String.valueOf(city_et.getText());
+//            state = String.valueOf(state_et.getText());
+//            country = String.valueOf(country_et.getText());
             merchantHandle = String.valueOf(merchantHandle_et.getText());
 
 
@@ -389,22 +391,17 @@ public class UserProfileFragment extends Fragment {
             lastName = lastName.replaceAll(" ","%20");
             alternateNo = alternateNo.replaceAll(" ","%20");
             dateOfBirth = dateOfBirth.replaceAll(" ","%20");
-            address1 = address1.replaceAll(" ","%20");
-            address2 = address2.replaceAll(" ","%20");
-            city = city.replaceAll(" ","%20");
-            state = state.replaceAll(" ","%20");
-            country = country.replaceAll(" ","%20");
+//            address1 = address1.replaceAll(" ","%20");
+//            address2 = address2.replaceAll(" ","%20");
+//            city = city.replaceAll(" ","%20");
+//            state = state.replaceAll(" ","%20");
+//            country = country.replaceAll(" ","%20");
             merchantHandle = merchantHandle.replaceAll(" ","%20");
 
 
-            if ((fname_et.length() > 0 && lname_et.length() > 0) && (alternateNo_et.length() > 0 && dateOfBirth_et.length() > 0) && (address1_et.length() > 0 && country_et.length() > 0) && (city_et.length() > 0 && state_et.length() > 0))
-            {
-                new UpdateAsyncTask().execute("http://andnrbytest190215.ascentinc.in/updateMerchant.php?merchantID=" + id + "&firstName=" + firstName + "&lastName=" + lastName + "&alternateNo=" + alternateNo + "&dateOfBirth=" + dateOfBirth + "&address1=" + address1 + "&address2=" + address2 + "&city=" + city + "&state=" + state + "&country=" + country + "&merchantHandle=" + merchantHandle + "&photo=" + Constants.photoURL.replaceAll(" ","%20"));
-            }
-            else
-            {
-                Toast.makeText(getActivity().getApplicationContext(), "PLEASE FILL ALL THE FIELDS", Toast.LENGTH_SHORT).show();
-            }
+                new UpdateAsyncTask().execute("http://andnrbytest190215.ascentinc.in/updateMerchant.php?merchantID=" + id + "&firstName=" + firstName + "&lastName=" + lastName + "&alternateNo=" + alternateNo + "&dateOfBirth=" + dateOfBirth + "&address1=&address2=&city=&state=&country=&merchantHandle=" + merchantHandle + "&photo=" + Constants.photoURL.replaceAll(" ","%20"));
+
+           
 
         }
 
