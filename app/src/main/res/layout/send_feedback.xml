@@ -6,7 +6,7 @@
     android:layout_marginRight="20dp"
     >
     
-    <com.ascent.andealr.custom.CustomEditText
+    <com.ascentsmartwaves.andealr.custom.CustomEditText
         android:id="@+id/feedback_send_feedback_activity"
         android:layout_width="fill_parent"
         android:layout_height="350dp"
@@ -15,7 +15,7 @@
         android:background="#CECECE"
         />
 
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/static_text_send_feedback_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mainlayout_"
+    android:id="@+id/mainlayoutcompany"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background="@drawable/tempbackground">
+    android:background="@drawable/company_background">
 
     <ScrollView
         android:orientation="vertical" android:layout_width="match_parent"
@@ -19,26 +19,26 @@
             <RelativeLayout
                 android:id="@+id/profile_Img_Layout"
                 android:layout_height="200dp"
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:background="@drawable/tempbackground">
+                android:background="#80CDCDCD">
 
 
-                <com.ascent.andealr.custom.RoundedImage
+                <com.ascentsmartwaves.andealr.custom.RoundedImage
                     android:id="@+id/companyimg"
                     android:elevation="10dp"
                     android:layout_marginTop="35dp"
                     android:layout_centerInParent="true"
                     android:layout_alignParentTop="true"
                     android:onClick="companyIMGopen"
-                    android:background="@drawable/company_logo"
                     android:layout_width="100dp"
                     android:layout_height="100dp"/>
 
 
-                <com.ascent.andealr.custom.RoundedImage
+                <com.ascentsmartwaves.andealr.custom.RoundedImage
                     android:id="@+id/editcompanyprofile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,8 +48,8 @@
                     android:layout_alignParentRight="true"/>
 
 
-                <com.ascent.andealr.custom.CustomTextView
-                           android:id="@+id/company_name"
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
+                    android:id="@+id/company_name"
                     android:textColor="#FFF"
                     android:layout_below="@id/companyimg"
                     android:layout_marginTop="20dp"
@@ -67,11 +67,12 @@
                 android:id="@+id/counterlayout"
                 android:layout_below="@+id/profile_Img_Layout"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
-
-                android:background="#FFFFFF">
-                <com.ascent.andealr.custom.CustomTextView
+                android:background="#CC9E9E9E">
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:text="0"
                     android:id="@+id/counterliked"
                     android:layout_width="fill_parent"
@@ -83,7 +84,7 @@
                     android:layout_gravity="center"
                     android:gravity="center" />
 
-                <com.ascent.andealr.custom.CustomTextView
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:text="0"
                     android:id="@+id/counterredeem"
                     android:layout_toRightOf="@id/counterliked"
@@ -94,7 +95,7 @@
                     android:textStyle="bold"
                     android:gravity="center" />
 
-                <com.ascent.andealr.custom.CustomTextView
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:text="0"
                     android:id="@+id/counterfollowed"
                     android:layout_width="fill_parent"
@@ -113,10 +114,12 @@
                 android:id="@+id/counternames"
                 android:layout_below="@+id/counterlayout"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
-                android:background="#FFF"
+                android:background="#CC9E9E9E"
                 >
-                <com.ascent.andealr.custom.CustomTextView
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:text="Deals\nLiked"
                     android:id="@+id/liked"
                     android:layout_width="fill_parent"
@@ -127,7 +130,7 @@
                     android:layout_gravity="center"
                     android:gravity="center" />
 
-                <com.ascent.andealr.custom.CustomTextView
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:text="Deals\nRedeemed"
                     android:id="@+id/redeem"
                     android:layout_toRightOf="@id/liked"
@@ -137,7 +140,7 @@
                     android:textSize="8pt"
                     android:gravity="center" />
 
-                <com.ascent.andealr.custom.CustomTextView
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:text="Deals\nAdded"
                     android:id="@+id/followed"
                     android:layout_width="fill_parent"
@@ -155,92 +158,58 @@
                 android:id="@+id/company_profile_details_layout"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:background="#FFF"
+                android:background="#00CDCDCD"
+                android:layout_margin="10dp"
+                android:visibility="visible"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
-                <com.ascent.andealr.custom.CustomTextView
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:id="@+id/company_email_id_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_height="50dp"
+                    android:paddingLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:textSize="10pt"
+                    android:background="#CC9E9E9E"
+                    android:gravity="center_vertical"
                     android:text="Email ID"/>
 
-                <com.ascent.andealr.custom.CustomTextView
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:id="@+id/company_mobile_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:layout_height="50dp"
                     android:text="Contact No"
                     android:textSize="10pt"
-                    android:layout_marginLeft="10dp"
+                    android:background="#CC9E9E9E"
+                    android:gravity="center_vertical"
                     android:layout_marginTop="10dp"
                     android:layout_below="@+id/company_email_id_profile"/>
 
-                <com.ascent.andealr.custom.CustomTextView
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:id="@+id/company_locality_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:text="Locality"
+                    android:background="#CC9E9E9E"
+                    android:paddingLeft="5dp"
                     android:textSize="10pt"
-                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
                     android:layout_marginTop="10dp"
                     android:layout_below="@+id/company_email_id_profile"/>
-                <com.ascent.andealr.custom.CustomTextView
-                    android:id="@+id/company_addr1_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Address Line 1"
-                    android:textSize="10pt"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/company_email_id_profile"/>
-                <com.ascent.andealr.custom.CustomTextView
-                    android:id="@+id/company_addr2_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Address Line 2"
-                    android:textSize="10pt"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/company_email_id_profile"/>
-                <com.ascent.andealr.custom.CustomTextView
+
+                 <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:id="@+id/company_pincode_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                     android:background="#CC9E9E9E"
+                     android:paddingLeft="5dp"
                     android:text="Pincode"
+                    android:gravity="center_vertical"
                     android:textSize="10pt"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/company_email_id_profile"/>
-                <com.ascent.andealr.custom.CustomTextView
-                    android:id="@+id/company_city_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="City"
-                    android:textSize="10pt"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/company_email_id_profile"/>
-                <com.ascent.andealr.custom.CustomTextView
-                    android:id="@+id/company_State_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="State"
-                    android:textSize="10pt"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/company_email_id_profile"/>
-                <com.ascent.andealr.custom.CustomTextView
-                    android:id="@+id/company_country_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Country"
-                    android:textSize="10pt"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/company_email_id_profile"/>
+                    android:layout_below="@+id/company_locality_profile"/>
 
             </LinearLayout>
 
@@ -250,7 +219,8 @@
                 android:visibility="invisible"
                 android:layout_below="@+id/counternames"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
                 android:background="#FFF"
                 android:layout_height="10dp"
                 android:layout_width="fill_parent">
@@ -263,11 +233,12 @@
                     android:orientation="horizontal"
                     android:layout_margin="10dp">
 
-                    <com.ascent.andealr.custom.CustomEditText
+                    <com.ascentsmartwaves.andealr.custom.CustomEditText
                         android:id="@+id/merchant_companyname_activty_register"
                         android:layout_height="wrap_content"
                         android:scrollbars = "vertical"
                         android:layout_weight="1"
+                        android:height="50dp"
                         android:layout_width="0dp"
                         android:digits="qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
                         android:inputType="textPersonName"
@@ -279,90 +250,54 @@
 
 
 
-                <com.ascent.andealr.custom.CustomEditText
+                <com.ascentsmartwaves.andealr.custom.CustomEditText
                     android:id="@+id/compny_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:maxLength="10"
                     android:layout_below="@+id/name_layout"
+                    android:height="50dp"
                     android:hint="Email"/>
 
 
-                <com.ascent.andealr.custom.CustomEditText
+                <com.ascentsmartwaves.andealr.custom.CustomEditText
                     android:id="@+id/compny_mobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
                     android:layout_margin="10dp"
                     android:digits="0123456789"
+                    android:height="50dp"
                     android:maxLength="10"
                     android:layout_below="@+id/compny_email"
                     android:hint="Mobile Number"/>
 
 
 
-                <com.ascent.andealr.custom.CustomEditText
+                <com.ascentsmartwaves.andealr.custom.CustomEditText
                     android:id="@+id/company_locality"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:height="50dp"
                     android:layout_below="@+id/merchant_alternate"
                     android:hint="Locality"/>
 
-                <com.ascent.andealr.custom.CustomEditText
-                    android:id="@+id/merchant_addr1_company_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:layout_margin="10dp"
-                    android:layout_below="@+id/merchant_DOB"
-                    android:hint="Address Line 1"/>
-
-                <com.ascent.andealr.custom.CustomEditText
-                    android:id="@+id/merchant_addr2_company_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:layout_margin="10dp"
-                    android:layout_below="@+id/merchant_addr1_company_profile"
-                    android:hint="Address Line 2"/>
-
-                <com.ascent.andealr.custom.CustomEditText
-                    android:id="@+id/merchant_city_company_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_below="@+id/merchant_addr2_company_profile"
-                    android:hint="City"/>
 
 
-                <com.ascent.andealr.custom.CustomEditText
-                    android:id="@+id/merchant_State_company_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_below="@+id/merchant_city_company_profile"
-                    android:hint="State"/>
-
-                <com.ascent.andealr.custom.CustomEditText
+                <com.ascentsmartwaves.andealr.custom.CustomEditText
                     android:id="@+id/merchant_pincode_company_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:height="50dp"
+                    android:maxLength="6"
                     android:inputType="phone"
-                    android:layout_below="@+id/merchant_State_company_profile"
+                    android:layout_below="@+id/company_locality"
                     android:hint="Pincode"/>
 
-                <com.ascent.andealr.custom.CustomEditText
-                    android:id="@+id/merchant_country_company_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_below="@+id/merchant_pincode_company_profile"
-                    android:hint="Country"/>
 
-                <com.ascent.andealr.custom.CustomButton
+                <com.ascentsmartwaves.andealr.custom.CustomButton
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:text="Update"

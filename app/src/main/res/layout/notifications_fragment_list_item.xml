@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
 
-        <com.ascent.andealr.custom.CustomTextView
+        <com.ascentsmartwaves.andealr.custom.CustomTextView
             android:id="@+id/deal_name_text_notifications_fragment"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

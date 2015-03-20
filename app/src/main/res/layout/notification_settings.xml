@@ -4,7 +4,7 @@
     android:padding="10dp"
     >
 
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/static_text_notifications_activity"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -12,7 +12,7 @@
         android:textSize="18sp"
         android:textColor="#000"
         />
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/push_text_notifications_activity"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

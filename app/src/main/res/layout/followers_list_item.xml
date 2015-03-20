@@ -33,7 +33,7 @@
         android:layout_marginLeft="10dp"
         >
 
-        <com.ascent.andealr.custom.CustomTextView
+        <com.ascentsmartwaves.andealr.custom.CustomTextView
             android:id="@+id/follower_name_followers_activity"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:textColor="#000"
             android:text="FOLLOWERS NAME"
             />
-        <com.ascent.andealr.custom.CustomTextView
+        <com.ascentsmartwaves.andealr.custom.CustomTextView
             android:id="@+id/follower_handle_followers_activity"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

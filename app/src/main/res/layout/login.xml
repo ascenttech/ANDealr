@@ -13,7 +13,7 @@
 
 
 
-        <com.ascent.andealr.custom.CustomTextView
+        <com.ascentsmartwaves.andealr.custom.CustomTextView
             android:layout_height="wrap_content"
             android:text="LOGIN"
             android:layout_centerInParent="true"
@@ -28,7 +28,7 @@
 
     </RelativeLayout>
 
-    <com.ascent.andealr.custom.CustomEditText
+    <com.ascentsmartwaves.andealr.custom.CustomEditText
         android:id="@+id/username_login_activity"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -41,7 +41,7 @@
         android:textColorHint="#FFF"
         android:hint="Email or Mobile No"/>
 
-    <com.ascent.andealr.custom.CustomEditText
+    <com.ascentsmartwaves.andealr.custom.CustomEditText
         android:id="@+id/password_login_activity"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -57,7 +57,7 @@
 
 
 
-    <com.ascent.andealr.custom.CustomButton
+    <com.ascentsmartwaves.andealr.custom.CustomButton
         android:id="@+id/signin_btn_login_activity"
         android:layout_width="fill_parent"
         android:layout_height="50dp"

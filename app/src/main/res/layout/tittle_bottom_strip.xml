@@ -5,7 +5,7 @@
     android:background="@drawable/gradient"
     >
 
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Large Text"
@@ -17,7 +17,7 @@
         />
 
 
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Small Text"

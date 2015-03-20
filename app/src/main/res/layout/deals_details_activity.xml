@@ -7,7 +7,8 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        >
 
         <android.support.v7.widget.CardView
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -49,82 +50,41 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="#FEFEFE"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:padding="@dimen/five_dp"
                     android:layout_below="@id/details_bottom_strip_andealr_details_activity"
                     >
-                    <com.ascent.andealr.custom.CustomTextView
-                        android:id="@+id/validity_static_text"
+                    <com.ascentsmartwaves.andealr.custom.CustomTextView
+                        android:id="@+id/start_static_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Validity : "
+                        android:layout_margin="2dp"
+                        android:text=""
+                        android:textSize="@dimen/sixteen_sp"
                         android:textStyle="bold"
                         />
-                    <com.ascent.andealr.custom.CustomTextView
+                    <com.ascentsmartwaves.andealr.custom.CustomTextView
+                        android:id="@+id/end_static_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="32 mins"
+                        android:layout_margin="2dp"
+                        android:textSize="@dimen/sixteen_sp"
+                        android:text=""
                         />
 
                 </LinearLayout>
 
-                <com.ascent.andealr.custom.CustomTextView
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:id="@+id/deals_details_text_andnrby_fragment_details_activity"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="1. Processor Speed (1.3 ghz dual core) is good as I have expected able to run 3 app at a time easily without any lag
-                       2. Screen size is 4.3 inches not too short which is good to handle with 1 hand"
                     android:padding="5dp"
                     android:layout_below="@+id/validity_layout_andnrby_details_activity"
                     />
-                <com.ascent.andealr.custom.CustomTextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Terms and Conditions"
-                    android:background="#EFEFEF"
-                    android:padding="@dimen/five_dp"
-                    android:layout_below="@id/deals_details_text_andnrby_fragment_details_activity"
-                    />
-
-                <!--<ImageView-->
-                <!--android:id="@+id/logo_image_andnrby_detail_activity"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_marginRight="@dimen/fifteen_dp"-->
-                <!--android:layout_marginBottom="@dimen/fifteen_dp"-->
-                <!--android:layout_alignBottom="@id/tittle_bottom_strip_andnrby_details_activity"-->
-                <!--/>-->
-
-
 
             </RelativeLayout>
 
         </android.support.v7.widget.CardView>
-        <!--<android.support.v7.widget.CardView-->
-        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
-        <!--android:id="@+id/card_redeem_andnrby_fragment_detail_activity"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="10dp"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_below="@id/card_andealr_fragment_detail_activity"-->
-        <!-->-->
 
-        <!--<RelativeLayout-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content">-->
-
-        <!--<com.ascent.andealr.custom.CustomTextView-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Map will come"-->
-        <!--/>-->
-
-        <!--</RelativeLayout>-->
-
-        <!--</android.support.v7.widget.CardView>-->
     </RelativeLayout>
 </ScrollView>

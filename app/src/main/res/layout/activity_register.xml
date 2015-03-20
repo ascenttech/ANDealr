@@ -13,7 +13,7 @@
 
 
 
-        <com.ascent.andealr.custom.CustomTextView
+        <com.ascentsmartwaves.andealr.custom.CustomTextView
             android:layout_height="wrap_content"
             android:text="SIGN UP"
             android:layout_centerInParent="true"
@@ -30,7 +30,7 @@
 
 
 
-    <com.ascent.andealr.custom.CustomEditText
+    <com.ascentsmartwaves.andealr.custom.CustomEditText
         android:id="@+id/email_register_activity"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -43,7 +43,7 @@
         android:textColorHint="#FFF"
         android:hint="Email"/>
 
-    <com.ascent.andealr.custom.CustomEditText
+    <com.ascentsmartwaves.andealr.custom.CustomEditText
         android:id="@+id/mobile_register_activity"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -52,12 +52,13 @@
         android:layout_marginRight="20dp"
         android:paddingLeft="20dip"
         android:maxLength="10"
+        android:inputType="number"
         android:background="#A5A5A5"
         android:layout_below="@+id/email_register_activity"
         android:textColorHint="#FFF"
         android:hint="Mobile No"/>
 
-    <com.ascent.andealr.custom.CustomEditText
+    <com.ascentsmartwaves.andealr.custom.CustomEditText
         android:id="@+id/password_register_activity"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -75,7 +76,7 @@
 
 
 
-    <com.ascent.andealr.custom.CustomButton
+    <com.ascentsmartwaves.andealr.custom.CustomButton
         android:id="@+id/signup_btn_register_activity"
         android:layout_width="fill_parent"
         android:layout_height="50dp"

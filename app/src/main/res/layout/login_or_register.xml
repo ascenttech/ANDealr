@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@drawable/backgroundregisterlogin"
+    android:background="@drawable/background_register_login"
     >
 
     <LinearLayout
@@ -14,7 +14,7 @@
         android:layout_alignParentBottom="true"
         >
 
-        <com.ascent.andealr.custom.CustomButton
+        <com.ascentsmartwaves.andealr.custom.CustomButton
             android:id="@+id/log_in_btn_login_or_register_activity"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -23,11 +23,11 @@
             android:textSize="18dp"
             android:gravity="center"
             android:layout_gravity="center"
-            android:background="@drawable/registloginbtn"
+            android:background="@drawable/register_login_btn"
             android:textColor="#FFF"
             android:layout_margin="@dimen/five_dp"/>
 
-        <com.ascent.andealr.custom.CustomButton
+        <com.ascentsmartwaves.andealr.custom.CustomButton
             android:id="@+id/register_btn_login_or_register_activity"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             android:textSize="18dp"
             android:gravity="center"
             android:layout_gravity="center"
-            android:background="@drawable/registloginbtn"
+            android:background="@drawable/register_login_btn"
             android:textColor="#FFF"
             android:layout_margin="@dimen/five_dp"
             />

@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
 
-        <com.ascent.andealr.custom.CustomEditText
+        <com.ascentsmartwaves.andealr.custom.CustomEditText
             android:id="@+id/deal_name_add_dealET"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -18,14 +18,14 @@
             android:layout_margin="5dp"
             />
 
-        <com.ascent.andealr.custom.CustomEditText
+        <com.ascentsmartwaves.andealr.custom.CustomEditText
             android:id="@+id/deal_description_add_dealET"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Deal Description"
             android:layout_margin="5dp"
             />
-        <com.ascent.andealr.custom.CustomTextView
+        <com.ascentsmartwaves.andealr.custom.CustomTextView
             android:id="@+id/start_date_add_dealTV"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:visibility="invisible"
             android:gravity="center"
             />
-        <com.ascent.andealr.custom.CustomButton
+        <com.ascentsmartwaves.andealr.custom.CustomButton
             android:id="@+id/start_date_add_dealBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:gravity="center"/>
 
 
-        <com.ascent.andealr.custom.CustomTextView
+        <com.ascentsmartwaves.andealr.custom.CustomTextView
             android:id="@+id/start_time_add_dealTV"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
             android:gravity="center"
             />
 
-        <com.ascent.andealr.custom.CustomButton
+        <com.ascentsmartwaves.andealr.custom.CustomButton
             android:id="@+id/start_time_add_dealBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             android:layout_margin="5dp"
             />
 
-        <com.ascent.andealr.custom.CustomTextView
+        <com.ascentsmartwaves.andealr.custom.CustomTextView
             android:id="@+id/end_date_add_dealTV"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             android:gravity="center"
             />
 
-        <com.ascent.andealr.custom.CustomButton
+        <com.ascentsmartwaves.andealr.custom.CustomButton
             android:id="@+id/end_date_add_dealBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
             android:layout_margin="5dp"
             />
 
-        <com.ascent.andealr.custom.CustomTextView
+        <com.ascentsmartwaves.andealr.custom.CustomTextView
             android:id="@+id/end_time_add_dealTV"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
             android:gravity="center"
             />
 
-        <com.ascent.andealr.custom.CustomButton
+        <com.ascentsmartwaves.andealr.custom.CustomButton
             android:id="@+id/end_time_add_dealBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -93,34 +93,19 @@
             />
 
 
-        <com.ascent.andealr.custom.CustomTextView
-            android:id="@+id/reach_textTV"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Set The Reach"
-            android:layout_margin="5dp"
-            />
-        <Spinner
-            android:id="@+id/reach_deal_add_dealS"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            />
-
-        <!--<TextView-->
-        <!--android:id="@+id/end_date_add_dealTV"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="End Date"-->
-        <!--/>-->
-
-        <!--<com.ascent.andealr.custom.CustomButton-->
-        <!--android:id="@+id/make_payment_add_dealBtn"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Make Payment"-->
-        <!--android:layout_margin="5dp"-->
-        <!--/>-->
+        <!--<com.ascent.andealr.custom.CustomTextView-->
+            <!--android:id="@+id/reach_textTV"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Set The Reach"-->
+            <!--android:layout_margin="5dp"-->
+            <!--/>-->
+        <!--<Spinner-->
+            <!--android:id="@+id/reach_deal_add_dealS"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="5dp"-->
+            <!--/>-->
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -137,15 +122,15 @@
             <include
                 android:id="@+id/upload_or_cancel_included"
                 layout="@layout/upload_or_cancel"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
                 android:layout_margin="5dp"
                 />
 
         </RelativeLayout>
 
-        <com.ascent.andealr.custom.CustomButton
+        <com.ascentsmartwaves.andealr.custom.CustomButton
             android:id="@+id/add_deal_add_dealBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

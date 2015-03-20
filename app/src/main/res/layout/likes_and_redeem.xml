@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/likes_counter_text_include"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
@@ -17,7 +17,7 @@
         android:textStyle="bold"
         android:text="12"/>
 
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/likesText"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
         android:text="Likes"
         android:layout_toRightOf="@id/likes_counter_text_include"/>
 
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/redeem_counter_text_include"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
         android:layout_toRightOf="@id/likesText"
         android:layout_marginLeft="10dp"/>
 
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:textSize="@dimen/sixteen_sp"

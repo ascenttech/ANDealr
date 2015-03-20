@@ -15,7 +15,7 @@
     android:id="@+id/payment_list_item_relative_layout_payments_activity"
     >
 
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/order_number_text_payments_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         <!--android:textSize="12sp"-->
         <!--android:textColor="#000"-->
         <!--/>-->
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/date_when_order_was_placed_text_payments_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         android:layout_marginTop="2dp"
         android:textColor="#000"
         />
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/deal_name_text_payments_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
         android:text="30% off on apparels"
         android:textColor="#000"
         />
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/deal_amount_text_payments_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
         <!--android:text="REPEAT"-->
         <!--/>-->
 
-    <com.ascent.andealr.custom.CustomTextView
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/deal_status_text_payments_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

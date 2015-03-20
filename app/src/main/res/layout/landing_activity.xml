@@ -21,10 +21,10 @@
             android:id="@+id/profileRL"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="#000"
+            android:background="@drawable/activityprofilebackground"
             android:layout_weight="1.5">
 
-            <com.ascent.andealr.custom.RoundedImage
+            <com.ascentsmartwaves.andealr.custom.RoundedImage
                 android:id="@+id/profile_background"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -32,14 +32,14 @@
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="15dp"/>
 
-            <com.ascent.andealr.custom.CustomTextView
+            <com.ascentsmartwaves.andealr.custom.CustomTextView
                 android:id="@+id/profile_name_activity_main"
                 android:layout_toRightOf="@id/profile_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textSize="20dp"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:layout_marginLeft="35dp"
                 android:layout_marginTop="30dp"
                 />
@@ -92,9 +92,9 @@
             android:layout_weight="3.5"
             android:layout_gravity="start"
             android:choiceMode="singleChoice"
-            android:background="#FFF"
-            android:divider="#FFF"
-            android:listSelector="#FFF"
+            android:background="@drawable/menu"
+            android:divider="#4D9E9E9E"
+            android:listSelector="#4D9E9E9E"
             />
 
         <RelativeLayout
@@ -102,7 +102,7 @@
             android:layout_height="0dp"
             android:layout_weight="0.5">
 
-            <com.ascent.andealr.custom.CustomButton
+            <com.ascentsmartwaves.andealr.custom.CustomButton
                 android:id="@+id/shareTheAppButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
