@@ -7,8 +7,8 @@ import com.ascentsmartwaves.andealr.R;
 import com.ascentsmartwaves.andealr.data.FollowersData;
 import com.ascentsmartwaves.andealr.data.LandingFragmentData;
 import com.ascentsmartwaves.andealr.data.LandingFragmentDetail;
-import com.ascentsmartwaves.andealr.data.MerchantProfileData;
 import com.ascentsmartwaves.andealr.data.NotificationsData;
+import com.ascentsmartwaves.andealr.data.NotificationsDataPrevious;
 import com.ascentsmartwaves.andealr.data.PaymentsData;
 import com.ascentsmartwaves.andealr.data.UserProfileData;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -64,6 +64,7 @@ public class Constants
     public static ArrayList<PaymentsData> paymentsData;
     public static ArrayList<UserProfileData> userProfileData;
     public static ArrayList<NotificationsData> notificationsData;
+    public static ArrayList<NotificationsDataPrevious> notificationsDataPrevious;
 
     // All the links to fetch the data
 

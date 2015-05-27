@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import com.ascentsmartwaves.andealr.R;
 import com.ascentsmartwaves.andealr.adapters.NotificationsFragmentAdapter;
 import com.ascentsmartwaves.andealr.async.FetchNotificationsAsyncTask;
-import com.ascentsmartwaves.andealr.data.NotificationsData;
+import com.ascentsmartwaves.andealr.data.NotificationsDataPrevious;
 import com.ascentsmartwaves.andealr.utils.Constants;
 
 import java.util.ArrayList;
@@ -47,7 +47,10 @@ public class NotificationsFragment extends Fragment {
         preferences = getActivity().getSharedPreferences("UserSession", Context.MODE_PRIVATE);
         id = preferences.getString("Merchant Id", "NO DATA");
 
-        String finalURL = Constants.fetchNotificationsURL + id;
+//        String finalURL = Constants.fetchNotificationsURL + id;
+        // This is the latest URL where we send the Dealr id to obtain his notifications
+        // NOw all the notifications are fetched from the server
+        String finalURL = Constants.fetchNotificationsForDealerURL + id;
 
         new FetchNotificationsAsyncTask(getActivity().getApplicationContext(),new FetchNotificationsAsyncTask.FetchNotificationsCallback() {
             @Override
@@ -64,14 +67,17 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onResult(boolean b) {
 
+                dialog.dismiss();
                 if (b) {
+//                    notificationsFragmentAdapter = new NotificationsFragmentAdapter(Constants.notificationsDataPrevious,getActivity().getApplicationContext());
+//                    notificationsFragmentRecyclerView.setAdapter(notificationsFragmentAdapter);
                     notificationsFragmentAdapter = new NotificationsFragmentAdapter(Constants.notificationsData,getActivity().getApplicationContext());
                     notificationsFragmentRecyclerView.setAdapter(notificationsFragmentAdapter);
-                    dialog.dismiss();
+
                 }
                 else
                 {
-                    dialog.dismiss();
+
                     AlertDialog builder = new AlertDialog.Builder(getActivity()).create();
                     builder.setTitle("Notifications");
                     builder.setMessage("No Notifications Found");
@@ -86,7 +92,7 @@ public class NotificationsFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Constants.notificationsData = new ArrayList<NotificationsData>();
+        Constants.notificationsDataPrevious = new ArrayList<NotificationsDataPrevious>();
     }
 
 }

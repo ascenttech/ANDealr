@@ -1,95 +1,58 @@
 package com.ascentsmartwaves.andealr.data;
 
 /**
- * Created by ADMIN on 06-01-2015.
+ * Created by ADMIN on 27-05-2015.
  */
 public class NotificationsData {
 
-    String dealId,dealTittle,startDate,startTime,endDate,endTime,dealStatus;
-    int likesCounter,redeemCounter;
+    int notificationId,merchantId;
+    String message,date,time;
 
-    public NotificationsData(String dealId, String dealTittle, String startDate, String startTime, String endDate, String endTime, String dealStatus, int likesCounter, int redeemCounter) {
-        this.dealId = dealId;
-        this.dealTittle = dealTittle;
-        this.startDate = startDate;
-        this.startTime = startTime;
-        this.endDate = endDate;
-        this.endTime = endTime;
-        this.dealStatus = dealStatus;
-        this.likesCounter = likesCounter;
-        this.redeemCounter = redeemCounter;
+    public NotificationsData(int notificationId, int merchantId, String message, String date, String time) {
+        this.notificationId = notificationId;
+        this.merchantId = merchantId;
+        this.message = message;
+        this.date = date;
+        this.time = time;
     }
 
-
-    public String getDealId() {
-        return dealId;
+    public int getNotificationId() {
+        return notificationId;
     }
 
-    public void setDealId(String dealId) {
-        this.dealId = dealId;
+    public void setNotificationId(int notificationId) {
+        this.notificationId = notificationId;
     }
 
-    public String getDealTittle() {
-        return dealTittle;
+    public int getMerchantId() {
+        return merchantId;
     }
 
-    public void setDealTittle(String dealTittle) {
-        this.dealTittle = dealTittle;
+    public void setMerchantId(int merchantId) {
+        this.merchantId = merchantId;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getMessage() {
+        return message;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public String getDate() {
+        return date;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public String getTime() {
+        return time;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getDealStatus() {
-        return dealStatus;
-    }
-
-    public void setDealStatus(String dealStatus) {
-        this.dealStatus = dealStatus;
-    }
-
-    public int getLikesCounter() {
-        return likesCounter;
-    }
-
-    public void setLikesCounter(int likesCounter) {
-        this.likesCounter = likesCounter;
-    }
-
-    public int getRedeemCounter() {
-        return redeemCounter;
-    }
-
-    public void setRedeemCounter(int redeemCounter) {
-        this.redeemCounter = redeemCounter;
+    public void setTime(String time) {
+        this.time = time;
     }
 }

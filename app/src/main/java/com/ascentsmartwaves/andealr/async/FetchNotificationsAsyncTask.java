@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.ascentsmartwaves.andealr.data.NotificationsData;
+import com.ascentsmartwaves.andealr.data.NotificationsDataPrevious;
 import com.ascentsmartwaves.andealr.utils.Constants;
 
 import org.apache.http.HttpEntity;
@@ -58,31 +59,60 @@ public class FetchNotificationsAsyncTask extends AsyncTask<String,Void,Boolean> 
             if (status == 200) {
                 responseEntity = response.getEntity();
                 responseString = EntityUtils.toString(responseEntity);
-                Log.d("Andealr", " " + responseString);
+                Log.d(Constants.LOG_TAG, " Response String for Fetch Notifications " + responseString);
 
                 JSONObject jsonObject = new JSONObject(responseString);
-                JSONArray jsonArray = jsonObject.getJSONArray("dealDetails");
-                int length = jsonArray.length();
+                JSONArray jsonArray = jsonObject.getJSONArray("notification");
 
-                for(int i = 0;i<length;i++){
+                for(int i = 0;i<jsonArray.length();i++){
 
                     JSONObject nestedJsonObject = jsonArray.getJSONObject(i);
-                    String dealId = nestedJsonObject.getString("dealID");
-                    String dealTittle = nestedJsonObject.getString("dealTitle");
-                    String startDate = nestedJsonObject.getString("startDate");
-                    String startTime = nestedJsonObject.getString("startTime");
-                    String endDate = nestedJsonObject.getString("endDate");
-                    String endTime = nestedJsonObject.getString("endTime");
-                    String dealStatus = nestedJsonObject.getString("dealStatus");
-                    int likes = nestedJsonObject.getInt("noOfLikes");
-                    int redeem = nestedJsonObject.getInt("noOfRedeems");
+                    int notificationId = nestedJsonObject.getInt("notificationID");
+                    int merchantId = nestedJsonObject.getInt("merchantID");
+                    String message = nestedJsonObject.getString("message");
+                    String date = nestedJsonObject.getString("date");
+                    String time = nestedJsonObject.getString("time");
 
-                    Constants.notificationsData.add(new NotificationsData(dealId,dealTittle,startDate, startTime,endDate,endTime,dealStatus,likes,redeem));
+                    Constants.notificationsData.add(new NotificationsData(notificationId,merchantId,message,date,time));
 
                 }
 
+                return true;
+
             }
-            return true;
+            else if(status == 201){
+
+                return false;
+            }
+
+//            if (status == 200) {
+//                responseEntity = response.getEntity();
+//                responseString = EntityUtils.toString(responseEntity);
+//                Log.d("Andealr", " " + responseString);
+//
+//                JSONObject jsonObject = new JSONObject(responseString);
+//                JSONArray jsonArray = jsonObject.getJSONArray("dealDetails");
+//                int length = jsonArray.length();
+//
+//                for(int i = 0;i<length;i++){
+//
+//                    JSONObject nestedJsonObject = jsonArray.getJSONObject(i);
+//                    String dealId = nestedJsonObject.getString("dealID");
+//                    String dealTittle = nestedJsonObject.getString("dealTitle");
+//                    String startDate = nestedJsonObject.getString("startDate");
+//                    String startTime = nestedJsonObject.getString("startTime");
+//                    String endDate = nestedJsonObject.getString("endDate");
+//                    String endTime = nestedJsonObject.getString("endTime");
+//                    String dealStatus = nestedJsonObject.getString("dealStatus");
+//                    int likes = nestedJsonObject.getInt("noOfLikes");
+//                    int redeem = nestedJsonObject.getInt("noOfRedeems");
+//
+//                    Constants.notificationsDataPrevious.add(new NotificationsDataPrevious(dealId,dealTittle,startDate, startTime,endDate,endTime,dealStatus,likes,redeem));
+//
+//                }
+//
+//            }
+            return false;
 
         }
         catch (Exception e) {

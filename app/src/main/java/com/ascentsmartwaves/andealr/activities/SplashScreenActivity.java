@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,8 +16,8 @@ import com.ascentsmartwaves.andealr.R;
 import com.ascentsmartwaves.andealr.data.FollowersData;
 import com.ascentsmartwaves.andealr.data.LandingFragmentData;
 import com.ascentsmartwaves.andealr.data.LandingFragmentDetail;
-import com.ascentsmartwaves.andealr.data.MerchantProfileData;
 import com.ascentsmartwaves.andealr.data.NotificationsData;
+import com.ascentsmartwaves.andealr.data.NotificationsDataPrevious;
 import com.ascentsmartwaves.andealr.data.PaymentsData;
 import com.ascentsmartwaves.andealr.data.UserProfileData;
 import com.ascentsmartwaves.andealr.utils.Constants;
@@ -43,10 +42,11 @@ public class SplashScreenActivity extends Activity {
 
         Constants.landingFragmentData = new ArrayList<LandingFragmentData>();
         Constants.landingFragmentDetail = new ArrayList<LandingFragmentDetail>();
-        Constants.notificationsData = new ArrayList<NotificationsData>();
+        Constants.notificationsDataPrevious = new ArrayList<NotificationsDataPrevious>();
         Constants.userProfileData = new ArrayList<UserProfileData>();
         Constants.followersData = new ArrayList<FollowersData>();
         Constants.paymentsData = new ArrayList<PaymentsData>();
+        Constants.notificationsData = new ArrayList<NotificationsData>();
         screen = (LinearLayout) findViewById(R.id.main);
         shorcut = getSharedPreferences("Shortcut", MODE_PRIVATE).edit();
 

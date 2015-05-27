@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.ascentsmartwaves.andealr.R;
 import com.ascentsmartwaves.andealr.data.NotificationsData;
+import com.ascentsmartwaves.andealr.data.NotificationsDataPrevious;
 import com.ascentsmartwaves.andealr.utils.Constants;
 
 import java.util.ArrayList;
@@ -21,11 +22,12 @@ import java.util.ArrayList;
 public class NotificationsFragmentAdapter extends RecyclerView.Adapter<NotificationsFragmentAdapter.ViewHolder> {
 
 
+//    ArrayList<NotificationsDataPrevious> notificationsFragmentDatas;
     ArrayList<NotificationsData> notificationsFragmentDatas;
     Context context;
     TextView listDealName,listDealDescription;
     ImageView listDealImage;
-    TextView dealName,dealDescription,dealDate,likes,redeem;
+    TextView dealName,dealDescription,dealDate,likes,redeem,dealTime;
     RelativeLayout likesRedeemLayout;
 
 
@@ -38,6 +40,11 @@ public class NotificationsFragmentAdapter extends RecyclerView.Adapter<Notificat
         }
     }
 
+//    // Provide a suitable constructor (depends on the kind of dataset)
+//    public NotificationsFragmentAdapter(ArrayList<NotificationsDataPrevious> notificationsFragmentDatas, Context context) {
+//        this.notificationsFragmentDatas = notificationsFragmentDatas;
+//        this.context = context;
+//    }
     // Provide a suitable constructor (depends on the kind of dataset)
     public NotificationsFragmentAdapter(ArrayList<NotificationsData> notificationsFragmentDatas, Context context) {
         this.notificationsFragmentDatas = notificationsFragmentDatas;
@@ -58,34 +65,48 @@ public class NotificationsFragmentAdapter extends RecyclerView.Adapter<Notificat
 
     // Replace the contents of a view (invoked by the layout manager)
 
-
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         dealName = (TextView) holder.view.findViewById(R.id.deal_name_text_notifications_fragment);
+        dealDate = (TextView) holder.view.findViewById(R.id.date);
+        dealTime = (TextView) holder.view.findViewById(R.id.time);
 
-        if(Constants.notificationsData.get(position).getDealStatus().equalsIgnoreCase("valid")){
+        dealName.setText(Constants.notificationsData.get(position).getMessage());
+        dealDate.setText(Constants.notificationsData.get(position).getDate());
+        dealTime.setText(Constants.notificationsData.get(position).getTime());
 
-            dealName.setText(Constants.notificationsData.get(position).getDealTittle()+" has started from "
-                            +Constants.notificationsData.get(position).getStartDate()
-                            +" "
-                            +Constants.notificationsData.get(position).getStartTime()
-            );
-        }
-        else{
-            dealName.setText(Constants.notificationsData.get(position).getDealTittle()+" has expired on "
-                            +Constants.notificationsData.get(position).getEndDate()
-                            +" "
-                            +Constants.notificationsData.get(position).getEndTime()
-                            +" with "
-                            +Constants.notificationsData.get(position).getLikesCounter()
-                            +" likes and "
-                            +Constants.notificationsData.get(position).getRedeemCounter()
-                            +" redeems"
-            );
-        }
 
     }
+
+
+//    @Override
+//    public void onBindViewHolder(ViewHolder holder, int position) {
+//
+//        dealName = (TextView) holder.view.findViewById(R.id.deal_name_text_notifications_fragment);
+//
+//        if(Constants.notificationsDataPrevious.get(position).getDealStatus().equalsIgnoreCase("valid")){
+//
+//            dealName.setText(Constants.notificationsDataPrevious.get(position).getDealTittle()+" has started from "
+//                            +Constants.notificationsDataPrevious.get(position).getStartDate()
+//                            +" "
+//                            +Constants.notificationsDataPrevious.get(position).getStartTime()
+//            );
+//        }
+//        else{
+//            dealName.setText(Constants.notificationsDataPrevious.get(position).getDealTittle()+" has expired on "
+//                            +Constants.notificationsDataPrevious.get(position).getEndDate()
+//                            +" "
+//                            +Constants.notificationsDataPrevious.get(position).getEndTime()
+//                            +" with "
+//                            +Constants.notificationsDataPrevious.get(position).getLikesCounter()
+//                            +" likes and "
+//                            +Constants.notificationsDataPrevious.get(position).getRedeemCounter()
+//                            +" redeems"
+//            );
+//        }
+//
+//    }
 
 
     @Override

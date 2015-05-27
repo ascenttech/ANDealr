@@ -18,8 +18,16 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="DEAL NAME"
-            android:textSize="24sp"
+            android:textSize="@dimen/twenty_sp"
             android:textColor="#000"
+            />
+
+        <include
+            layout="@layout/include_date_and_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/deal_name_text_notifications_fragment"
+            android:layout_marginTop="@dimen/five_dp"
             />
 
     </RelativeLayout>
