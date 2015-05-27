@@ -86,14 +86,14 @@ public class GcmIntentService extends IntentService
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
                 this).setAutoCancel(true)
-                .setContentTitle("AndNrby")
+                .setContentTitle("ANDealr")
                 .setSmallIcon(R.drawable.andealr_logo)
                 .setLargeIcon(notificationsLogo)
                 .setContentText(msg);
 
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
         bigText.bigText(msg);
-        bigText.setBigContentTitle("AndNrby");
+        bigText.setBigContentTitle("ANDealr");
         mBuilder.setStyle(bigText);
 
         // Creates an explicit intent for an Activity in your app
