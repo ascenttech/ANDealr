@@ -7,6 +7,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.ascentsmartwaves.andealr.custom.CustomTextView
+        android:id="@+id/reach_counter_text_include"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/sixteen_sp"
+        android:layout_marginRight="5dp"
+        android:layout_centerVertical="true"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:text="0"/>
+
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
+        android:id="@+id/reachText"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/sixteen_sp"
+        android:layout_marginRight="5dp"
+        android:layout_centerVertical="true"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:text="Reached"
+        android:layout_toRightOf="@id/reach_counter_text_include"
+        />
+
+
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/likes_counter_text_include"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
@@ -15,7 +40,10 @@
         android:layout_centerVertical="true"
         android:textColor="#000"
         android:textStyle="bold"
-        android:text="12"/>
+        android:text="0"
+        android:layout_toRightOf="@id/reachText"
+        android:layout_marginLeft="10dp"
+        />
 
     <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/likesText"
@@ -37,7 +65,7 @@
         android:layout_centerVertical="true"
         android:textColor="#000"
         android:textStyle="bold"
-        android:text="23"
+        android:text="0"
         android:layout_toRightOf="@id/likesText"
         android:layout_marginLeft="10dp"/>
 

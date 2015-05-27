@@ -32,20 +32,18 @@ import android.widget.Toast;
 
 import com.ascentsmartwaves.andealr.R;
 import com.ascentsmartwaves.andealr.async.AddDealAsyncTask;
-import com.ascentsmartwaves.andealr.utils.Config;
 import com.ascentsmartwaves.andealr.utils.Constants;
 import com.ascentsmartwaves.andealr.utils.UploadImageToServer;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by ADMIN on 23-12-2014.
- */
+
 public class AddDealActivity extends ActionBarActivity {
 
     Button addDeal;
@@ -78,6 +76,7 @@ public class AddDealActivity extends ActionBarActivity {
 
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static Uri fileUri; // file url to store image/video
+    public static String imagepath="NO DATA"; // file url to store image/video
     String finalURL;
 
 
@@ -192,12 +191,12 @@ public class AddDealActivity extends ActionBarActivity {
 
     private TimePickerDialog.OnTimeSetListener startTimePickerListener
             = new TimePickerDialog.OnTimeSetListener() {
-        @Override
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
+           @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute)
+        {
             startHour = hourOfDay;
             startMinutes = minute;
-
             startTimeText.setText(new StringBuilder().append("Start Time : ").append(startHour)
                     .append(":")
                     .append(startMinutes));
@@ -244,6 +243,9 @@ public class AddDealActivity extends ActionBarActivity {
                         .append("-")
                         .append(curyear)
                         .append(" "));
+                startYear = curyear;
+                startMonth = curmonth;
+                startDay = curday;
             }
             else
             {
@@ -301,7 +303,11 @@ public class AddDealActivity extends ActionBarActivity {
                     endTimeText.setVisibility(View.VISIBLE);
                     break;
                 case R.id.add_deal_add_dealBtn :
-                    validateDateAndSendData();
+                    try {
+                        validateDateAndSendData();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case R.id.cancel_button_included:
                 case R.id.upload_image_add_deal_activity:
@@ -315,9 +321,9 @@ public class AddDealActivity extends ActionBarActivity {
 
                                     switch (which){
 
-                                        case 0 : captureImage();
-                                            break;
-                                        case 1 : fromGallery();
+//                                        case 0 : captureImage();
+//                                            break;
+                                        case 0 : fromGallery();
                                             break;
                                     }
 
@@ -329,70 +335,97 @@ public class AddDealActivity extends ActionBarActivity {
         }
     };
 
-    private void validateDateAndSendData() {
+    private void validateDateAndSendData() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        String currentdatetime=curmonth+"/"+curday+"/"+curyear+" "+hour+":"+minutes+":"+00;
+        String dealStart=startMonth+"/"+startDay+"/"+startYear+" "+startHour+":"+startMinutes+":"+00;
+        String dealEnd=endMonth+"/"+endDay+"/"+endYear+" "+endHour+":"+endMinutes+":"+00;
 
-       if(!(name.getText().toString().equalsIgnoreCase(""))){
-           if(!(description.getText().toString().equalsIgnoreCase(""))){
 
-               if(startDay == endDay){
-                   if((startHour+2) == endHour ){
-                       if(startMinutes == endMinutes){
+        Date currentDate  = format.parse(currentdatetime);
+        Date startDate  = format.parse(dealStart);
+        Date endDate = format.parse(dealEnd);
+
+        long diffInDeal = endDate.getTime() - startDate.getTime();
+        long diffInCurrent = startDate.getTime() - currentDate.getTime();
+
+        long currentdiffHours = diffInCurrent / (60 * 60 * 1000) % 24;
+        long diffHours = diffInDeal / (60 * 60 * 1000) % 24;
+        long diffDays = diffInDeal / (24 * 60 * 60 * 1000);
+
+        Log.d(Constants.LOG_TAG,"\nCURRENT TIME:"+currentdatetime+"\nSTART TIME:"+dealStart);
+        Log.d(Constants.LOG_TAG,"\nDIFFERENCE IN DEAL TIME:"+diffInDeal+"\nDIFFERENCE IN CURRENT TIME:"+diffInCurrent);
+
+
+
+        if(!(name.getText().toString().equalsIgnoreCase("")))
+        {
+            if(!(description.getText().toString().equalsIgnoreCase("")))
+            {
+               if(diffInCurrent>=7200000)
+               {
+                   if(diffInDeal>7200000)
+                   {
+                       if(!imagepath.equals("NO DATA"))
+                       {
                            uploadData();
                        }
-                       else if(startMinutes < endMinutes){
-                           uploadData();
-                       }
-                       else{
-                           Toast.makeText(getApplicationContext(),"End Minutes Cannot be same as end minutes",5000).show();
+                       else
+                       {
+                           Toast.makeText(getApplicationContext(),"Please upload a image",5000).show();
                        }
                    }
-                   else if((startHour+2)<endHour){
-                       uploadData();
+                   else
+                   {
+                       if (diffInDeal < 0)
+                       {
+                           Toast.makeText(getApplicationContext(),"End time should not be less than start time",5000).show();
+                       }
+                       else
+                       {
+                       Toast.makeText(getApplicationContext(), "There should be a difference of 2 hours between start time and end time", 5000).show();
+                       }
                    }
-                   else{
-                       Toast.makeText(getApplicationContext(),"There should be a difference of 2 hours between start time and end time",5000).show();
-                   }
                }
-               else if(startDay<endDay){
-
-                   uploadData();
-
-               }
-               else{
-
-                   Toast.makeText(getApplicationContext(),"End Deal Date cannot be less than start date",5000).show();
+                else
+               {
+                   Toast.makeText(getApplicationContext(),"There should be a minimum difference of 2 hours between start time and current time",5000).show();
                }
 
-           }
-           else{
-               Toast.makeText(getApplicationContext(),"Deal Description cannot be empty",5000).show();
-           }
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(),"Deal Description cannot be empty",5000).show();
+            }
 
        }
        else{
            Toast.makeText(getApplicationContext(),"Deal Name cannot be empty",5000).show();
        }
+
+
+
+
     }
 
     private void uploadData(){
 
         new UploadImageToServer(getApplicationContext(),new UploadImageToServer.UploadImageToServerCallback() {
             @Override
-            public void onStart(boolean a) {
-
+            public void onStart(boolean a)
+            {
                 dialog = new ProgressDialog(AddDealActivity.this);
                 dialog.setMessage("Loading... please wait");
                 dialog.setTitle("Adding your image");
                 dialog.show();
                 dialog.setCancelable(false);
-
             }
-
             @Override
-            public void onResult(String b) {
-
+            public void onResult(String b)
+            {
                 dialog.dismiss();
-                try {
+                try
+                {
                     finalURL = Constants.addDealUrl + Constants.merchantId
                             + "&dealTitle="+  URLEncoder.encode(name.getText().toString(), "UTF-8")
                             +"&dealDescription="+   URLEncoder.encode(description.getText().toString(),"UTF-8")
@@ -403,14 +436,12 @@ public class AddDealActivity extends ActionBarActivity {
                             + "&endTime=" + endHour +":"+endMinutes+":"+"00"
                             + "&photoID="+ Constants.photoIdofAddedDeal
                             + "&categoryName=all";
-
-
+                    Log.d(Constants.LOG_TAG,finalURL);
+                }
+                catch(Exception e)
+                {
 
                 }
-                catch(Exception e){
-
-                }
-
                 new AddDealAsyncTask(getApplicationContext(),new AddDealAsyncTask.AddDealAsyncTaskCallback() {
                     @Override
                     public void onStart(boolean a) {
@@ -426,6 +457,7 @@ public class AddDealActivity extends ActionBarActivity {
                     public void onResult(boolean b) {
 
                         dialog.dismiss();
+                        imagepath="NO DATA";
                         Constants.landingFragmentData.clear();
                         Intent i = new Intent(AddDealActivity.this,LandingActivity.class);
                         startActivity(i);
@@ -477,13 +509,13 @@ public class AddDealActivity extends ActionBarActivity {
         File mediaStorageDir = new File(
                 Environment
                         .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                Config.IMAGE_DIRECTORY_NAME);
+                Constants.IMAGE_DIRECTORY_NAME);
 
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
                 Log.d(TAG, "Oops! Failed create "
-                        + Config.IMAGE_DIRECTORY_NAME + " directory");
+                        + Constants.IMAGE_DIRECTORY_NAME + " directory");
                 return null;
             }
         }
@@ -532,7 +564,8 @@ public class AddDealActivity extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // if the result is capturing Image
-        if (requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE) {
+        if (requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE)
+        {
             if (resultCode == RESULT_OK) {
 
                 // bimatp factory
@@ -566,7 +599,8 @@ public class AddDealActivity extends ActionBarActivity {
             }
 
         }
-        else if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
+        else if (requestCode == 0 && resultCode == RESULT_OK && null != data)
+        {
             Uri selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
             Cursor cursor = getContentResolver().query(selectedImage,filePathColumn, null, null, null);
@@ -574,7 +608,7 @@ public class AddDealActivity extends ActionBarActivity {
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             picturePath = cursor.getString(columnIndex);
             cursor.close();
-
+            imagepath=picturePath;
             Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
             uploadImage.setImageBitmap(bitmap);
             uploadOrCancel.setVisibility(View.VISIBLE);

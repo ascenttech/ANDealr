@@ -2,74 +2,164 @@ package com.ascentsmartwaves.andealr.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
 
-import com.ascentsmartwaves.andealr.R;
+import com.ascentsmartwaves.andealr.async.CheckValidityAsyncTask;
+import com.ascentsmartwaves.andealr.utils.Constants;
+import com.google.zxing.Result;
 
-public class ScannerActivity extends Activity {
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
 
-    static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
+
+public class ScannerActivity extends Activity implements ZXingScannerView.ResultHandler {
+    private ZXingScannerView mScannerView;
+    ProgressDialog dialog;
+    String userid,dealid;
+    @Override
+    public void onCreate(Bundle state) {
+        super.onCreate(state);
+        mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
+        setContentView(mScannerView);                // Set the scanner view as the content view
+    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //set the main content layout of the Activity
-        setContentView(R.layout.activity_scanner);
-        scanQR();
-
+    public void onResume() {
+        super.onResume();
+        mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
+        mScannerView.startCamera();          // Start camera on resume
     }
 
-    //product qr code mode
-    public void scanQR() {
-        try {
-            //start the scanning activity from the com.google.zxing.client.android.SCAN intent
-            Intent intent = new Intent(ACTION_SCAN);
-            intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-            startActivityForResult(intent, 0);
-        } catch (ActivityNotFoundException anfe) {
-            //on catch, show the download dialog
-            showDialog(ScannerActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
+    @Override
+    public void onPause() {
+        super.onPause();
+        mScannerView.stopCamera();           // Stop camera on pause
+    }
+
+    @Override
+    public void handleResult(Result rawResult)
+    {
+        // Do something with the result here
+        Log.v("SCANNER", rawResult.getText()); // Prints scan results
+        Log.v("SCANNER", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
+        String contents = rawResult.getText();
+        try
+        {
+          contents= URLDecoder.decode(contents, "UTF-8");
         }
-    }
-
-    //alert dialog for downloadDialog
-    private static AlertDialog showDialog(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {
-        AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
-        downloadDialog.setTitle(title);
-        downloadDialog.setMessage(message);
-        downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Uri uri = Uri.parse("market://search?q=pname:" + "com.google.zxing.client.android");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                try {
-                    act.startActivity(intent);
-                } catch (ActivityNotFoundException anfe) {
-
+        catch (UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+        }
+        try
+        {
+            StringTokenizer tokens = new StringTokenizer(contents, ",");
+            userid = tokens.nextToken();
+            dealid = tokens.nextToken();
+            String finalURL = Constants.checkValidityURL + userid + "&dealID="+dealid+ "&merchantID="+Constants.merchantId;
+            Log.d(Constants.LOG_TAG,finalURL);
+            new CheckValidityAsyncTask(getApplicationContext(),new CheckValidityAsyncTask.CheckValidityCallback()
+            {
+                @Override
+                public void onStart(boolean a)
+                {
+                    dialog = new ProgressDialog(ScannerActivity.this);
+                    dialog.setTitle("Validating");
+                    dialog.setMessage("We are validating the deal");
+                    dialog.show();
+                    dialog.setCancelable(false);
                 }
-            }
-        });
-        downloadDialog.setNegativeButton(buttonNo, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        });
-        return downloadDialog.show();
-    }
-
-    //on ActivityResult method
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == 0) {
-            if (resultCode == RESULT_OK) {
-                //get the extras that are returned from the intent
-                String contents = intent.getStringExtra("SCAN_RESULT");
-                String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-                TextView tv=(TextView)findViewById(R.id.textView1);
-                tv.setText(contents);
-            }
+                @Override
+                public void onResult(boolean b)
+                {
+                    if(b)
+                    {
+                        dialog.dismiss();
+                        if(Constants.dealValidity.equals("noDeal"))
+                        {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ScannerActivity.this);
+                            builder.setMessage("This Deal is Expired").setPositiveButton("Ok", dialogClickListener);
+                            builder.show();
+                        }
+                        if(Constants.dealValidity.equals("noMerchant"))
+                        {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ScannerActivity.this);
+                            builder.setMessage("Deal does not exist").setPositiveButton("Ok", dialogClickListener);
+                            builder.show();
+                        }
+                        if(Constants.dealValidity.equals("dealValid"))
+                        {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ScannerActivity.this);
+                            builder.setMessage("Deal is Valid").setPositiveButton("Ok", dialogClickListener);
+                            builder.show();
+                        }
+                        if(Constants.dealValidity.equals("dealExpired"))
+                        {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ScannerActivity.this);
+                            builder.setMessage("This Deal is Expired").setPositiveButton("Ok", dialogClickListener);
+                            builder.show();
+                        }
+                        if(Constants.dealValidity.equals("dealIncorrect"))
+                        {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ScannerActivity.this);
+                            builder.setMessage("Incorrect Deal Code").setPositiveButton("Ok", dialogClickListener);
+                            builder.show();
+                        }
+                        if(Constants.dealValidity.equals("InvalidQRCode"))
+                        {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ScannerActivity.this);
+                            builder.setMessage("Incorrect QR Code").setPositiveButton("Ok", dialogClickListener);
+                            builder.show();
+                        }
+                    }
+                    else
+                    {
+                        dialog.dismiss();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ScannerActivity.this);
+                        builder.setTitle("ANDealr");
+                        builder.setMessage("Cannot Connect to the server");
+                        builder.show();
+                    }
+                }
+            }).execute(finalURL);
+        }
+        catch(NoSuchElementException e)
+        {
+            userid = "";
+            dealid = "";
+            AlertDialog.Builder builder = new AlertDialog.Builder(ScannerActivity.this);
+            builder.setTitle("ANDealr");
+            builder.setMessage("Not a Valid QR Code");
+            builder.show();
         }
     }
+
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener()
+    {
+        @Override
+        public void onClick(DialogInterface dialog, int which)
+        {
+            Intent i;
+            switch (which)
+            {
+                case DialogInterface.BUTTON_POSITIVE:
+                    Constants.landingFragmentData.clear();
+                    i=new Intent(getApplicationContext(),LandingActivity.class);
+                    startActivity(i);
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    i=new Intent(getApplicationContext(),ScannerActivity.class);
+                    startActivity(i);
+                    break;
+            }
+        }
+    };
 }

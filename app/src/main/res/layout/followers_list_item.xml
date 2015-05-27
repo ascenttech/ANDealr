@@ -37,15 +37,15 @@
             android:id="@+id/follower_name_followers_activity"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:textColor="#000"
+            android:textSize="18sp"
+            android:textColor="@color/material_blue_grey_800"
             android:text="FOLLOWERS NAME"
             />
         <com.ascentsmartwaves.andealr.custom.CustomTextView
             android:id="@+id/follower_handle_followers_activity"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="10sp"
             android:textColor="#000"
             android:text="FOLLOWER HANDLE"
             />

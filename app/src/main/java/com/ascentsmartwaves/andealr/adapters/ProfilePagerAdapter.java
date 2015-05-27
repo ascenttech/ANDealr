@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ascentsmartwaves.andealr.fragments.CompanyProfileFragment;
 import com.ascentsmartwaves.andealr.fragments.UserProfileFragment;
 
 public class ProfilePagerAdapter extends FragmentPagerAdapter {
@@ -19,7 +18,7 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
         switch (index) {
             case 0:
                 // Top Rated fragment activity
-                return new CompanyProfileFragment();
+//                return new ProfileFragment();
             case 1:
                 // Games fragment activity
                 return new UserProfileFragment();

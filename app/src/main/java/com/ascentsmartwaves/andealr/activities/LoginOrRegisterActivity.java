@@ -2,218 +2,391 @@ package com.ascentsmartwaves.andealr.activities;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ascentsmartwaves.andealr.GCM.RegisterApp;
 import com.ascentsmartwaves.andealr.R;
+import com.ascentsmartwaves.andealr.async.RegisterMerchant;
 import com.ascentsmartwaves.andealr.utils.Constants;
-import com.facebook.android.AsyncFacebookRunner;
-import com.facebook.android.DialogError;
-import com.facebook.android.Facebook;
-import com.facebook.android.FacebookError;
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.UiLifecycleHelper;
+import com.facebook.model.GraphUser;
+import com.facebook.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
+import java.net.URLEncoder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class LoginOrRegisterActivity extends Activity implements ConnectionCallbacks, OnConnectionFailedListener
 {
-
     private static final int RC_SIGN_IN = 0;
-    // Logcat tag
-    private static final String TAG = "LoginOrRegisterActivity";
-    // Facebook APP id
-    private static String APP_ID = "1075294219152738";
-    // Profile pic image size in pixels
     private static final int PROFILE_PIC_SIZE = 400;
-    private static  int count = 0;
-    // stuff required for FACEBOOK
-    private Facebook facebook;
-    private AsyncFacebookRunner mAsyncRunner;
-    String FILENAME = "AndroidSSO_data";
-    private SharedPreferences mPrefs;
-    // stuff required for FACEBOOK
-    // Google client to interact with Google API
-//    private GoogleApiClient mGoogleApiClient;
-    /**
-     * A flag indicating that a PendingIntent is in progress and prevents us
-     * from starting further intents.
-     */
     private boolean mIntentInProgress;
-//    private boolean mSignInClicked;
     private ConnectionResult mConnectionResult;
-//    private SignInButton googleSignIn;
-    private ImageView imgProfilePic;
-    private Button logIn,register;
-//    private Button facebookBtn;
-    String name,id;
-
-
+    private SignInButton googleSignIn;
+    private UiLifecycleHelper uiHelper;
+    LoginButton authButton;
+    ProgressDialog dialog;
+    String fbemail,fblink,fbid,fbfname,fblname,fbgender,fbimgurl;
+    String googleName,googlePhotoUrl,googlePlusProfile,googleemail,googlefname,googlelname,googledisplayname,googleGender;
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    public static final String EXTRA_MESSAGE = "message";
+    public static final String PROPERTY_REG_ID = "registration_id";
+    private static final String PROPERTY_APP_VERSION = "appVersion";
+    private static final String TAG = "GCMRelated";
+    GoogleCloudMessaging gcm;
+    AtomicInteger msgId = new AtomicInteger();
+    String btntext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(Constants.LOG_TAG,"REGISTER LOGIN STARTED");
+
         setContentView(R.layout.login_or_register);
+        btntext = "Connect with Google +";
 
+        googleSignIn = (SignInButton) findViewById(R.id.google_btn_sign_in_login_or_register_activity);
+        authButton = (LoginButton) findViewById(R.id.facebook_btn_sign_in_login_or_register_activity);
+        googleSignIn.setOnClickListener(listener);
 
-        logIn = (Button) findViewById(R.id.log_in_btn_login_or_register_activity);
-        register = (Button) findViewById(R.id.register_btn_login_or_register_activity);
+        setGooglePlusButtonText(googleSignIn, btntext);
 
-
-//        googleSignIn = (SignInButton) findViewById(R.id.google_btn_sign_in_login_or_register_activity);
-//        facebookBtn = (Button) findViewById(R.id.facebook_btn_sign_in_login_or_register_activity);
-//        facebookBtn.setOnClickListener(listener);
-//        googleSignIn.setOnClickListener(listener);
-
-
-
-        logIn.setOnClickListener(listener);
-        register.setOnClickListener(listener);
-
-        SharedPreferences prefs =getSharedPreferences("UserSession", Context.MODE_PRIVATE);
-        name = prefs.getString("DEALER", "NO DATA");
-        id = prefs.getString("Merchant Id", "NO DATA");
-        if(id.equals("NO DATA"))
-        {
-
-        }
-        else
-        {
-            Constants.merchantId=id;
-            Intent i = new Intent(LoginOrRegisterActivity.this,LandingActivity.class);
-            startActivity(i);
-        }
-
-
-
-
+        Constants.editor = getSharedPreferences("UserSession", MODE_PRIVATE).edit();
 
         Constants.mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this).addApi(Plus.API, null)
                 .addScope(Plus.SCOPE_PLUS_LOGIN).build();
 
-        facebook = new Facebook(APP_ID);
-        mAsyncRunner = new AsyncFacebookRunner(facebook);
 
+        uiHelper = new UiLifecycleHelper(this, callback);
+        uiHelper.onCreate(savedInstanceState);
+        authButton.setReadPermissions(Arrays.asList("email"));
+
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "com.ascentsmartwaves.andealr", PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d(Constants.LOG_TAG, Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+        } catch (NoSuchAlgorithmException e) {
+        }
+
+        SharedPreferences user_session = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+        String id = user_session.getString("Merchant Id", "NO DATA");
+        if (!id.equals("NO DATA"))
+        {
+            Constants.merchantId=id;
+            Intent i = new Intent(getApplicationContext(), LandingActivity.class);
+            startActivity(i);
+        }
     }
 
-    protected void onStart() {
+    protected void setGooglePlusButtonText(SignInButton signInButton, String buttonText) {
+        // Find the TextView that is inside of the SignInButton and set its text
+        for (int i = 0; i < signInButton.getChildCount(); i++) {
+            View v = signInButton.getChildAt(i);
+
+            if (v instanceof TextView)
+            {
+                TextView tv = (TextView) v;
+                tv.setText(buttonText);
+                tv.setTextSize(17);
+                return;
+            }
+        }
+    }
+
+
+    private Session.StatusCallback callback = new Session.StatusCallback()
+    {
+        @Override
+        public void call(Session session, SessionState state,
+                         Exception exception) {
+            onSessionStateChange(session, state, exception);
+        }
+    };
+
+    private void onSessionStateChange(Session session, SessionState state,Exception exception)
+    {
+        if (state.isOpened())
+        {
+            Log.i(TAG, "Logged in...");
+            // make request to the /me API to get Graph user
+
+
+            Request.newMeRequest(session, new Request.GraphUserCallback() {
+
+                // callback after Graph API response with user
+                // object
+                @Override
+                public void onCompleted(GraphUser user, Response response) {
+                    if (user != null) {
+                        // Set view visibility to true
+                        Log.i(TAG, "" + response);
+                        fbemail = user.getProperty("email").toString();
+                        fbfname = user.getFirstName();
+                        fblname = user.getLastName();
+                        fbgender = user.getProperty("gender").toString();
+                        fbid = user.getProperty("id").toString();
+                        fblink = user.getProperty("link").toString();
+                        fbimgurl = "https://graph.facebook.com/" + fbid + "/picture?width=400&height=300";
+
+                        Log.d(Constants.LOG_TAG,
+                                "EMAIL:" + fbemail + "\n" +
+                                        "First Name:" + fbfname + "\n" +
+                                        "Last Name:" + fblname + "\n" +
+                                        "GENDER:" + fbgender + "\n" +
+                                        "FB-ID:" + fbid + "\n" +
+                                        "FB-LINK:" + fblink + "\n" +
+                                        "FB-URL" + fbimgurl + "\n");
+
+//                        Toast.makeText(getApplicationContext(),
+//                                "EMAIL:"+fbemail+"\n"+
+//                                "First Name:"+fbfname+"\n"+
+//                                "Last Name:"+fblname+"\n"+
+//                                "GENDER:"+fbgender+"\n"+
+//                                "FB-ID:"+fbid+"\n"+
+//                                "FB-LINK:"+fblink+"\n"+
+//                                "FB-URL"+fbimgurl+"\n",
+//                                Toast.LENGTH_LONG).show();
+
+
+                        try
+                        {
+                            fbemail = URLEncoder.encode(fbemail, "UTF-8");
+                            fbfname = URLEncoder.encode(fbfname, "UTF-8");
+                            fblname = URLEncoder.encode(fblname, "UTF-8");
+                            fbgender = URLEncoder.encode(fbgender, "UTF-8");
+                            fbid = URLEncoder.encode(fbid, "UTF-8");
+                            fblink = URLEncoder.encode(fblink, "UTF-8");
+                            fbimgurl = URLEncoder.encode(fbimgurl, "UTF-8");
+                        }
+                        catch(Exception e)
+                        {
+                            Log.d(Constants.LOG_TAG,""+e);
+                        }
+
+
+                        new RegisterApp(getApplicationContext(), gcm, getAppVersion(getApplicationContext()), new RegisterApp.RegisterAppCallback() {
+                            @Override
+                            public void onStart(boolean status)
+                            {
+                                dialog = new ProgressDialog(LoginOrRegisterActivity.this);
+                                dialog.setTitle("Registering");
+                                dialog.setMessage("Please Wait");
+                                dialog.show();
+                                dialog.setCancelable(false);
+                            }
+                            @Override
+                            public void onResult(boolean result)
+                            {
+                                dialog.dismiss();
+                                String finalurl = Constants.facebookRegistrationURL+fbemail+"&firstName="+fbfname+"&lastName="+fblname+"&gender="+fbgender+"&fbID="+fbid+"&fbLink="+fblink+"&fbImageURL="+fbimgurl+"&registrationID="+Constants.GCMRegID+"&latitude=0.0&longitude=0.0";
+                                Log.d(Constants.LOG_TAG, finalurl);
+                                new RegisterMerchant(getApplicationContext(), new RegisterMerchant.RegisterMerchantCallback() {
+                                    @Override
+                                    public void onStart(boolean a)
+                                    {
+                                        dialog = new ProgressDialog(LoginOrRegisterActivity.this);
+                                        dialog.setTitle("Registering");
+                                        dialog.setMessage("Loading... please wait");
+                                        dialog.show();
+                                        dialog.setCancelable(false);
+                                    }
+                                    @Override
+                                    public void onResult(boolean result) {
+                                        if (result)
+                                        {
+                                            dialog.dismiss();
+                                            //logout for facebook
+                                            if (Session.getActiveSession() != null) {
+                                                Session.getActiveSession().closeAndClearTokenInformation();
+                                            }
+                                            Session.setActiveSession(null);
+
+
+                                            Constants.editor.putString("Merchant Id", Constants.merchantId);
+                                            Constants.editor.commit();
+
+                                            if(Constants.merchantRegisterationStatus.equals("empty"))
+                                            {
+                                                Intent i = new Intent(LoginOrRegisterActivity.this, ProfileActivity.class);
+                                                startActivity(i);
+                                            }
+                                            else if(Constants.merchantRegisterationStatus.equals("exist"))
+                                            {
+                                                Intent i = new Intent(LoginOrRegisterActivity.this, LandingActivity.class);
+                                                startActivity(i);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            dialog.dismiss();
+                                            //logout for facebook
+                                            if (Session.getActiveSession() != null)
+                                            {
+                                                Session.getActiveSession().closeAndClearTokenInformation();
+                                            }
+                                            Toast.makeText(getApplicationContext(), "Cannot connect to the server", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }).execute(finalurl);
+                            }
+                        }).execute();
+                    }
+                }
+            }).executeAsync();
+        }
+        else if (state.isClosed())
+        {
+            Log.i(TAG, "Logged out...");
+        }
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        uiHelper.onResume();
+    }
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        uiHelper.onPause();
+    }
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        uiHelper.onDestroy();
+    }
+    @Override
+    public void onSaveInstanceState(Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
+        uiHelper.onSaveInstanceState(outState);
+    }
+
+
+    private static int getAppVersion(Context context)
+    {
+        try {
+            PackageInfo packageInfo = context.getPackageManager()
+                    .getPackageInfo(context.getPackageName(), 0);
+            return packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            // should never happen
+            throw new RuntimeException("Could not get package name: " + e);
+        }
+    }
+
+
+
+    protected void onStart()
+    {
         super.onStart();
         Constants.mGoogleApiClient.connect();
     }
-
-    protected void onStop() {
+    protected void onStop()
+    {
         super.onStop();
-        if (Constants.mGoogleApiClient.isConnected()) {
+        if (Constants.mGoogleApiClient.isConnected())
+        {
             Constants.mGoogleApiClient.disconnect();
         }
     }
 
-    @Override
-    public void onBackPressed() {
-//        super.onBackPressed();
-        Intent intent=new Intent(this,SplashScreenActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("EXIT", true);
-        startActivity(intent);
 
-    }
 
+    //FOR GOOGLE
     @Override
-    public void onConnectionFailed(ConnectionResult result) {
-        if (!result.hasResolution()) {
-            GooglePlayServicesUtil.getErrorDialog(result.getErrorCode(), this,0).show();
+    public void onConnectionFailed(ConnectionResult result)
+    {
+        if (!result.hasResolution())
+        {
+            GooglePlayServicesUtil.getErrorDialog(result.getErrorCode(), this,
+                    0).show();
             return;
         }
-
-        if (!mIntentInProgress) {
+        if (!mIntentInProgress)
+        {
             // Store the ConnectionResult for later usage
             mConnectionResult = result;
-
-            if (Constants.mSignInClicked) {
+            if (Constants.mSignInClicked)
+            {
                 // The user has already clicked 'sign-in' so we attempt to
                 // resolve all
                 // errors until the user is signed in, or they cancel.
                 resolveSignInError();
             }
         }
-
     }
-
     @Override
-    protected void onActivityResult(int requestCode, int responseCode,
-                                    Intent intent) {
-        if (requestCode == RC_SIGN_IN) {
-            if (responseCode != RESULT_OK) {
-                Constants.mSignInClicked = false;
-            }
-
-            mIntentInProgress = false;
-
-            if (!Constants.mGoogleApiClient.isConnecting()) {
-                Constants.mGoogleApiClient.connect();
-            }
-        }
-    }
-
-    @Override
-    public void onConnected(Bundle arg0) {
+    public void onConnected(Bundle arg0)
+    {
         Constants.mSignInClicked = false;
-        Toast.makeText(this, "User is connected!", Toast.LENGTH_LONG).show();
-
         // Get user's information
         getProfileInformation();
-
         // Update the UI after signin
         updateUI(true);
-
     }
 
     @Override
-    public void onConnectionSuspended(int arg0) {
+    public void onConnectionSuspended(int arg0)
+    {
         Constants.mGoogleApiClient.connect();
         updateUI(false);
     }
-
     /**
      * Updating the UI, showing/hiding buttons and profile layout
      * */
-    private void updateUI(boolean isSignedIn) {
-        if (isSignedIn) {
-            Intent i = new Intent(LoginOrRegisterActivity.this,LandingActivity.class);
-            startActivity(i);
-
-        } else {
+    private void updateUI(boolean isSignedIn)
+    {
+        if (isSignedIn)
+        {
+//            Intent i = new Intent(RegisterLoginActivity.this,LandingActivity.class);
+//            startActivity(i);
+        }
+        else
+        {
             // do something
-
         }
     }
-
-    /**
-     * Sign-in into google
-     * */
     private void signInWithGplus() {
         if (!Constants.mGoogleApiClient.isConnecting()) {
             Constants.mSignInClicked = true;
@@ -239,209 +412,178 @@ public class LoginOrRegisterActivity extends Activity implements ConnectionCallb
     /**
      * Fetching user's information name, email, profile pic
      * */
-    private void getProfileInformation() {
-        try {
-            if (Plus.PeopleApi.getCurrentPerson(Constants.mGoogleApiClient) != null) {
+    private void getProfileInformation()
+    {
+        try
+        {
+            if (Plus.PeopleApi.getCurrentPerson(Constants.mGoogleApiClient) != null)
+            {
+
                 Person currentPerson = Plus.PeopleApi
                         .getCurrentPerson(Constants.mGoogleApiClient);
 
-                Log.d("SAGAR","person "+ currentPerson);
-
-                String personName = currentPerson.getDisplayName();
-                String personPhotoUrl = currentPerson.getImage().getUrl();
-                String personGooglePlusProfile = currentPerson.getUrl();
-                String email = Plus.AccountApi.getAccountName(Constants.mGoogleApiClient);
-                String birthday = currentPerson.getBirthday();
-                int gender = currentPerson.getGender();
-             //   int id = currentPerson.getId();
-                String language = currentPerson.getLanguage();
-
-
-
-                Log.e("SAGAR", "Name: " + personName + ", plusProfile: "
-                        + personGooglePlusProfile + ", email: " + email
-                        + ", Image: " + personPhotoUrl+ ", Birthday: " + birthday+ ", Gender: " + gender);
-
-
-                // by default the profile url gives 50x50 px image only
-                // we can replace the value with whatever dimension we want by
-                // replacing sz=X
-                personPhotoUrl = personPhotoUrl.substring(0,
-                        personPhotoUrl.length() - 2)
+                googleName = currentPerson.getDisplayName();
+                googlePhotoUrl = currentPerson.getImage().getUrl();
+                googlePlusProfile = currentPerson.getUrl();
+                googleemail = Plus.AccountApi.getAccountName(Constants.mGoogleApiClient);
+                googledisplayname =currentPerson.getDisplayName();
+                googlefname= currentPerson.getName().getGivenName();
+                googlelname= currentPerson.getName().getFamilyName();
+                googlePhotoUrl = googlePhotoUrl.substring(0,
+                        googlePhotoUrl.length() - 2)
                         + PROFILE_PIC_SIZE;
+                Log.e(TAG,"Lname: " + googlelname +", Fname: " + googlefname + ", Name: " + googleName + ", plusProfile: "
+                        + googlePlusProfile + ", email: " + googleemail
+                        + ", Image: " + googlePhotoUrl);
+//                Toast.makeText(getApplicationContext(),
+//                        "Name: "+googleName+"\n"+
+//                                "PlusProfile: "+googlePlusProfile+"\n"+
+//                                "Email: "+googleemail+"\n"+
+//                                "Image: "+googlePhotoUrl+"\n",
+//                        Toast.LENGTH_LONG).show();
 
-                new LoadProfileImage(imgProfilePic).execute(personPhotoUrl);
+                googleName = URLEncoder.encode(googleName,"UTF-8");
+                googlePhotoUrl = URLEncoder.encode(googlePhotoUrl,"UTF-8");
+                googlePlusProfile = URLEncoder.encode(googlePlusProfile,"UTF-8");
+                googleemail = URLEncoder.encode(googleemail,"UTF-8");
+                googledisplayname =URLEncoder.encode(googledisplayname,"UTF-8");
+                googlefname= URLEncoder.encode(googlefname,"UTF-8");
+                googlelname= URLEncoder.encode(googlelname,"UTF-8");
 
-            } else {
-                Toast.makeText(getApplicationContext(),
-                        "Person information is null", Toast.LENGTH_LONG).show();
+                new RegisterApp(getApplicationContext(), gcm, getAppVersion(getApplicationContext()), new RegisterApp.RegisterAppCallback() {
+                    @Override
+                    public void onStart(boolean status)
+                    {
+                        dialog = new ProgressDialog(LoginOrRegisterActivity.this);
+                        dialog.setTitle("Registering");
+                        dialog.setMessage("Please Wait");
+                        dialog.show();
+                        dialog.setCancelable(false);
+                    }
+                    @Override
+                    public void onResult(boolean result)
+                    {
+                        dialog.dismiss();
+                        String finalurl = Constants.googleRegistrationURL + googlefname + "&lastName="+googlelname+"&emailID="+googleemail+"&googleProfileImage="+googlePhotoUrl+"&googleProfileLink="+googlePlusProfile+"&displayName="+googledisplayname+"&googleID=&language=&birthday=&name=&plusProfile=&image=&gender=&city=&registrationID="+Constants.GCMRegID+"&latitude=0.0&longitude=0.0";
+                        Log.d(Constants.LOG_TAG, finalurl);
+                        new RegisterMerchant(getApplicationContext(), new RegisterMerchant.RegisterMerchantCallback()
+                        {
+                            @Override
+                            public void onStart(boolean a)
+                            {
+                                dialog = new ProgressDialog(LoginOrRegisterActivity.this);
+                                dialog.setTitle("Registering");
+                                dialog.setMessage("Loading... please wait");
+                                dialog.show();
+                                dialog.setCancelable(false);
+                            }
+                            @Override
+                            public void onResult(boolean result)
+                            {
+                                if (result)
+                                {
+                                    dialog.dismiss();
+                                    //FOR GOOGLE LOGOUT
+                                    if (Constants.mGoogleApiClient.isConnected())
+                                    {
+                                        Plus.AccountApi.clearDefaultAccount(Constants.mGoogleApiClient);
+                                        Constants.mGoogleApiClient.disconnect();
+                                        Constants.mGoogleApiClient.connect();
+                                    }
+                                    Constants.editor.putString("Merchant Id", Constants.merchantId);
+                                    Constants.editor.commit();
+
+                                    if(Constants.merchantRegisterationStatus.equals("empty"))
+                                    {
+                                        Intent i = new Intent(LoginOrRegisterActivity.this, ProfileActivity.class);
+                                        startActivity(i);
+                                    }
+                                    else if(Constants.merchantRegisterationStatus.equals("exist"))
+                                    {
+                                        Intent i = new Intent(LoginOrRegisterActivity.this, LandingActivity.class);
+                                        startActivity(i);
+                                    }
+
+                                }
+                                else
+                                {
+                                    dialog.dismiss();
+                                    //FOR GOOGLE LOGOUT
+                                    if (Constants.mGoogleApiClient.isConnected())
+                                    {
+                                        Plus.AccountApi.clearDefaultAccount(Constants.mGoogleApiClient);
+                                        Constants.mGoogleApiClient.disconnect();
+                                        Constants.mGoogleApiClient.connect();
+                                    }
+                                    Toast.makeText(getApplicationContext(), "Cannot connect to the server", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }).execute(finalurl);
+                    }
+                }).execute();
+
             }
-        } catch (Exception e) {
+            else
+            {
+                Toast.makeText(getApplicationContext(),
+                        "Cannot connect to the internet", Toast.LENGTH_LONG).show();
+                //FOR GOOGLE LOGOUT
+                if (Constants.mGoogleApiClient.isConnected())
+                {
+                    Plus.AccountApi.clearDefaultAccount(Constants.mGoogleApiClient);
+                    Constants.mGoogleApiClient.disconnect();
+                    Constants.mGoogleApiClient.connect();
+                }
+            }
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
 
-
-    /**
-     * Background Async task to load user profile picture from url
-     * */
-    private class LoadProfileImage extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public LoadProfileImage(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-//            bmImage.setImageBitmap(result);
-        }
-    }
-
-    /**
-     * Sign-out from google
-     * */
-    public void signOutFromGplus() {
-
-        Log.d("SAGAR","IS CONNECTED "+ Constants.mGoogleApiClient.isConnected());
-
-        if (Constants.mGoogleApiClient.isConnected()) {
-            Plus.AccountApi.clearDefaultAccount(Constants.mGoogleApiClient);
-            Constants.mGoogleApiClient.disconnect();
-            Constants.mGoogleApiClient.connect();
-
-//            onCreate();
-
-        }
-    }
-
-
-    public void loginToFacebook() {
-        mPrefs = getPreferences(MODE_PRIVATE);
-        String access_token = mPrefs.getString("access_token", null);
-        long expires = mPrefs.getLong("access_expires", 0);
-
-        if (access_token != null) {
-            facebook.setAccessToken(access_token);
-        }
-
-        if (expires != 0) {
-            facebook.setAccessExpires(expires);
-        }
-
-        if (!facebook.isSessionValid()) {
-            facebook.authorize(this,
-                    new String[] { "email", "publish_stream" },
-                    new Facebook.DialogListener() {
-
-                        @Override
-                        public void onCancel() {
-                            // Function to handle cancel event
-                        }
-
-                        @Override
-                        public void onComplete(Bundle values) {
-                            // Function to handle complete event
-                            // Edit Preferences and update facebook acess_token
-                            SharedPreferences.Editor editor = mPrefs.edit();
-                            editor.putString("access_token",
-                                    facebook.getAccessToken());
-                            editor.putLong("access_expires",
-                                    facebook.getAccessExpires());
-                            editor.commit();
-
-                        }
-
-                        @Override
-                        public void onError(DialogError error) {
-                            // Function to handle error
-
-                        }
-
-                        @Override
-                        public void onFacebookError(FacebookError fberror) {
-                            // Function to handle Facebook errors
-
-                        }
-
-                    });
-        }
-    }
-
-
-    public void logoutFromFacebook() {
-        mAsyncRunner.logout(this, new AsyncFacebookRunner.RequestListener() {
-            @Override
-            public void onComplete(String response, Object state) {
-                Log.d("Logout from Facebook", response);
-                if (Boolean.parseBoolean(response) == true) {
-                    // User successfully Logged out
-                }
-            }
-
-            @Override
-            public void onIOException(IOException e, Object state) {
-            }
-
-            @Override
-            public void onFileNotFoundException(FileNotFoundException e,
-                                                Object state) {
-            }
-
-            @Override
-            public void onMalformedURLException(MalformedURLException e,
-                                                Object state) {
-            }
-
-            @Override
-            public void onFacebookError(FacebookError e, Object state) {
-            }
-        });
-    }
-
-    public void logIn()
+    View.OnClickListener listener = new View.OnClickListener()
     {
-        Intent i=new Intent(getApplicationContext(),LogInActivity.class);
-        startActivity(i);
-    }
-    public void register()
-    {
-        Intent i=new Intent(getApplicationContext(),SignUpActivity.class);
-        startActivity(i);
-    }
-
-
-    View.OnClickListener listener = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {
-
+        public void onClick(View v)
+        {
             Intent i ;
-
-            switch (v.getId()){
-
-                case R.id.log_in_btn_login_or_register_activity: logIn();
+            switch (v.getId())
+            {
+                case R.id.google_btn_sign_in_login_or_register_activity: signInWithGplus();
                     break;
-                case R.id.register_btn_login_or_register_activity: register();
-                    break;
-//                case R.id.google_btn_sign_in_login_or_register_activity: signInWithGplus();
-//                    break;
-//                case R.id.facebook_btn_sign_in_login_or_register_activity: loginToFacebook();
-//                    break;
-
             }
 
         }
     };
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent=new Intent(this,SplashScreenActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int responseCode,Intent intent)
+    {
+        super.onActivityResult(requestCode, responseCode, intent);
+        if (requestCode == RC_SIGN_IN)
+        {
+            if (responseCode != RESULT_OK)
+            {
+                Constants.mSignInClicked = false;
+            }
+            mIntentInProgress = false;
+            if (!Constants.mGoogleApiClient.isConnecting())
+            {
+                Constants.mGoogleApiClient.connect();
+            }
+        }
+        Session.getActiveSession().onActivityResult(this, requestCode, responseCode, intent);
+        uiHelper.onActivityResult(requestCode, responseCode, intent);
+        Log.i(TAG, "OnActivityResult...");
+    }
 }

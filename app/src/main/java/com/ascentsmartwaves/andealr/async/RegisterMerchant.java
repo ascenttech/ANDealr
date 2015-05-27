@@ -23,7 +23,6 @@ public class RegisterMerchant extends AsyncTask<String, Void, Boolean> {
 
     Context context;
     public RegisterMerchantCallback listener;
-    SharedPreferences.Editor editor;
 
     public interface RegisterMerchantCallback{
         void onStart(boolean a);
@@ -33,7 +32,6 @@ public class RegisterMerchant extends AsyncTask<String, Void, Boolean> {
     public RegisterMerchant(Context context, RegisterMerchantCallback listener) {
         this.context = context;
         this.listener = listener;
-        editor = context.getSharedPreferences("UserSession", context.MODE_PRIVATE).edit();
     }
 
     @Override
@@ -53,7 +51,8 @@ public class RegisterMerchant extends AsyncTask<String, Void, Boolean> {
 
             int status = response.getStatusLine().getStatusCode();
 
-            if (status == 200) {
+            if (status == 200)
+            {
                 HttpEntity entity = response.getEntity();
                 String data = EntityUtils.toString(entity);
 
@@ -61,23 +60,13 @@ public class RegisterMerchant extends AsyncTask<String, Void, Boolean> {
                 JSONArray jsonArray = jsonObject.getJSONArray("merchantRegistration");
 
                 JSONObject jsonNestedObject = jsonArray.getJSONObject(0);
-                boolean registration = jsonNestedObject.getBoolean("registration");
-
-
-                if(registration)
-                {
-                    String merchantId = jsonNestedObject.getString("merchantID");
-                    Constants.merchantId= String.valueOf(merchantId);
-                    Log.d("Andealr",Constants.merchantId);
-
-                }
-                else{
-                    String field = jsonNestedObject.getString("field");
-                    return false;
-                }
+                Constants.merchantId=jsonNestedObject.getString("merchantId");
+                Constants.merchantRegisterationStatus=jsonNestedObject.getString("city");
+                Log.d("ID:",Constants.merchantId);
 
                 return true;
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

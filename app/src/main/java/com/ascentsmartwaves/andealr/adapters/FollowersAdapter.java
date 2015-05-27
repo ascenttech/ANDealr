@@ -25,6 +25,7 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersAdapter.View
     TextView followerName,followerHandle;
     ImageView followerProfilePic;
     ImageLoader imageLoader;
+    String handle;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -61,10 +62,16 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersAdapter.View
         followerName = (TextView) holder.view.findViewById(R.id.follower_name_followers_activity);
         followerHandle = (TextView) holder.view.findViewById(R.id.follower_handle_followers_activity);
 
-        followerHandle.setText(followersData.get(position).getFollowersHandle());
-        followerHandle.setTypeface(Constants.customFont1);
+        handle=followersData.get(position).getFollowersHandle();
+        if(handle.equals("Handle"))
+        {
+            followerHandle.setText("");
+        }
+        else
+        {
+            followerHandle.setText(handle);
+        }
         followerName.setText(followersData.get(position).getFollowersName());
-        followerName.setTypeface(Constants.customFont1);
         imageLoader.DisplayImage(followersData.get(position).getFollowersProfilePic(), followerProfilePic);
 
     }

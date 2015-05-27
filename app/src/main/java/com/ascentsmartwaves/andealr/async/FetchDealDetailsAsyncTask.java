@@ -2,6 +2,10 @@ package com.ascentsmartwaves.andealr.async;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
+
+import com.ascentsmartwaves.andealr.data.LandingFragmentData;
+import com.ascentsmartwaves.andealr.data.LandingFragmentDetail;
 import com.ascentsmartwaves.andealr.utils.Constants;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,7 +28,7 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
         public void onResult(boolean b);
     }
 
-    public FetchDealDetailsAsyncTask(int position, Context context, FetchDealDetailsCallback listener) {
+    public FetchDealDetailsAsyncTask(int position,Context context, FetchDealDetailsCallback listener) {
         this.position = position;
         this.context = context;
         this.listener = listener;
@@ -48,14 +52,15 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
 
             // StatusLine stat = response.getStatusLine();
             int status = response.getStatusLine().getStatusCode();
-
+            Log.d(Constants.LOG_TAG,""+response);
             if (status == 200) {
-                responseEntity = response.getEntity();
-                responseString = EntityUtils.toString(responseEntity);
-
-                JSONObject jsonObject = new JSONObject(responseString);
-                JSONArray jsonArray = jsonObject.getJSONArray("dealDetails");
+                HttpEntity entity = response.getEntity();
+                String data = EntityUtils.toString(entity);
+                Log.d("LOG", " " + data);
+                JSONObject jsono = new JSONObject(data);
+                JSONArray jsonArray = jsono.getJSONArray("dealDetails");
                 JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
+
 
                 String dealId = nestedJsonObject.getString("dealID");
                 String dealTittle = nestedJsonObject.getString("dealTitle");
@@ -64,8 +69,8 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
                 String startdate=nestedJsonObject.getString("dealStart");
                 String enddate=nestedJsonObject.getString("dealEnd");
 
-                int likes = nestedJsonObject.getInt("noOfLikes");
-                int redeem = nestedJsonObject.getInt("noOfRedeems");
+                String likes = nestedJsonObject.getString("noOfLikes");
+                String redeem = nestedJsonObject.getString("noOfRedeems");
                 String photoURL = nestedJsonObject.getString("photoURL");
 
                 // dealId is converted into INT
@@ -74,14 +79,8 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
                 String likesString = String.valueOf(likes);
                 String redeemString = String.valueOf(redeem);
 
-                Constants.landingFragmentData.get(position).setDealDescription(dealDescription);
-                Constants.landingFragmentData.get(position).setLikes(likesString);
-                Constants.landingFragmentData.get(position).setRedeem(redeemString);
-                Constants.landingFragmentData.get(position).setDealStart(startdate);
-                Constants.landingFragmentData.get(position).setDealEnd(enddate);
 
-
-
+                Constants.landingFragmentDetail.add(new LandingFragmentDetail(dealId,dealDescription,likes,redeem,startdate,enddate,photoURL,dealTittle,city));
 
 
                 return true;
@@ -97,7 +96,8 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
 
 
     @Override
-    protected void onPostExecute(Boolean result) {
+    protected void onPostExecute(Boolean result)
+    {
         super.onPostExecute(result);
         listener.onResult(result);
     }

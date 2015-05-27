@@ -40,7 +40,7 @@
 
                 <include
                     android:id="@+id/details_bottom_strip_andealr_details_activity"
-                    layout="@layout/likes_and_redeem"
+                    layout="@layout/reach_likes_and_redeem"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/details_background_andealr_details_activity"

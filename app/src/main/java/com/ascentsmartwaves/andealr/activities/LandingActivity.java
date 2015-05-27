@@ -42,15 +42,21 @@ import com.ascentsmartwaves.andealr.async.CheckValidityAsyncTask;
 import com.ascentsmartwaves.andealr.async.FetchProfileAsyncTask;
 import com.ascentsmartwaves.andealr.async.ProfileValidAsyncTask;
 import com.ascentsmartwaves.andealr.data.DrawerListData;
+import com.ascentsmartwaves.andealr.data.LandingFragmentData;
 import com.ascentsmartwaves.andealr.fragments.FollowersFragment;
 import com.ascentsmartwaves.andealr.fragments.LandingFragment;
 import com.ascentsmartwaves.andealr.fragments.NotificationsFragment;
 import com.ascentsmartwaves.andealr.fragments.PaymentsFragment;
 import com.ascentsmartwaves.andealr.imagecaching.ImageLoader;
 import com.ascentsmartwaves.andealr.utils.Constants;
-import com.google.zxing.integration.android.IntentIntegrator;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 
 public class LandingActivity extends ActionBarActivity {
@@ -67,7 +73,6 @@ public class LandingActivity extends ActionBarActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private CharSequence mTitle;
     private CharSequence mDrawerTitle;
-    IntentIntegrator scanIntegrator;
     Intent intent;
     ImageLoader imageLoader;
     RelativeLayout profilelayout;
@@ -84,6 +89,8 @@ public class LandingActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Constants.landingFragmentData = new ArrayList<LandingFragmentData>();
         setContentView(R.layout.landing_activity);
 
         mTitle = mDrawerTitle = getTitle();
@@ -123,7 +130,8 @@ public class LandingActivity extends ActionBarActivity {
 
         profile.setOnClickListener(listener);
 
-        profilelayout.setOnClickListener(new View.OnClickListener() {
+        profilelayout.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(LandingActivity.this,ProfileActivity.class);
@@ -153,44 +161,40 @@ public class LandingActivity extends ActionBarActivity {
 
         imageLoader = new ImageLoader(getApplicationContext());
 
-        new FetchProfileAsyncTask(getApplicationContext(),new FetchProfileAsyncTask.FetchProfileCallback(){
-
-
+        new FetchProfileAsyncTask(getApplicationContext(),new FetchProfileAsyncTask.FetchProfileAsyncTaskCallback() {
             @Override
-            public void onStart(boolean a) {
+            public void onStart(boolean a)
+            {
                 dialog = new ProgressDialog(LandingActivity.this);
-                dialog.setTitle("Creating Your Profile");
+                dialog.setTitle("Receiving Data");
                 dialog.setMessage("Loading... please wait");
+                dialog.show();
+                dialog.setCancelable(false);
+                Log.d(Constants.LOG_TAG,Constants.fetchMerchantProfileURL + Constants.merchantId);
             }
-
             @Override
-            public void onResult(boolean b) {
-
+            public void onResult(boolean b) throws UnsupportedEncodingException, URISyntaxException {
                 dialog.dismiss();
-                if(b)
+                if (b)
+                {
+                    if(Constants.handle!=null)
+                    {
+                        URI uri = new URI(Constants.companyLogo.replace(" ", "%20"));
+                        name.setText("& "+Constants.handle);
+                        imageLoader.DisplayImage(uri.toString(),profile);
+                        Log.d(Constants.LOG_TAG,Constants.companyLogo);
+                    }
+                    if (Constants.handle.equals("null"))
+                    {
+                        name.setText("& Handle");
+                    }
+                }
+                else
                 {
 
-                     if(Constants.fname.equals("null"))
-                     {
-                    
-                     }
-                    else
-                     {
-                        name.setText(Constants.fname + "\n" + Constants.lname);
-                        imageLoader.DisplayImage(Constants.photolandingimg.replaceAll(" ", "%20"), profile);
-                     }
-
                 }
-
-
-
-
-
-
             }
-        }).execute(Constants.fetchProfileURL+Constants.merchantId);
-
-
+        }).execute(Constants.fetchMerchantProfileURL + Constants.merchantId);
     }
 
 
@@ -201,7 +205,8 @@ public class LandingActivity extends ActionBarActivity {
 //    }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return true;
@@ -210,29 +215,25 @@ public class LandingActivity extends ActionBarActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // if nav drawer is opened, hide the action items
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawer);
-        menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+//        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawer);
+//        menu.findItem(R.id.settings).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         Intent i;
-        // toggle nav drawer on selecting action bar app icon/title
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
+        if (mDrawerToggle.onOptionsItemSelected(item))
+        {
             return true;
         }
-        // Handle action bar actions click
-        switch (item.getItemId()) {
-
-
-            case R.id.action_settings:
+        switch(item.getItemId())
+        {
+            case R.id.settings:
                 i = new Intent(LandingActivity.this,SettingsActivity.class);
                 startActivity(i);
                 break;
-
-
-
         }
         return true;
     }
@@ -269,7 +270,9 @@ public class LandingActivity extends ActionBarActivity {
             case 0:
                 fragment = new LandingFragment();
                 break;
-            case 1 : scanQRCode();
+            case 1 :
+                i=new Intent(getApplicationContext(),ScannerActivity.class);
+                startActivity(i);
                 break;
             case 2 :
                 fragment = new FollowersFragment();
@@ -281,13 +284,13 @@ public class LandingActivity extends ActionBarActivity {
                 fragment = new NotificationsFragment();
                 break;
             case 5 :
-                Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.king.candycrushsaga&hl=en");
+                Uri uri = Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName());
                 Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
                 goToMarket.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 try {
                     startActivity(goToMarket);
                 } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.king.candycrushsaga&hl=en")));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName())));
                 }
                 break;
 
@@ -327,100 +330,64 @@ public class LandingActivity extends ActionBarActivity {
             }
 
             @Override
-            public void onResult(boolean b) {
+            public void onResult(boolean b)
+            {
 
                 if (b)
                 {
-                    if(Constants.userValidity)
+                    if(Constants.accountStatus.equals("Profile not updated"))
                     {
-
+                        dialog.dismiss();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(LandingActivity.this);
+                        builder.setMessage("Please complete your profile").setPositiveButton("OK", dialogClickListener)
+                                .setNegativeButton("Cancel", dialogClickListener).show();
+                    }
+                    else if(Constants.accountStatus.equals("Account not verified"))
+                    {
+                        dialog.dismiss();
+                        AlertDialog builder = new AlertDialog.Builder(LandingActivity.this).create();
+                        builder.setTitle("ANDealr");
+                        builder.setMessage("Your account is under verification, you will be notified once account is approved.");
+                        builder.show();
+                    }
+                    else if(Constants.accountStatus.equals("Profile updated"))
+                    {
+                        dialog.dismiss();
                         Intent i = new Intent(LandingActivity.this, AddDealActivity.class);
                         startActivity(i);
                     }
                     else
                     {
-                        Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
-                        startActivity(i);
+                        dialog.dismiss();
+                      Toast.makeText(getApplicationContext(),"Cannot connect to the server",Toast.LENGTH_SHORT).show();
                     }
-                }
-                else{
-
                 }
             }
         }).execute(Constants.validUserURL +Constants.merchantId);
 
     }
 
-
-
-
-    public void scanQRCode() {
-        try {
-            //start the scanning activity from the com.google.zxing.client.android.SCAN intent
-            Intent intent = new Intent(ACTION_SCAN);
-            intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-            startActivityForResult(intent, 0);
-        } catch (ActivityNotFoundException anfe) {
-            //on catch, show the download dialog
-            showDialog(LandingActivity.this, "No Scanner Found", "Download a QR Code Scanner ?", "Yes", "No").show();
-        }
-    }
-
-    //alert dialog for downloadDialog
-    private static AlertDialog showDialog(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {
-        AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
-        downloadDialog.setTitle(title);
-        downloadDialog.setMessage(message);
-        downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Uri uri = Uri.parse("market://search?q=pname:" + "com.google.zxing.client.android");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                try {
-                    act.startActivity(intent);
-                } catch (ActivityNotFoundException anfe) {
-
-                }
-            }
-        });
-        downloadDialog.setNegativeButton(buttonNo, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        });
-        return downloadDialog.show();
-    }
-
-    //on ActivityResult method
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == 0) {
-            if (resultCode == RESULT_OK) {
-                //get the extras that are returned from the intent
-                String contents = intent.getStringExtra("SCAN_RESULT");
-                String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-                String finalURL = Constants.checkValidityURL + "1" + "&"+"dealID="+"1";
-                new CheckValidityAsyncTask(getApplicationContext(),new CheckValidityAsyncTask.CheckValidityCallback() {
-                    @Override
-                    public void onStart(boolean a) {
-                        dialog = new ProgressDialog(LandingActivity.this);
-                        dialog.setTitle("Validating");
-                        dialog.setMessage("We are validating the deal");
-                        dialog.show();
-                        dialog.setCancelable(false);
-                    }
-                   @Override
-                    public void onResult(boolean b) {
-                        dialog.dismiss();
-                        AlertDialog builder = new AlertDialog.Builder(LandingActivity.this).create();
-                        builder.setTitle("Validity of the Deal");
-                        builder.setMessage("Deal is Valid");
-                        builder.show();
-
-
-                    }
-                }).execute(finalURL);
-
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener()
+    {
+        @Override
+        public void onClick(DialogInterface dialog, int which)
+        {
+            switch (which)
+            {
+                case DialogInterface.BUTTON_POSITIVE:
+                    Intent i = new Intent(LandingActivity.this, ProfileActivity.class);
+                    startActivity(i);
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    dialog.dismiss();
+                    break;
             }
         }
-    }
+    };
+
+
+
+
 
 
     View.OnClickListener listener = new View.OnClickListener() {
@@ -438,11 +405,11 @@ public class LandingActivity extends ActionBarActivity {
                     startActivity(i);
                     break;
                 case R.id.shareTheAppButton:
-                    Intent z = new Intent(Intent.ACTION_SEND);
-                    z.setType("text/plain");
-                    z.putExtra(android.content.Intent.EXTRA_TEXT, "Give Amazing Deals and boost your sales only on ANDealr");
-
-                    Intent mailer = Intent.createChooser(z , null);
+                    Intent share = new Intent(Intent.ACTION_SEND);
+                    share.setType("text/plain");
+                    share.putExtra(android.content.Intent.EXTRA_SUBJECT, "Get Amazing Deals and boost your sales only on ANDealr");
+                    share.putExtra(android.content.Intent.EXTRA_TEXT, "http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName());
+                    Intent mailer = Intent.createChooser(share , null);
                     mailer.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(mailer);
                  break;
@@ -453,7 +420,8 @@ public class LandingActivity extends ActionBarActivity {
         }
     };
 
-    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap) {
+    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap)
+    {
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
                 bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);

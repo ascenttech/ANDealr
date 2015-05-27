@@ -69,7 +69,8 @@ public class NotificationsFragment extends Fragment {
                     notificationsFragmentRecyclerView.setAdapter(notificationsFragmentAdapter);
                     dialog.dismiss();
                 }
-                else{
+                else
+                {
                     dialog.dismiss();
                     AlertDialog builder = new AlertDialog.Builder(getActivity()).create();
                     builder.setTitle("Notifications");

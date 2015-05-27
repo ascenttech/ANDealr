@@ -44,32 +44,49 @@ public class ProfileValidAsyncTask extends AsyncTask<String,Void,Boolean> {
     }
 
     @Override
-    protected Boolean doInBackground(String... url) {
-
-        try {
+    protected Boolean doInBackground(String... url)
+    {
+        try
+        {
             HttpGet httpGet = new HttpGet(url[0]);
             HttpClient httpClient = new DefaultHttpClient();
             HttpResponse response = httpClient.execute(httpGet);
             // StatusLine stat = response.getStatusLine();
             int status = response.getStatusLine().getStatusCode();
-            if (status == 200) {
+            Log.d(Constants.LOG_TAG,"THIS IS THE RESPONSE: "+response);
+            if (status == 200)
+            {
                 responseEntity = response.getEntity();
                 responseString = EntityUtils.toString(responseEntity);
                 Log.d("Andealr", " " + responseString);
                 JSONObject jsonObject = new JSONObject(responseString);
                 JSONArray jsonArray = jsonObject.getJSONArray("profileDetails");
                 JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
-                String dealStatus = nestedJsonObject.getString("profile");
-                if(dealStatus.equals("false"))
-                {
-                    Constants.userValidity = false;
-                }
-                else
-                {
-                    Constants.userValidity = true;
-                }
+                Constants.accountStatus = nestedJsonObject.getString("profile");
+                return true;
             }
-            return true;
+            else if (status == 201)
+            {
+                responseEntity = response.getEntity();
+                responseString = EntityUtils.toString(responseEntity);
+                Log.d("Andealr", " " + responseString);
+                JSONObject jsonObject = new JSONObject(responseString);
+                JSONArray jsonArray = jsonObject.getJSONArray("profileDetails");
+                JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
+                Constants.accountStatus = nestedJsonObject.getString("profile");
+                return true;
+            }
+            else if (status == 202)
+            {
+                responseEntity = response.getEntity();
+                responseString = EntityUtils.toString(responseEntity);
+                Log.d("Andealr", " " + responseString);
+                JSONObject jsonObject = new JSONObject(responseString);
+                JSONArray jsonArray = jsonObject.getJSONArray("profileDetails");
+                JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
+                Constants.accountStatus = nestedJsonObject.getString("profile");
+                return true;
+            }
         }
         catch (Exception e)
         {

@@ -35,7 +35,6 @@ import com.ascentsmartwaves.andealr.activities.ProfileActivity;
 import com.ascentsmartwaves.andealr.async.MerchantProfileAsyncTask;
 import com.ascentsmartwaves.andealr.imagecaching.ImageLoader;
 import com.ascentsmartwaves.andealr.utils.AndroidMultiPartEntity;
-import com.ascentsmartwaves.andealr.utils.Config;
 import com.ascentsmartwaves.andealr.utils.Constants;
 import com.ascentsmartwaves.andealr.utils.DatePickerUtil;
 
@@ -86,6 +85,7 @@ public class UserProfileFragment extends Fragment {
 
 
 
+        Log.d(Constants.LOG_TAG,"USER PROFILE FRAGMENT STARTED");
         View v = inflater.inflate(R.layout.activity_userprofile, container, false);
         editprofile = (ImageView) v.findViewById(R.id.editprofile);
         profiledet = (LinearLayout) v.findViewById(R.id.profile_details_layout);
@@ -144,9 +144,11 @@ public class UserProfileFragment extends Fragment {
 
 
         profileimg=(ImageView) v.findViewById(R.id.profileimg);
-        profileimg.setOnClickListener(new View.OnClickListener() {
+        profileimg.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, 0);
             }
@@ -180,20 +182,6 @@ public class UserProfileFragment extends Fragment {
             mainlayout.setBackgroundResource(R.drawable.no_internet);
         }
 
-//        String data = getActivity().getIntent().getStringExtra("key");
-//        if(data!=null)
-//        {
-//            editprofile.setVisibility(View.INVISIBLE);
-//            profiledet.setVisibility(View.INVISIBLE);
-//            profileedit.setVisibility(View.VISIBLE);
-//            RelativeLayout.LayoutParams parms = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//            parms.addRule(RelativeLayout.BELOW, R.id.counternames);
-//            profileedit.setLayoutParams(parms);
-//            RelativeLayout.MarginLayoutParams params = (RelativeLayout.MarginLayoutParams) profileedit.getLayoutParams();
-//            params.topMargin = 20;
-//            profileedit.setLayoutParams(parms);
-//        }
-
         return v;
     }
 
@@ -202,18 +190,17 @@ public class UserProfileFragment extends Fragment {
     {
         new MerchantProfileAsyncTask(getActivity().getApplicationContext(),new MerchantProfileAsyncTask.MerchantProfileAsyncTaskCallback() {
             @Override
-            public void onStart(boolean a) {
+            public void onStart(boolean a)
+            {
                 dialog = new ProgressDialog(getActivity());
                 dialog.setTitle("Retrieving Data");
                 dialog.setMessage("Loading... please wait");
                 dialog.show();
                 dialog.setCancelable(false);
-
             }
-
             @Override
             public void onResult(boolean b) {
-                if (b==true)
+                if (b)
                 {
                     dialog.dismiss();
                     showinfo();
@@ -235,16 +222,7 @@ public class UserProfileFragment extends Fragment {
 
     private void showinfo()
     {
-        firstName = Constants.merchantprofiledata.get(0).getFirstName();
-        lastName = Constants.merchantprofiledata.get(0).getLastName();
-        contactNo = Constants.merchantprofiledata.get(0).getContactNo();
-        alternateNo =Constants.merchantprofiledata.get(0).getAlternateNo();
-        emailID = Constants.merchantprofiledata.get(0).getEmailID();
-        dateOfBirth = Constants.merchantprofiledata.get(0).getDateOfBirth();
-        merchantHandle = Constants.merchantprofiledata.get(0).getMerchantHandle();
-        handle=  Constants.merchantprofiledata.get(0).getMerchantHandle();
-        gender=Constants.merchantprofiledata.get(0).getGender();
-        photo = Constants.merchantprofiledata.get(0).getPhoto();
+
 
         if (firstName.equals("null"))
         {
@@ -269,7 +247,7 @@ public class UserProfileFragment extends Fragment {
         ImageView profile = (ImageView) getActivity().findViewById(R.id.profileimg);
         imageLoader.DisplayImage( photo.replaceAll(" ","%20"), profile);
 
-        Constants.merchantprofiledata.clear();
+//        Constants.merchantprofiledata.clear();
     }
 
 
@@ -312,6 +290,7 @@ public class UserProfileFragment extends Fragment {
             cursor.close();
 //            icon = BitmapFactory.decodeFile(imagepath);
             profileimg.setImageBitmap(getScaledBitmap(imagepath, 200, 200));
+            new UploadImageDealer().execute();
 
         }
     }
@@ -402,9 +381,9 @@ public class UserProfileFragment extends Fragment {
                 {
                     gender="female";
                 }
-                if(Constants.CompanyphotoURL==null)
+                if(Constants.CompanyLogoURL ==null)
                 {
-                    Constants.CompanyphotoURL=photo;
+                    Constants.CompanyLogoURL =photo;
                 }
 
                 if(firstName.length()>0 && lastName.length()>0)
@@ -413,7 +392,7 @@ public class UserProfileFragment extends Fragment {
                     {
                         if (dateOfBirth.length() > 0)
                         {
-                            new UpdateAsyncTask().execute("http://integration.andealr.com/apps/v1.0/andealr/json/updateMerchant.php?merchantID=" + Constants.merchantId + "&firstName=" + firstName + "&lastName=" + lastName + "&alternateNo=" + alternateNo + "&dateOfBirth=" + dateOfBirth + "&address1=&address2=&city=&state=&country=&merchantHandle=" + merchantHandle + "&photo=" + Constants.CompanyphotoURL.replaceAll(" ", "%20") + "&gender="+gender);
+                            new UpdateAsyncTask().execute("http://integration.andealr.com/apps/v1.0/andealr/test/updateMerchant.php?merchantID=" + Constants.merchantId + "&firstName=" + firstName + "&lastName=" + lastName + "&alternateNo=" + alternateNo + "&dateOfBirth=" + dateOfBirth + "&address1=&address2=&city=&state=&country=&merchantHandle=" + merchantHandle + "&photo=" + Constants.CompanyLogoURL.replaceAll(" ", "%20") + "&gender="+gender);
                             dialog.dismiss();
                         }
                         else
@@ -482,7 +461,7 @@ public class UserProfileFragment extends Fragment {
 
             String responseString = null;
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost(Config.FILE_UPLOAD_URL_USERPROFILE);
+            HttpPost httppost = new HttpPost(Constants.FILE_UPLOAD_URL_MERCHANTPROFILE);
             try {
                 AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
                         new AndroidMultiPartEntity.ProgressListener() {
@@ -577,9 +556,9 @@ public class UserProfileFragment extends Fragment {
             {
                 gender="male";
             }
-            if(Constants.CompanyphotoURL==null)
+            if(Constants.CompanyLogoURL ==null)
             {
-                Constants.CompanyphotoURL=photo;
+                Constants.CompanyLogoURL =photo;
             }
             if(firstName.length()>0 && lastName.length()>0)
             {
@@ -587,7 +566,7 @@ public class UserProfileFragment extends Fragment {
                 {
                     if (dateOfBirth.length() > 0)
                     {
-                        new UpdateAsyncTask().execute("http://integration.andealr.com/apps/v1.0/andealr/json/updateMerchant.php?merchantID=" + Constants.merchantId + "&firstName=" + firstName + "&lastName=" + lastName + "&alternateNo=" + alternateNo + "&dateOfBirth=" + dateOfBirth + "&address1=&address2=&city=&state=&country=&merchantHandle=" + merchantHandle + "&photo=" + Constants.photoURL.replaceAll(" ", "%20") + "&gender="+gender);
+                        new UpdateAsyncTask().execute("http://integration.andealr.com/apps/v1.0/andealr/test/updateMerchant.php?merchantID=" + Constants.merchantId + "&firstName=" + firstName + "&lastName=" + lastName + "&alternateNo=" + alternateNo + "&dateOfBirth=" + dateOfBirth + "&address1=&address2=&city=&state=&country=&merchantHandle=" + merchantHandle + "&photo=" + Constants.photoURL.replaceAll(" ", "%20") + "&gender="+gender);
                     }
                     else
                     {

@@ -31,8 +31,8 @@
     </string-array>
 
     <string-array name="modes">
-        <item>Camera</item>
-        <!--<item>Gallery</item>-->
+        <!--<item>Camera</item>-->
+        <item>Gallery</item>
     </string-array>
 
 
@@ -42,6 +42,9 @@
         <item>Jeweller</item>
         <item>Designer</item>
     </string-array>
+
+    <string name="app_id">1075294219152738</string>
+
 
     <color name="dealer">#4274d7</color>
     <color name="listtext">#969696</color>

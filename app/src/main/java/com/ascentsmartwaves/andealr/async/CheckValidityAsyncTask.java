@@ -56,29 +56,55 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
             // StatusLine stat = response.getStatusLine();
             int status = response.getStatusLine().getStatusCode();
 
-            if (status == 200) {
+            if (status == 200)
+            {
                 responseEntity = response.getEntity();
                 responseString = EntityUtils.toString(responseEntity);
                 Log.d("Andealr", " " + responseString);
-
                 JSONObject jsonObject = new JSONObject(responseString);
                 JSONArray jsonArray = jsonObject.getJSONArray("redeemStatus");
-
                 JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
-
-                String dealStatus = nestedJsonObject.getString("deal");
-
-                if(dealStatus.equalsIgnoreCase("valid")){
-                    Constants.dealValidity = true;
-                }
-                else{
-                    Constants.dealValidity = false;
-                }
+                Constants.dealValidity = nestedJsonObject.getString("deal");
+                return true;
             }
-            return true;
+            if (status == 201)
+            {
+                responseEntity = response.getEntity();
+                responseString = EntityUtils.toString(responseEntity);
+                Log.d("Andealr", " " + responseString);
+                JSONObject jsonObject = new JSONObject(responseString);
+                JSONArray jsonArray = jsonObject.getJSONArray("redeemStatus");
+                JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
+                Constants.dealValidity = nestedJsonObject.getString("deal");
+                return true;
+            }
+            if (status == 202)
+            {
+                responseEntity = response.getEntity();
+                responseString = EntityUtils.toString(responseEntity);
+                Log.d("Andealr", " " + responseString);
+                JSONObject jsonObject = new JSONObject(responseString);
+                JSONArray jsonArray = jsonObject.getJSONArray("redeemStatus");
+                JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
+                Constants.dealValidity = nestedJsonObject.getString("deal");
+                return true;
+            }
+            if (status == 203)
+            {
+                responseEntity = response.getEntity();
+                responseString = EntityUtils.toString(responseEntity);
+                Log.d("Andealr", " " + responseString);
+                JSONObject jsonObject = new JSONObject(responseString);
+                JSONArray jsonArray = jsonObject.getJSONArray("redeemStatus");
+                JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
+                Constants.dealValidity = nestedJsonObject.getString("deal");
+                return true;
+            }
+
 
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return false;
@@ -86,7 +112,8 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
 
 
     @Override
-    protected void onPostExecute(Boolean result) {
+    protected void onPostExecute(Boolean result)
+    {
         super.onPostExecute(result);
         listener.onResult(result);
     }

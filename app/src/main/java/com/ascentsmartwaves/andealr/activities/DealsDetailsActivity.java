@@ -26,7 +26,7 @@ public class DealsDetailsActivity extends ActionBarActivity{
     ImageView cardBackground;
     ImageLoader imageLoader;
     LinearLayout textStrip;
-    TextView dealTittle,dealDescription,likesCounter,redeemCounter,longDescription,start,end;
+    TextView dealTittle,dealDescription,likesCounter,redeemCounter,longDescription,start,end,dealCity;
     RelativeLayout likesRedeemStrip;
     ProgressDialog dialog;
     String finalUrl;
@@ -39,7 +39,7 @@ public class DealsDetailsActivity extends ActionBarActivity{
         actionBar.setTitle("Deal Details");
 
         imageLoader = new ImageLoader(getApplicationContext());
-
+        Constants.landingFragmentDetail.clear();
         i = getIntent();
         position = Integer.parseInt(i.getStringExtra("position"));
         id = Integer.parseInt(i.getStringExtra("deal id"));
@@ -60,42 +60,46 @@ public class DealsDetailsActivity extends ActionBarActivity{
             public void onResult(boolean b) {
 
                 dialog.dismiss();
+
+                cardBackground= (ImageView) findViewById(R.id.details_background_andealr_details_activity);
+                imageLoader.DisplayImage(Constants.landingFragmentDetail.get(0).getPhotoURL(), cardBackground);
+
+                textStrip = (LinearLayout) findViewById(R.id.tittle_bottom_strip_andealr_details_activity);
+
+                dealTittle = (TextView) textStrip.findViewById(R.id.deal_tittle_text_andealr_fragment);
+                dealTittle.setText(Constants.landingFragmentDetail.get(0).getDealTittle());
+
+
+                dealDescription = (TextView) textStrip.findViewById(R.id.deal_description_text_andealr_fragment);
+                dealDescription.setText(Constants.landingFragmentDetail.get(0).getDealCity());
+
+
+                likesRedeemStrip = (RelativeLayout) findViewById(R.id.details_bottom_strip_andealr_details_activity);
+                likesCounter = (TextView) likesRedeemStrip.findViewById(R.id.likes_counter_text_include);
+
+                start= (TextView) findViewById(R.id.start_static_text);
+                start.setText(Constants.landingFragmentDetail.get(0).getDealStart());
+
+                end= (TextView) findViewById(R.id.end_static_text);
+                end.setText(Constants.landingFragmentDetail.get(0).getDealEnd());
+
+                likesCounter.setText(Constants.landingFragmentDetail.get(0).getLikes());
+
+                redeemCounter = (TextView) likesRedeemStrip.findViewById(R.id.redeem_counter_text_include);
+                redeemCounter.setText(Constants.landingFragmentDetail.get(0).getRedeem());
+
+                longDescription = (TextView) findViewById(R.id.deals_details_text_andnrby_fragment_details_activity);
+                longDescription.setText(Constants.landingFragmentDetail.get(0).getDealDescription());
+
+
+
+
+
             }
         }).execute(finalUrl);
 
 
         setContentView(R.layout.deals_details_activity);
-
-
-        cardBackground= (ImageView) findViewById(R.id.details_background_andealr_details_activity);
-        imageLoader.DisplayImage(Constants.landingFragmentData.get(position).getPhotoURL(), cardBackground);
-
-        textStrip = (LinearLayout) findViewById(R.id.tittle_bottom_strip_andealr_details_activity);
-
-        dealTittle = (TextView) textStrip.findViewById(R.id.deal_tittle_text_andealr_fragment);
-        dealTittle.setText(Constants.landingFragmentData.get(position).getDealTittle());
-
-
-        dealDescription = (TextView) textStrip.findViewById(R.id.deal_description_text_andealr_fragment);
-        dealDescription.setText(Constants.landingFragmentData.get(position).getCity());
-
-
-        likesRedeemStrip = (RelativeLayout) findViewById(R.id.details_bottom_strip_andealr_details_activity);
-        likesCounter = (TextView) likesRedeemStrip.findViewById(R.id.likes_counter_text_include);
-
-        start= (TextView) findViewById(R.id.start_static_text);
-        start.setText(Constants.landingFragmentData.get(position).getDealStart());
-
-        end= (TextView) findViewById(R.id.end_static_text);
-        end.setText(Constants.landingFragmentData.get(position).getDealEnd());
-
-        likesCounter.setText(Constants.landingFragmentData.get(position).getLikes());
-
-        redeemCounter = (TextView) likesRedeemStrip.findViewById(R.id.redeem_counter_text_include);
-        redeemCounter.setText(Constants.landingFragmentData.get(position).getRedeem());
-
-        longDescription = (TextView) findViewById(R.id.deals_details_text_andnrby_fragment_details_activity);
-        longDescription.setText(Constants.landingFragmentData.get(position).getDealDescription());
 
 
 

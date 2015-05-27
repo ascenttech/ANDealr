@@ -1,77 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainlayoutcompany"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    android:background="@drawable/company_background">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/userprofilefragmentbackground">
 
     <ScrollView
-        android:orientation="vertical" android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
         <RelativeLayout
-            android:id="@+id/profile_layout_company_profile"
+            android:id="@+id/display_profile_layout_company_profile"
             android:layout_height="match_parent"
             android:layout_width="match_parent">
 
-
             <RelativeLayout
                 android:id="@+id/profile_Img_Layout"
-                android:layout_height="200dp"
-                android:layout_margin="10dp"
+                android:layout_height="180dp"
                 android:layout_width="match_parent"
+                android:layout_margin="10dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:background="#80CDCDCD">
+                android:background="#80FFFFFF">
 
+                <EditText
+                    android:hint="&amp; Handle *"
+                    android:textColorHint="#000"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/merchant_handle_profile"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_centerHorizontal="true" />
 
                 <com.ascentsmartwaves.andealr.custom.RoundedImage
                     android:id="@+id/companyimg"
-                    android:elevation="10dp"
-                    android:layout_marginTop="35dp"
+                    android:elevation="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/merchant_handle_profile"
                     android:layout_centerInParent="true"
-                    android:layout_alignParentTop="true"
-                    android:onClick="companyIMGopen"
                     android:layout_width="100dp"
                     android:layout_height="100dp"/>
 
-
-                <com.ascentsmartwaves.andealr.custom.RoundedImage
+                <ImageView
                     android:id="@+id/editcompanyprofile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit1"
-                    android:layout_alignBottom="@+id/company_name"
+                    android:layout_alignBottom="@+id/companyimg"
                     android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"/>
 
 
-                <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:id="@+id/company_name"
-                    android:textColor="#FFF"
-                    android:layout_below="@id/companyimg"
-                    android:layout_marginTop="20dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="18dp"
-                    android:gravity="center" />
-
             </RelativeLayout>
-
-
 
             <LinearLayout
                 android:id="@+id/counterlayout"
                 android:layout_below="@+id/profile_Img_Layout"
                 android:layout_height="match_parent"
+                android:layout_width="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:background="#CC9E9E9E">
+                android:background="#80FFFFFF">
+
+
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
+                    android:text="0"
+                    android:id="@+id/counterfollowers"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15pt"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
+                    android:text="0"
+                    android:id="@+id/counterAdded"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15pt"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+
+
                 <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:text="0"
                     android:id="@+id/counterliked"
@@ -84,10 +102,10 @@
                     android:layout_gravity="center"
                     android:gravity="center" />
 
+
                 <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:text="0"
                     android:id="@+id/counterredeem"
-                    android:layout_toRightOf="@id/counterliked"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -95,16 +113,7 @@
                     android:textStyle="bold"
                     android:gravity="center" />
 
-                <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:text="0"
-                    android:id="@+id/counterfollowed"
-                    android:layout_width="fill_parent"
-                    android:layout_toRightOf="@+id/counterredeem"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="15pt"
-                    android:textStyle="bold"
-                    android:gravity="center" />
+
             </LinearLayout>
 
 
@@ -114,11 +123,30 @@
                 android:id="@+id/counternames"
                 android:layout_below="@+id/counterlayout"
                 android:layout_height="match_parent"
+                android:layout_width="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
-                android:background="#CC9E9E9E"
+                android:background="#80FFFFFF"
                 >
+
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
+                    android:text="Total\nFollowers"
+                    android:id="@+id/followers"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="8pt"
+                    android:gravity="center" />
+
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
+                    android:text="Deals\nAdded"
+                    android:id="@+id/followed"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="8pt"
+                    android:gravity="center" />
+
                 <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:text="Deals\nLiked"
                     android:id="@+id/liked"
@@ -133,22 +161,12 @@
                 <com.ascentsmartwaves.andealr.custom.CustomTextView
                     android:text="Deals\nRedeemed"
                     android:id="@+id/redeem"
-                    android:layout_toRightOf="@id/liked"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="8pt"
                     android:gravity="center" />
 
-                <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:text="Deals\nAdded"
-                    android:id="@+id/followed"
-                    android:layout_width="fill_parent"
-                    android:layout_toRightOf="@+id/redeem"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="8pt"
-                    android:gravity="center" />
 
             </LinearLayout>
 
@@ -159,109 +177,109 @@
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:background="#00CDCDCD"
-                android:layout_margin="10dp"
                 android:visibility="visible"
-                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:id="@+id/company_email_id_profile"
+                    android:id="@+id/company_emailId_textview_profile"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:paddingLeft="5dp"
-                    android:layout_marginTop="10dp"
                     android:textSize="10pt"
-                    android:background="#CC9E9E9E"
+                    android:textColor="#000"
+                    android:background="#80FFFFFF"
                     android:gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:text="Email ID"/>
 
                 <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:id="@+id/company_mobile_profile"
+                    android:id="@+id/company_mobile_textview_profile"
                     android:layout_width="match_parent"
                     android:paddingLeft="5dp"
                     android:layout_height="50dp"
                     android:text="Contact No"
+                    android:textColor="#000"
                     android:textSize="10pt"
-                    android:background="#CC9E9E9E"
+                    android:background="#80FFFFFF"
                     android:gravity="center_vertical"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/company_email_id_profile"/>
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_below="@+id/company_emailId_textview_profile"/>
 
                 <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:id="@+id/company_locality_profile"
+                    android:id="@+id/company_name_textview_profile"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="Locality"
-                    android:background="#CC9E9E9E"
+                    android:textColor="#000"
+                    android:text="Company Name"
+                    android:background="#80FFFFFF"
                     android:paddingLeft="5dp"
                     android:textSize="10pt"
                     android:gravity="center_vertical"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/company_email_id_profile"/>
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_below="@+id/company_mobile_textview_profile"/>
 
-                 <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:id="@+id/company_pincode_profile"
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
+                    android:id="@+id/company_locality_textview_profile"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                     android:background="#CC9E9E9E"
-                     android:paddingLeft="5dp"
+                    android:textColor="#000"
+                    android:text="Locality"
+                    android:background="#80FFFFFF"
+                    android:paddingLeft="5dp"
+                    android:textSize="10pt"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_below="@+id/company_name_textview_profile"/>
+
+                <com.ascentsmartwaves.andealr.custom.CustomTextView
+                    android:id="@+id/company_pincode_textview_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#80FFFFFF"
+                    android:textColor="#000"
+                    android:paddingLeft="5dp"
                     android:text="Pincode"
                     android:gravity="center_vertical"
                     android:textSize="10pt"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/company_locality_profile"/>
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_below="@+id/company_locality_textview_profile"/>
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:id="@+id/edit_comapnyprofile_layout"
+                android:id="@+id/edit_companyprofile_layout"
                 android:visibility="invisible"
                 android:layout_below="@+id/counternames"
                 android:orientation="vertical"
-                android:layout_margin="10dp"
                 android:layout_marginTop="20dp"
                 android:background="#FFF"
-                android:layout_height="10dp"
+                android:layout_height="1dp"
                 android:layout_width="fill_parent">
 
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:id="@+id/name_layout"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_margin="10dp">
-
-                    <com.ascentsmartwaves.andealr.custom.CustomEditText
-                        android:id="@+id/merchant_companyname_activty_register"
-                        android:layout_height="wrap_content"
-                        android:scrollbars = "vertical"
-                        android:layout_weight="1"
-                        android:height="50dp"
-                        android:layout_width="0dp"
-                        android:digits="qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
-                        android:inputType="textPersonName"
-                        android:hint="Company name"
-                        android:layout_gravity="center"
-                        android:layout_alignTop="@+id/merchant_middlename_activty_register" />
-
-                </LinearLayout>
-
+               <com.ascentsmartwaves.andealr.custom.CustomEditText
+                   android:id="@+id/merchant_companyname_edittext_profile"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="10dp"
+                   android:height="50dp"
+                   android:layout_below="@+id/name_layout"
+                   android:hint="Company Name *"/>
 
 
                 <com.ascentsmartwaves.andealr.custom.CustomEditText
-                    android:id="@+id/compny_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_below="@+id/name_layout"
-                    android:height="50dp"
-                    android:hint="Email"/>
-
-
-                <com.ascentsmartwaves.andealr.custom.CustomEditText
-                    android:id="@+id/compny_mobile"
+                    android:id="@+id/compny_mobile_edittext_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
@@ -269,32 +287,30 @@
                     android:digits="0123456789"
                     android:height="50dp"
                     android:maxLength="10"
-                    android:layout_below="@+id/compny_email"
-                    android:hint="Mobile Number"/>
-
+                    android:layout_below="@+id/merchant_companyname_edittext_profile"
+                    android:hint="Mobile Number *"/>
 
 
                 <com.ascentsmartwaves.andealr.custom.CustomEditText
-                    android:id="@+id/company_locality"
+                    android:id="@+id/company_locality_edittext_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:height="50dp"
                     android:layout_below="@+id/merchant_alternate"
-                    android:hint="Locality"/>
-
+                    android:hint="Locality *"/>
 
 
                 <com.ascentsmartwaves.andealr.custom.CustomEditText
-                    android:id="@+id/merchant_pincode_company_profile"
+                    android:id="@+id/merchant_pincode_edittext_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:height="50dp"
                     android:maxLength="6"
                     android:inputType="phone"
-                    android:layout_below="@+id/company_locality"
-                    android:hint="Pincode"/>
+                    android:layout_below="@+id/company_locality_edittext_profile"
+                    android:hint="Pincode *"/>
 
 
                 <com.ascentsmartwaves.andealr.custom.CustomButton
@@ -309,10 +325,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
 
+
             </LinearLayout>
-
         </RelativeLayout>
-
     </ScrollView>
-
 </RelativeLayout>

@@ -74,7 +74,7 @@ public class MerchantProfileAsyncTask extends AsyncTask<String,Void,Boolean>
                     String merchantHandle = object.getString("merchantHandle");
                     String gender=object.getString("gender");
                     String photo = object.getString("photo");
-                    Constants.merchantprofiledata.add(new MerchantProfileData(firstName,lastName,contactNo, alternateNo,emailID,dateOfBirth,merchantHandle,gender,photo));
+//                    Constants.merchantprofiledata.add(new MerchantProfileData(firstName,lastName,contactNo, alternateNo,emailID,dateOfBirth,merchantHandle,gender,photo));
 
                 return true;
             }
