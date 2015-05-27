@@ -3,6 +3,8 @@ package com.ascentsmartwaves.andealr.async;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.ascentsmartwaves.andealr.utils.Constants;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -58,6 +60,10 @@ public class AddDealAsyncTask extends AsyncTask<String,Void,Boolean> {
                 JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
                 boolean deal = nestedJsonObject.getBoolean("deal");
                 int dealId = nestedJsonObject.getInt("dealID");
+
+                // This is the latest update
+                int balance = nestedJsonObject.getInt("balance");
+                Constants.balance = balance;
 
                 return true;
             }

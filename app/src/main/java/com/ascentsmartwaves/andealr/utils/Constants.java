@@ -54,6 +54,8 @@ public class Constants
     public static String field ;
     public static String handle ;
     public static String companyLogo ;
+    public static int balance ;
+
 
     // All the Data arraylist
     public static ArrayList<LandingFragmentData> landingFragmentData;
@@ -78,10 +80,11 @@ public class Constants
     public static String fetchMerchantProfileURL="http://integration.andealr.com/apps/v1.0/andealr/test/merchantProfile.php?merchantID=";
     public static String validUserURL = "http://integration.andealr.com/apps/v1.0/andealr/test/checkProfile.php?merchantID=";
     public static final String FILE_UPLOAD_URL_MERCHANTPROFILE = "http://integration.andealr.com/apps/v1.0/andealr/test/merchantImage.php?merchantID=";
-    public static final String FILE_UPLOAD_URL = "http://integration.andealr.com/apps/v1.0/andealr/test/dealImageUpload.php";
+    public static final String dealImageUploadURL = "http://integration.andealr.com/apps/v1.0/andealr/test/dealImageUpload.php";
     public static final String updateMerchantProfileURL="http://integration.andealr.com/apps/v1.0/andealr/test/updateMerchant.php?merchantID=";
     public static final String facebookRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/test/merchantRegistrationFacebook.php?emailID=";
     public static final String googleRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/test/merchantRegistrationGoogle.php?firstName=";
+    public static final String fetchNotificationsForDealerURL ="http://integration.andealr.com/apps/v1.0/andealr/test/merchantNotifications.php?merchantID=";
 
 
 
@@ -98,11 +101,11 @@ public class Constants
 //    public static String fetchMerchantProfileURL="http://integration.andealr.com/apps/v1.0/andealr/json/merchantProfile.php?merchantID=";
 //    public static String validUserURL = "http://integration.andealr.com/apps/v1.0/andealr/json/checkProfile.php?merchantID=";
 //    public static final String FILE_UPLOAD_URL_MERCHANTPROFILE = "http://integration.andealr.com/apps/v1.0/andealr/json/merchantImage.php?merchantID=";
-//    public static final String FILE_UPLOAD_URL = "http://integration.andealr.com/apps/v1.0/andealr/json/dealImageUpload.php";
+//    public static final String dealImageUploadURL = "http://integration.andealr.com/apps/v1.0/andealr/json/dealImageUpload.php";
 //    public static final String updateMerchantProfileURL="http://integration.andealr.com/apps/v1.0/andealr/json/updateMerchant.php?merchantID=";
 //    public static final String facebookRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/json/merchantRegistrationFacebook.php?emailID=";
 //    public static final String googleRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/json/merchantRegistrationGoogle.php?firstName=";
-
+//    public static final String fetchNotificationsForDealerURL ="http://integration.andealr.com/apps/v1.0/andealr/json/merchantNotifications.php?merchantID=";
 
 }
 

@@ -64,7 +64,7 @@ public class UploadImageToServer extends AsyncTask<Void, Integer, String> {
         String responseString = null;
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost(Constants.FILE_UPLOAD_URL);
+        HttpPost httppost = new HttpPost(Constants.dealImageUploadURL);
         try {
             AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
                     new AndroidMultiPartEntity.ProgressListener() {

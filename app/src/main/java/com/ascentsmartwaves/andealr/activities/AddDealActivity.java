@@ -13,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -459,8 +460,28 @@ public class AddDealActivity extends ActionBarActivity {
                         dialog.dismiss();
                         imagepath="NO DATA";
                         Constants.landingFragmentData.clear();
-                        Intent i = new Intent(AddDealActivity.this,LandingActivity.class);
-                        startActivity(i);
+                        if(Constants.balance <500){
+
+                            makeDialog("Congratulations! Your Deal "+name.getText().toString()+" is accepted and will be activated once approved. Your balance of Rs "+Constants.balance+" will be used for this deal. Contact us at shoot@andnrby.com or call us at +91-9820817928 for any queries.");
+
+                        }
+                        else{
+
+                            makeDialog("Oops! You have insufficient funds. Your Deal"+name.getText().toString()+" is accepted and will be activated once approved. We have accepted your Deal "+name.getText().toString()+" and will be activated on approval. We request you to refill your account for hassle free services. Contact us at shoot@andnrby.com or call us at +91-9820817928 for any queries.");
+
+                        }
+
+                        // The below Handler will give us a buffer of 10 secs
+                        // before starting Landing Activity
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                Intent i = new Intent(AddDealActivity.this,LandingActivity.class);
+                                startActivity(i);
+                            }
+                        },10000);
+
 
 
                     }
@@ -491,6 +512,17 @@ public class AddDealActivity extends ActionBarActivity {
         startActivityForResult(i, 0);
     }
 
+    public void makeDialog(String message){
+
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(AddDealActivity.this);
+        alertDialog.setTitle("ANDealr");
+        alertDialog.setMessage(message);
+        alertDialog.setCancelable(false);
+        alertDialog.show();
+
+
+    }
 
 
     /**
