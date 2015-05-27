@@ -5,18 +5,10 @@ package com.ascentsmartwaves.andealr.data;
  */
 public class LandingFragmentDetail
 {
-    String dealId;
-    String dealTittle;
-    String dealCity;
-    String photoURL;
-    String dealDescription;
-    String likes;
-    String redeem;
-    String dealStart;
-    String dealEnd;
+    String dealId,dealTittle,dealCity,photoURL,dealDescription,likes,redeem,dealStart,dealEnd;
+    int reach;
 
-
-    public LandingFragmentDetail(String dealId, String dealDescription, String likes, String redeem, String dealStart, String dealEnd, String photoURL, String dealTittle,String dealCity) {
+    public LandingFragmentDetail(String dealId, String dealDescription, String likes, String redeem, String dealStart, String dealEnd, String photoURL, String dealTittle, String dealCity, int reach) {
         this.dealId = dealId;
         this.dealDescription = dealDescription;
         this.likes = likes;
@@ -26,8 +18,16 @@ public class LandingFragmentDetail
         this.photoURL = photoURL;
         this.dealTittle = dealTittle;
         this.dealCity = dealCity;
+        this.reach = reach;
     }
 
+    public int getReach() {
+        return reach;
+    }
+
+    public void setReach(int reach) {
+        this.reach = reach;
+    }
 
     public String getDealId() {
         return dealId;

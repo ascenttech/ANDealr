@@ -76,10 +76,13 @@ public class FetchDealAsyncTask extends AsyncTask<String,Void,Boolean> {
                     int redeem = nestedJsonObject.getInt("noOfRedeems");
                     String photoURL = nestedJsonObject.getString("photoURL");
 
+                    // new field added reach
+                    int reach = nestedJsonObject.getInt("reach");
+
                     String likesString = String.valueOf(likes);
                     String redeemString = String.valueOf(redeem);
 
-                    Constants.landingFragmentData.add(new LandingFragmentData(dealId,dealTittle,city,likesString,redeemString,photoURL));
+                    Constants.landingFragmentData.add(new LandingFragmentData(dealId,dealTittle,city,likesString,redeemString,photoURL,reach));
                 }
                 return true;
             }

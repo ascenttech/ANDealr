@@ -30,7 +30,7 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
     ImageView cardBackground;
     ImageLoader imageLoader;
     RelativeLayout likesRedeemLayout;
-    TextView likesCounter,redeemCounter;
+    TextView likesCounter,redeemCounter,reachCounter;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -72,6 +72,8 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
         likesRedeemLayout = (RelativeLayout) holder.view.findViewById(R.id.likes_redeem_included_landing_fragment);
         likesCounter = (TextView) likesRedeemLayout.findViewById(R.id.likes_counter_text_include);
         redeemCounter = (TextView) likesRedeemLayout.findViewById(R.id.redeem_counter_text_include);
+        reachCounter = (TextView) likesRedeemLayout.findViewById(R.id.reach_counter_text_include);
+
 
 
 
@@ -80,6 +82,7 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
         dealDescription.setText(Constants.landingFragmentData.get(position).getCity());
         likesCounter.setText(Constants.landingFragmentData.get(position).getLikes());
         redeemCounter.setText(Constants.landingFragmentData.get(position).getRedeem());
+        reachCounter.setText(Constants.landingFragmentData.get(position).getReach());
 
 
 

@@ -26,7 +26,7 @@ public class DealsDetailsActivity extends ActionBarActivity{
     ImageView cardBackground;
     ImageLoader imageLoader;
     LinearLayout textStrip;
-    TextView dealTittle,dealDescription,likesCounter,redeemCounter,longDescription,start,end,dealCity;
+    TextView dealTittle,dealDescription,likesCounter,redeemCounter,longDescription,start,end,dealCity,reachCounter;
     RelativeLayout likesRedeemStrip;
     ProgressDialog dialog;
     String finalUrl;
@@ -44,7 +44,7 @@ public class DealsDetailsActivity extends ActionBarActivity{
         position = Integer.parseInt(i.getStringExtra("position"));
         id = Integer.parseInt(i.getStringExtra("deal id"));
         finalUrl=Constants.fetchDealDetailsURL+id;
-                new FetchDealDetailsAsyncTask(position,getApplicationContext(),new FetchDealDetailsAsyncTask.FetchDealDetailsCallback() {
+        new FetchDealDetailsAsyncTask(position,getApplicationContext(),new FetchDealDetailsAsyncTask.FetchDealDetailsCallback() {
             @Override
             public void onStart(boolean a) {
 
@@ -87,6 +87,9 @@ public class DealsDetailsActivity extends ActionBarActivity{
 
                 redeemCounter = (TextView) likesRedeemStrip.findViewById(R.id.redeem_counter_text_include);
                 redeemCounter.setText(Constants.landingFragmentDetail.get(0).getRedeem());
+
+                reachCounter = (TextView) likesRedeemStrip.findViewById(R.id.reach_counter_text_include);
+                reachCounter.setText(Constants.landingFragmentDetail.get(0).getReach());
 
                 longDescription = (TextView) findViewById(R.id.deals_details_text_andnrby_fragment_details_activity);
                 longDescription.setText(Constants.landingFragmentDetail.get(0).getDealDescription());

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.ascentsmartwaves.andealr.R;
 import com.ascentsmartwaves.andealr.adapters.NotificationsFragmentAdapter;
 import com.ascentsmartwaves.andealr.async.FetchNotificationsAsyncTask;
+import com.ascentsmartwaves.andealr.data.NotificationsData;
 import com.ascentsmartwaves.andealr.data.NotificationsDataPrevious;
 import com.ascentsmartwaves.andealr.utils.Constants;
 
@@ -37,7 +38,10 @@ public class NotificationsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+
         View rootView = inflater.inflate(R.layout.notifications_fragment,null);
+        Constants.notificationsData = new ArrayList<NotificationsData>();
+
         notificationsFragmentRecyclerView = (RecyclerView) rootView.findViewById(R.id.notifications_recycler_view);
 
         notificationsFragmentLayoutManager = new LinearLayoutManager(getActivity());
