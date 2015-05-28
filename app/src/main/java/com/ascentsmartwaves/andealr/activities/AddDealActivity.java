@@ -482,12 +482,12 @@ public class AddDealActivity extends ActionBarActivity {
                         Log.d(Constants.LOG_TAG,"CONST BALANCE IS " + Constants.balance );
                         if(Constants.balance >500){
 
-                            makeDialog("Congratulations! Your Deal "+name.getText().toString()+" is accepted and will be activated once approved. Your balance of Rs "+Constants.balance+" will be used for this deal. Contact us at shoot@andnrby.com or call us at +91-9820817928 for any queries.");
+                            makeDialog("Congratulations! Your Deal "+name.getText().toString()+" is accepted and will be activated once approved. Current Balance in your account is Rs "+Constants.balance+". Contact us at support@andnrby.com or call us at +91-8879-153-143 for any queries.");
 
                         }
                         else{
 
-                            makeDialog("Oops! You have insufficient funds. Your Deal"+name.getText().toString()+" is accepted and will be activated once approved. We have accepted your Deal "+name.getText().toString()+" and will be activated on approval. We request you to refill your account for hassle free services. Contact us at shoot@andnrby.com or call us at +91-9820817928 for any queries.");
+                            makeDialog("Oops! You have insufficient funds. Your Deal"+name.getText().toString()+" is accepted and will be activated once approved. We have accepted your Deal "+name.getText().toString()+" and will be activated on approval. We request you to refill your account for hassle free services. Contact us at support@andnrby.com or call us at +91-8879-153-143 for any queries.");
 
                         }
 
