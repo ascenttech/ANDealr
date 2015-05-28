@@ -57,6 +57,26 @@ public class Constants
     public static int balance ;
 
 
+    // Log Tags for all the activities
+    public static final String AbooutUsActivity = " ABOUT_US_ACTIVITY ";
+    public static final String AddDealActivity = " ADD_DEAL_ACTIVITY ";
+    public static final String DealDetailsActivity = " DEAL_DETAILS_ACTIVITY ";
+    public static final String LandingActivity = " LANDING_ACTIVITY ";
+    public static final String LogInActivity = " LOGIN_ACTIVITY ";
+    public static final String LoginOrRegisterActivity = " LOGIN_OR_REGISTER_ACTIVITY ";
+    public static final String NotificationsActivity = " NOTIFICATIONS_ACTIVITY ";
+    public static final String PrivacyPolicyActivity = " PRIVACY_POLICY_ACTIVITY ";
+    public static final String ProfileActivity = " PROFILE_ACTIVITY ";
+    public static final String ScannerActivity = " SCANNER_ACTIVITY ";
+    public static final String SignUpActivity = " SIGN_UP_ACTIVITY ";
+    public static final String SplashScreenActivity = " SPLASH_SCREEN_ACTIVITY ";
+    public static final String TermsAndConditionActivity = " TERMS_AND_CONDITION_ACTIVITY ";
+
+
+    // Log Tags for all the adapters
+    // Log Tags for all the asyncTask
+
+
     // All the Data arraylist
     public static ArrayList<LandingFragmentData> landingFragmentData;
     public static ArrayList<LandingFragmentDetail> landingFragmentDetail;
