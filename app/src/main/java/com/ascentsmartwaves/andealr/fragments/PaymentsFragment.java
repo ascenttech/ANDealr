@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.ascentsmartwaves.andealr.R;
 import com.ascentsmartwaves.andealr.adapters.PaymentsAdapter;
@@ -33,7 +34,7 @@ public class PaymentsFragment extends Fragment {
     String id;
     ActionBar actionBar;
     ProgressDialog dialog;
-
+    TextView currentBalance;
 
 
     @Override
@@ -42,6 +43,8 @@ public class PaymentsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.payment,null);
 
         paymentsRecyclerView = (RecyclerView) rootView.findViewById(R.id.payments_recycler_view);
+        currentBalance = (TextView) rootView.findViewById(R.id.current_balance);
+
 
 
         paymentsLayoutManager = new LinearLayoutManager(rootView.getContext());
@@ -66,6 +69,8 @@ public class PaymentsFragment extends Fragment {
                     dialog.dismiss();
                     paymentsAdapter = new PaymentsAdapter(Constants.paymentsData, getActivity());
                     paymentsRecyclerView.setAdapter(paymentsAdapter);
+
+                    currentBalance.setText(getActivity().getApplicationContext().getString(R.string.Rs)+" "+Constants.currentBalance);
                 }
                 else{
                     dialog.dismiss();

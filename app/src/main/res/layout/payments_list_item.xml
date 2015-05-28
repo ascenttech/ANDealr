@@ -10,84 +10,56 @@
 
 
 <RelativeLayout
-    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:padding="10dp"
     android:id="@+id/payment_list_item_relative_layout_payments_activity"
     >
 
-    <com.ascentsmartwaves.andealr.custom.CustomTextView
-        android:id="@+id/order_number_text_payments_activity"
+    <ImageView
+        android:id="@+id/image_status_payment_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerCrop"
+        />
+
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
+        android:id="@+id/general_text_payments_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="Order No. 456878974131884"
-        android:textSize="16sp"
+        android:text="Invoice / Payment Text"
+        android:textSize="@dimen/twenty_sp"
         android:textColor="#000"
+        />
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
+        android:id="@+id/deal_tittle_text_payments_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Deal Tittle :"
+        android:textSize="@dimen/twenty_sp"
+        android:textColor="#000"
+        android:layout_below="@id/general_text_payments_fragment"
+        />
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
+        android:id="@+id/amount_text_payments_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Amount :"
+        android:textSize="@dimen/twenty_sp"
+        android:textColor="#000"
+        android:layout_below="@id/deal_tittle_text_payments_fragment"
         />
 
-    <!--<com.ascent.andealr.custom.CustomTextView-->
-        <!--android:id="@+id/time_when_order_was_placed_text_payments_activity"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:text="5/1/2014"-->
-        <!--android:textSize="12sp"-->
-        <!--android:textColor="#000"-->
-        <!--/>-->
-    <com.ascentsmartwaves.andealr.custom.CustomTextView
-        android:id="@+id/date_when_order_was_placed_text_payments_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="5/1/2014"
-        android:layout_below="@+id/deal_status_text_payments_activity"
-        android:textSize="12sp"
-        android:layout_marginTop="2dp"
-        android:textColor="#000"
-        />
-    <com.ascentsmartwaves.andealr.custom.CustomTextView
-        android:id="@+id/deal_name_text_payments_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_below="@id/order_number_text_payments_activity"
-        android:text="30% off on apparels"
-        android:textColor="#000"
-        />
-    <com.ascentsmartwaves.andealr.custom.CustomTextView
-        android:id="@+id/deal_amount_text_payments_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_below="@id/deal_name_text_payments_activity"
-        android:text="30% off on apparels"
-        android:layout_marginBottom="10dp"
-        android:textColor="#000"
-        />
 
-    <!--<com.ascent.andealr.custom.CustomButton-->
-        <!--android:id="@+id/repeat_button_payments_activity"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/deal_name_text_payments_activity"-->
-        <!--android:text="REPEAT"-->
-        <!--/>-->
-
-    <com.ascentsmartwaves.andealr.custom.CustomTextView
-        android:id="@+id/deal_status_text_payments_activity"
-        android:layout_width="wrap_content"
+    <include
+        layout="@layout/include_date_and_time"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Success"
-        android:background="#009688"
-        android:textColor="#000"
-        android:layout_marginBottom="5dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:padding="5dp"
+        android:layout_below="@id/amount_text_payments_fragment"
         />
 
 </RelativeLayout>

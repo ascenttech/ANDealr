@@ -5,41 +5,63 @@ package com.ascentsmartwaves.andealr.data;
  */
 public class PaymentsData {
 
+    String orderID,dealTitle,amount,date,time;
+    boolean hePaid;
 
-    String dealName,success,timestamp;
-    String amount,orderNumber;
-
-
-
-    public PaymentsData(String orderNumber, String dealName, String amount,String success,String timestamp) {
-        this.orderNumber = orderNumber;
-        this.dealName = dealName;
+    public PaymentsData(String orderID, String dealTitle, String amount, String date, String time, boolean hePaid) {
+        this.orderID = orderID;
+        this.dealTitle = dealTitle;
         this.amount = amount;
-        this.success = success;
-        this.timestamp = timestamp;
+        this.date = date;
+        this.time = time;
+        this.hePaid = hePaid;
     }
 
-
-
-    public String getDealName() {
-        return dealName;
+    public boolean isHePaid() {
+        return hePaid;
     }
 
-    public String getSuccess() {
-        return success;
+    public void setHePaid(boolean hePaid) {
+        this.hePaid = hePaid;
     }
 
-    public String getTimestamp() {
-        return timestamp;
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
+    }
+
+    public String getDealTitle() {
+        return dealTitle;
+    }
+
+    public void setDealTitle(String dealTitle) {
+        this.dealTitle = dealTitle;
     }
 
     public String getAmount() {
         return amount;
     }
 
-    public String getOrderNumber() {
-        return orderNumber;
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
+    public String getDate() {
+        return date;
+    }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 }

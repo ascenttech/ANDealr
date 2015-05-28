@@ -2,7 +2,14 @@
 <resources>
 
     <string name="app_name">ANDealr</string>
+
+    <!-- Ubicode for Rs symbol-->
+    <string name="Rs">\u20B9</string>
+
+
     <string name="hello_world">Hello world!</string>
+
+
     <string name="action_settings">
         <item>Settings</item>
     </string>

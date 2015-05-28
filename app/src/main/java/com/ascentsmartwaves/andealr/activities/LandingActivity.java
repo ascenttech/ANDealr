@@ -1,6 +1,5 @@
 package com.ascentsmartwaves.andealr.activities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -38,7 +37,6 @@ import android.widget.Toast;
 
 import com.ascentsmartwaves.andealr.R;
 import com.ascentsmartwaves.andealr.adapters.CustomDrawerListAdapter;
-import com.ascentsmartwaves.andealr.async.CheckValidityAsyncTask;
 import com.ascentsmartwaves.andealr.async.FetchProfileAsyncTask;
 import com.ascentsmartwaves.andealr.async.ProfileValidAsyncTask;
 import com.ascentsmartwaves.andealr.data.DrawerListData;
@@ -53,10 +51,7 @@ import com.ascentsmartwaves.andealr.utils.Constants;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 
 public class LandingActivity extends ActionBarActivity {
@@ -95,7 +90,7 @@ public class LandingActivity extends ActionBarActivity {
 
         mTitle = mDrawerTitle = getTitle();
 
-        mNavigationDrawerItemTitles= Constants.TitleOfDrawersListView;
+        mNavigationDrawerItemTitles= Constants.titleOfDrawersListView;
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mDrawer = (LinearLayout) findViewById(R.id.left_drawer_view);
@@ -117,7 +112,7 @@ public class LandingActivity extends ActionBarActivity {
 
         for(int i = 0 ; i <6;i++)
         {
-            mDrawerListData.add(new DrawerListData(Constants.TitleOfDrawersListView[i], Constants.logosOfDrawersListView[i]));
+            mDrawerListData.add(new DrawerListData(Constants.titleOfDrawersListView[i], Constants.logosOfDrawersListView[i]));
         }
         // above for loop adds the CONTENTS of the list view in the drawer
 

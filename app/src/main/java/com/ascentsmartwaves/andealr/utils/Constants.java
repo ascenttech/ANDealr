@@ -22,8 +22,8 @@ public class Constants
 {
     public static final String LOG_TAG = "Andealr";
 
-    public static String[] TitleOfDrawersListView={
-            "Home","Scan QR","Followers","Payment","Notification","Rate Us"
+    public static String[] titleOfDrawersListView ={
+            "Home","Scan QR","Followers","Ledger","Notifications","Rate Us"
     };
 
 
@@ -54,6 +54,7 @@ public class Constants
     public static String field ;
     public static String handle ;
     public static String companyLogo ;
+    public static String currentBalance ;
     public static int balance ;
 
 

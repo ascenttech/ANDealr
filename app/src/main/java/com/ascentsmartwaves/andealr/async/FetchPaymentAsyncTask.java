@@ -2,6 +2,7 @@ package com.ascentsmartwaves.andealr.async;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.ascentsmartwaves.andealr.data.PaymentsData;
 import com.ascentsmartwaves.andealr.utils.Constants;
@@ -27,6 +28,9 @@ public class FetchPaymentAsyncTask extends AsyncTask<String, Void, Boolean> {
     HttpEntity entity;
     String data;
 
+    // This means it is a transaction record of he paying us (AndNrby)
+    boolean hePaid = false;
+
     public interface FetchPaymentCallback{
 
         public void onStart(boolean a);
@@ -49,6 +53,8 @@ public class FetchPaymentAsyncTask extends AsyncTask<String, Void, Boolean> {
     protected Boolean doInBackground(String... urls) {
         try {
 
+            Log.d(Constants.LOG_TAG," String for Payment fetch "+ urls[0]);
+
             //------------------>>
             HttpGet httppost = new HttpGet(urls[0]);
             HttpClient httpclient = new DefaultHttpClient();
@@ -70,12 +76,22 @@ public class FetchPaymentAsyncTask extends AsyncTask<String, Void, Boolean> {
                     JSONObject nestedJSONObject = jsonArray.getJSONObject(i);
 
                     String orderID=nestedJSONObject.getString("orderID");
+                    if(orderID.equalsIgnoreCase("PR12345")){
+                        hePaid = true;
+                    }
+                    else{
+
+                        hePaid = false;
+                    }
                     String dealTitle=nestedJSONObject.getString("dealTitle");
                     String amount=nestedJSONObject.getString("amount");
-                    String success=nestedJSONObject.getString("success");
-                    String timestamp=nestedJSONObject.getString("timestamp");
+                    String date=nestedJSONObject.getString("date");
+                    String time=nestedJSONObject.getString("time");
+                    Constants.currentBalance = nestedJSONObject.getString("currentBalance");
 
-                    Constants.paymentsData.add(new PaymentsData(orderID,dealTitle,amount,success,timestamp));
+                    Log.d(Constants.LOG_TAG,Constants.currentBalance);
+
+                    Constants.paymentsData.add(new PaymentsData(orderID,dealTitle,amount,date,time,hePaid));
                 }
 
                 return true;

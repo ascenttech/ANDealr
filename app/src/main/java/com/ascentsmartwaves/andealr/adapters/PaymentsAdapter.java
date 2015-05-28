@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,11 +23,9 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.ViewHo
 
     ArrayList<PaymentsData> paymentsData;
     Context context;
-    TextView dealName,success,timestamp,amount,orderNumber;
+    TextView generalText,dealTittle,amount,date,time;
+    ImageView paymentStatusImage;
 
-    RelativeLayout paymentsListItem;
-    Button repeat;
-//    final int pos;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -54,63 +53,55 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.ViewHo
     @Override
     public void onBindViewHolder(PaymentsAdapter.ViewHolder holder, int position) {
 
-        paymentsListItem = (RelativeLayout) holder.view.findViewById(R.id.payment_list_item_relative_layout_payments_activity);
-        dealName=(TextView) holder.view.findViewById(R.id.deal_name_text_payments_activity);
-        success=(TextView) holder.view.findViewById(R.id.deal_status_text_payments_activity);
-        timestamp=(TextView) holder.view.findViewById(R.id.date_when_order_was_placed_text_payments_activity);
-        amount=(TextView) holder.view.findViewById(R.id.deal_amount_text_payments_activity);
-        orderNumber=(TextView) holder.view.findViewById(R.id.order_number_text_payments_activity);
-//        repeat.setTag("repeat_"+position);
-//        repeat.setOnClickListener(listener);
-//        pos = position;
-//        paymentsListItem.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(context,"Postions"+pos,5000 ).show();
-//            }
-//        });
-        dealName.setText(paymentsData.get(position).getDealName());
-        dealName.setTypeface(Constants.customFont1);
-        if(success.equals(1)) {
-            success.setText("SUCCESS");
+
+        findViews(holder);
+
+        setViews(position);
+
+
+
+    }
+
+    private void findViews(PaymentsAdapter.ViewHolder holder){
+
+        generalText = (TextView) holder.view.findViewById(R.id.general_text_payments_fragment);
+        dealTittle = (TextView) holder.view.findViewById(R.id.deal_tittle_text_payments_fragment);
+        amount = (TextView) holder.view.findViewById(R.id.amount_text_payments_fragment);
+        date = (TextView) holder.view.findViewById(R.id.date);
+        time = (TextView) holder.view.findViewById(R.id.time);
+        paymentStatusImage = (ImageView) holder.view.findViewById(R.id.image_status_payment_fragment);
+
+    }
+
+    private void setViews(int position){
+
+        // isHePaid() checks if he paid us a specified amount
+        if(Constants.paymentsData.get(position).isHePaid()){
+
+            generalText.setText("Payment of Rs "+context.getString(R.string.Rs)+" "+Constants.paymentsData.get(position).getAmount()+" has been added to your account");
+            dealTittle.setVisibility(View.INVISIBLE);
+            amount.setVisibility(View.INVISIBLE);
+            date.setText(Constants.paymentsData.get(position).getDate());
+            time.setVisibility(View.INVISIBLE);
+            paymentStatusImage.setImageResource(R.drawable.tick);
         }
-        else
-        {
-            success.setText("PENDING");
+        else{
+
+            generalText.setText("Invoice # "+Constants.paymentsData.get(position).getOrderID());
+            dealTittle.setText("Deal Title : "+Constants.paymentsData.get(position).getDealTitle());
+            amount.setText("Amount : "+context.getString(R.string.Rs)+" "+Constants.paymentsData.get(position).getAmount());
+            date.setText(Constants.paymentsData.get(position).getDate());
+            time.setVisibility(View.INVISIBLE);
+            paymentStatusImage.setImageResource(R.drawable.invoice);
+
         }
 
-        success.setTypeface(Constants.customFont1);
-        timestamp.setText(paymentsData.get(position).getTimestamp());
-        timestamp.setTypeface(Constants.customFont1);
-        amount.setText(paymentsData.get(position).getAmount());
-        amount.setTypeface(Constants.customFont1);
-        orderNumber.setText(paymentsData.get(position).getOrderNumber());
-        orderNumber.setTypeface(Constants.customFont1);
+
     }
 
     @Override
     public int getItemCount() {
         return paymentsData.size();
     }
-
-//    View.OnClickListener listener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//
-//            String tag = (String) v.getTag();
-//            String identifier[] = tag.split("_");
-//
-//            switch (v.getId()){
-//
-//                case R.id.repeat_button_payments_activity :
-//                    Intent i = new Intent(context, AddDealActivity.class);
-//                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    context.startActivity(i);
-//                    break;
-//
-//            }
-//
-//        }
-//    };
 
 }
