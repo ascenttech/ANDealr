@@ -25,7 +25,7 @@ public class AboutUsActivity extends Activity {
 
         Log.d(Constants.LOG_TAG,Constants.AbooutUsActivity);
 
-        setContentView(R.layout.activity_aboutus);
+        setContentView(R.layout.activity_about_us);
 
         // This is used to find the views
         findViews();
