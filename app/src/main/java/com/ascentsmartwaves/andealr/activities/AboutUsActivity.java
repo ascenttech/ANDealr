@@ -23,7 +23,7 @@ public class AboutUsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d(Constants.LOG_TAG,Constants.AbooutUsActivity);
+        Log.d(Constants.LOG_TAG,Constants.AboutUsActivity);
 
         setContentView(R.layout.activity_about_us);
 

@@ -58,7 +58,7 @@ public class Constants
 
 
     // Log Tags for all the activities
-    public static final String AbooutUsActivity = " ABOUT_US_ACTIVITY ";
+    public static final String AboutUsActivity = " ABOUT_US_ACTIVITY ";
     public static final String AddDealActivity = " ADD_DEAL_ACTIVITY ";
     public static final String DealDetailsActivity = " DEAL_DETAILS_ACTIVITY ";
     public static final String LandingActivity = " LANDING_ACTIVITY ";
