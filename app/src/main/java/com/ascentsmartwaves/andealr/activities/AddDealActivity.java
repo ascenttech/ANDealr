@@ -85,27 +85,63 @@ public class AddDealActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.d(Constants.LOG_TAG,Constants.AddDealActivity);
+
+        // This will create a custom ActionBar for this activity
+        customActionbar();
+
+        setContentView(R.layout.add_deal);
+
+        // This is used to find all the views
+        findViews();
+
+        setCurrentDateAndTime();
+
+        // This is used to set the views
+        setViews();
+
+
+
+
+    }
+
+    private void customActionbar(){
 
         getSupportActionBar().setTitle("Add a Deal");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setContentView(R.layout.add_deal);
+    }
 
-        initialize();
+    private void findViews() {
 
-//        ArrayAdapter<CharSequence> reachAdapter = ArrayAdapter.createFromResource(getApplicationContext(),R.array.reach_options,R.layout.spinner_item);
-//        reachAdapter.setDropDownViewResource(R.layout.spinner_item);
-//        reach.setAdapter(reachAdapter);
+        addDeal = (Button) findViewById(R.id.add_deal_add_dealBtn);
+        name = (EditText) findViewById(R.id.deal_name_add_dealET);
+        description = (EditText) findViewById(R.id.deal_description_add_dealET);
+        startDate = (Button) findViewById(R.id.start_date_add_dealBtn);
+        startDateText = (TextView) findViewById(R.id.start_date_add_dealTV);
+        endDateText = (TextView) findViewById(R.id.end_date_add_dealTV);
+        endDate = (Button) findViewById(R.id.end_date_add_dealBtn);
+        startTime = (Button) findViewById(R.id.start_time_add_dealBtn);
+        startTimeText = (TextView) findViewById(R.id.start_time_add_dealTV);
+        endTime = (Button) findViewById(R.id.end_time_add_dealBtn);
+        endTimeText = (TextView) findViewById(R.id.end_time_add_dealTV);
+        uploadImage = (ImageView) findViewById(R.id.upload_image_add_deal_activity);
+        uploadOrCancel = (RelativeLayout) findViewById(R.id.upload_or_cancel_included);
+        cancelButton = (ImageButton) uploadOrCancel.findViewById(R.id.cancel_button_included);
 
-        setCurrentDateAndTime();
+
+    }
+
+    private void setViews(){
+
         startDate.setOnClickListener(listener);
         addDeal.setOnClickListener(listener);
         endDate.setOnClickListener(listener);
         startTime.setOnClickListener(listener);
         endTime.setOnClickListener(listener);
-
         cancelButton.setOnClickListener(listener);
         uploadImage.setOnClickListener(listener);
+        uploadOrCancel.setVisibility(View.INVISIBLE);
 
     }
 
@@ -126,28 +162,7 @@ public class AddDealActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void initialize() {
 
-        addDeal = (Button) findViewById(R.id.add_deal_add_dealBtn);
-        name = (EditText) findViewById(R.id.deal_name_add_dealET);
-        description = (EditText) findViewById(R.id.deal_description_add_dealET);
-        startDate = (Button) findViewById(R.id.start_date_add_dealBtn);
-        startDateText = (TextView) findViewById(R.id.start_date_add_dealTV);
-        endDateText = (TextView) findViewById(R.id.end_date_add_dealTV);
-        endDate = (Button) findViewById(R.id.end_date_add_dealBtn);
-//        reach = (Spinner) findViewById(R.id.reach_deal_add_dealS);
-        startTime = (Button) findViewById(R.id.start_time_add_dealBtn);
-        startTimeText = (TextView) findViewById(R.id.start_time_add_dealTV);
-        endTime = (Button) findViewById(R.id.end_time_add_dealBtn);
-        endTimeText = (TextView) findViewById(R.id.end_time_add_dealTV);
-        uploadImage = (ImageView) findViewById(R.id.upload_image_add_deal_activity);
-
-        uploadOrCancel = (RelativeLayout) findViewById(R.id.upload_or_cancel_included);
-
-        cancelButton = (ImageButton) uploadOrCancel.findViewById(R.id.cancel_button_included);
-        uploadOrCancel.setVisibility(View.INVISIBLE);
-
-    }
 
 
     private void setCurrentDateAndTime() {
@@ -359,10 +374,13 @@ public class AddDealActivity extends ActionBarActivity {
 
 
 
+        // check if the Deal Name field is filed or not
         if(!(name.getText().toString().equalsIgnoreCase("")))
         {
+            // Check if the Deal Descriptions is filed or not
             if(!(description.getText().toString().equalsIgnoreCase("")))
             {
+               // Check if the start time is 2 hours after the current time
                if(diffInCurrent>=7200000)
                {
                    if(diffInDeal>7200000)
@@ -397,9 +415,9 @@ public class AddDealActivity extends ActionBarActivity {
             else
             {
                 Toast.makeText(getApplicationContext(),"Deal Description cannot be empty",5000).show();
-            }
+            }// end of Deal Description if
 
-       }
+       }// end of Deal Name if
        else{
            Toast.makeText(getApplicationContext(),"Deal Name cannot be empty",5000).show();
        }
@@ -460,7 +478,9 @@ public class AddDealActivity extends ActionBarActivity {
                         dialog.dismiss();
                         imagepath="NO DATA";
                         Constants.landingFragmentData.clear();
-                        if(Constants.balance <500){
+
+                        Log.d(Constants.LOG_TAG,"CONST BALANCE IS " + Constants.balance );
+                        if(Constants.balance >500){
 
                             makeDialog("Congratulations! Your Deal "+name.getText().toString()+" is accepted and will be activated once approved. Your balance of Rs "+Constants.balance+" will be used for this deal. Contact us at shoot@andnrby.com or call us at +91-9820817928 for any queries.");
 

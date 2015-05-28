@@ -77,7 +77,7 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
                 int id = Integer.parseInt(dealId);
 
                 // new field added
-                int reach = nestedJsonObject.getInt("reach");
+                String reach = nestedJsonObject.getString("shownCount");
 
                 String likesString = String.valueOf(likes);
                 String redeemString = String.valueOf(redeem);

@@ -2,6 +2,7 @@ package com.ascentsmartwaves.andealr.async;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.ascentsmartwaves.andealr.utils.Constants;
 
@@ -63,7 +64,10 @@ public class AddDealAsyncTask extends AsyncTask<String,Void,Boolean> {
 
                 // This is the latest update
                 int balance = nestedJsonObject.getInt("balance");
+                Log.d(Constants.LOG_TAG,"BALANCE IS " + balance );
+
                 Constants.balance = balance;
+                Log.d(Constants.LOG_TAG,"CONST BALANCE IS " + balance );
 
                 return true;
             }

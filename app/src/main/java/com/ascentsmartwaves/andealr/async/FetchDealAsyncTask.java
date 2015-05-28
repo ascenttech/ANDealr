@@ -2,6 +2,7 @@ package com.ascentsmartwaves.andealr.async;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.ascentsmartwaves.andealr.data.LandingFragmentData;
 import com.ascentsmartwaves.andealr.utils.Constants;
@@ -63,6 +64,7 @@ public class FetchDealAsyncTask extends AsyncTask<String,Void,Boolean> {
                 responseString = EntityUtils.toString(responseEntity);
 
                 JSONObject jsonObject = new JSONObject(responseString);
+
                 JSONArray jsonArray = jsonObject.getJSONArray("dealDetails");
 
                 for(int i = 0;i< jsonArray.length();i++){
@@ -77,7 +79,7 @@ public class FetchDealAsyncTask extends AsyncTask<String,Void,Boolean> {
                     String photoURL = nestedJsonObject.getString("photoURL");
 
                     // new field added reach
-                    int reach = nestedJsonObject.getInt("reach");
+                    String reach = nestedJsonObject.getString("shownCount");
 
                     String likesString = String.valueOf(likes);
                     String redeemString = String.valueOf(redeem);
