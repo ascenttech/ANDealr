@@ -116,10 +116,6 @@ public class RoundedImage extends ImageView {
                 bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 
 
-
-
-
-
         Canvas canvas = new Canvas(result);
 
         int color = Color.BLUE;
