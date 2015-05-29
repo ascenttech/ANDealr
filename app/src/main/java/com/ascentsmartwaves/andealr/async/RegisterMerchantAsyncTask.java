@@ -19,7 +19,7 @@ import org.json.JSONObject;
 /**
  * Created by ADMIN on 10-03-2015.
  */
-public class RegisterMerchant extends AsyncTask<String, Void, Boolean> {
+public class RegisterMerchantAsyncTask extends AsyncTask<String, Void, Boolean> {
 
     Context context;
     public RegisterMerchantCallback listener;
@@ -29,7 +29,7 @@ public class RegisterMerchant extends AsyncTask<String, Void, Boolean> {
         void onResult(boolean b);
     }
 
-    public RegisterMerchant(Context context, RegisterMerchantCallback listener) {
+    public RegisterMerchantAsyncTask(Context context, RegisterMerchantCallback listener) {
         this.context = context;
         this.listener = listener;
     }
@@ -42,6 +42,9 @@ public class RegisterMerchant extends AsyncTask<String, Void, Boolean> {
 
     @Override
     protected Boolean doInBackground(String... urls) {
+
+        Log.d(Constants.LOG_TAG,Constants.RegisterMerchantAsyncTask);
+
         try {
             //------------------>>
             HttpGet httppost = new HttpGet(urls[0]);

@@ -26,14 +26,13 @@ import java.io.IOException;
 public class MerchantProfileAsyncTask extends AsyncTask<String,Void,Boolean>
 {
     Context context;
+    private MerchantProfileAsyncTaskCallback mListener;
 
     /** Implement this somewhere to get the result */
     public interface MerchantProfileAsyncTaskCallback {
         void onStart(boolean a);
         void onResult(boolean b);
     }
-
-    private MerchantProfileAsyncTaskCallback mListener;
 
 
     public MerchantProfileAsyncTask(Context context,MerchantProfileAsyncTaskCallback listener) {
@@ -50,6 +49,9 @@ public class MerchantProfileAsyncTask extends AsyncTask<String,Void,Boolean>
 
     @Override
     protected Boolean doInBackground(String... url) {
+
+        Log.d(Constants.LOG_TAG,Constants.MerchantProfileAsyncTask);
+
         try {
             //------------------>>
             HttpGet httppost = new HttpGet(url[0]);

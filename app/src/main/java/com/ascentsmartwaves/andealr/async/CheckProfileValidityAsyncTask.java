@@ -16,7 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-public class ProfileValidAsyncTask extends AsyncTask<String,Void,Boolean> {
+public class CheckProfileValidityAsyncTask extends AsyncTask<String,Void,Boolean> {
 
     Context context;
     HttpEntity responseEntity;
@@ -30,7 +30,7 @@ public class ProfileValidAsyncTask extends AsyncTask<String,Void,Boolean> {
 
     private ProfileValidAsyncTaskCallback listener;
 
-    public ProfileValidAsyncTask(Context context, ProfileValidAsyncTaskCallback listener) {
+    public CheckProfileValidityAsyncTask(Context context, ProfileValidAsyncTaskCallback listener) {
         this.context = context;
         this.listener = listener;
     }
@@ -46,6 +46,8 @@ public class ProfileValidAsyncTask extends AsyncTask<String,Void,Boolean> {
     @Override
     protected Boolean doInBackground(String... url)
     {
+        Log.d(Constants.LOG_TAG,Constants.CheckProfileValidityAsyncTask);
+
         try
         {
             HttpGet httpGet = new HttpGet(url[0]);

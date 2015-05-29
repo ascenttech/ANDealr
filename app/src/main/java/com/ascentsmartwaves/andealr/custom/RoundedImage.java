@@ -16,6 +16,9 @@ import android.widget.ImageView;
 
 public class RoundedImage extends ImageView {
 
+    Bitmap fullSizeBitmap;
+    int scaledWidth,scaledHeight;
+
     public RoundedImage(Context context) {
         super(context);
     }
@@ -40,10 +43,10 @@ public class RoundedImage extends ImageView {
             return;
         }
 
-        Bitmap fullSizeBitmap = drawable.getBitmap();
+        fullSizeBitmap = drawable.getBitmap();
 
-        int scaledWidth = getMeasuredWidth();
-        int scaledHeight = getMeasuredHeight();
+        scaledWidth = getMeasuredWidth();
+        scaledHeight = getMeasuredHeight();
 
         Bitmap mScaledBitmap;
         if (scaledWidth == fullSizeBitmap.getWidth()

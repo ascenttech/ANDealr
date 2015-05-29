@@ -53,7 +53,7 @@ public class FetchProfileAsyncTask extends AsyncTask<String, Void, Boolean> {
     @Override
     protected Boolean doInBackground(String... url) {
 
-        Log.d(Constants.LOG_TAG,"USER_PROFILE_ASYNC_TASK");
+        Log.d(Constants.LOG_TAG,Constants.FetchProfileAsyncTask);
 
         try {
             //------------------>>

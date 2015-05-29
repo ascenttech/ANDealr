@@ -51,6 +51,9 @@ public class FetchPaymentAsyncTask extends AsyncTask<String, Void, Boolean> {
 
     @Override
     protected Boolean doInBackground(String... urls) {
+
+        Log.d(Constants.LOG_TAG,Constants.FetchPaymentsAsyncTask);
+
         try {
 
             Log.d(Constants.LOG_TAG," String for Payment fetch "+ urls[0]);

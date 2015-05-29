@@ -24,6 +24,7 @@ public class FetchDealAsyncTask extends AsyncTask<String,Void,Boolean> {
     Context context;
     HttpEntity responseEntity;
     String responseString;
+    private FetchDealAsyncTaskCallback mListener;
 
 
     /** Implement this somewhere to get the result */
@@ -31,8 +32,6 @@ public class FetchDealAsyncTask extends AsyncTask<String,Void,Boolean> {
         void onStart(boolean a);
         void onResult(boolean b);
     }
-
-    private FetchDealAsyncTaskCallback mListener;
 
 
     public FetchDealAsyncTask(Context context,FetchDealAsyncTaskCallback listener) {
@@ -50,6 +49,8 @@ public class FetchDealAsyncTask extends AsyncTask<String,Void,Boolean> {
 
     @Override
     protected Boolean doInBackground(String... url) {
+
+        Log.d(Constants.LOG_TAG,Constants.FetchDealAsyncTask);
 
         try {
             HttpGet httpGet = new HttpGet(url[0]);

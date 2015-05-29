@@ -45,6 +45,8 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
     @Override
     protected Boolean doInBackground(String... url) {
 
+        Log.d(Constants.LOG_TAG,Constants.FetchDealDetailsAsyncTask);
+
         try {
             HttpGet httpGet = new HttpGet(url[0]);
             HttpClient httpClient = new DefaultHttpClient();

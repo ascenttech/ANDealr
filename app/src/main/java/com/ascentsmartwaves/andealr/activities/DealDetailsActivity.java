@@ -36,7 +36,7 @@ public class DealDetailsActivity extends ActionBarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d(Constants.LOG_TAG,Constants.DealDetailsActivity)
+        Log.d(Constants.LOG_TAG,Constants.DealDetailsActivity);
 
         actionBar = getSupportActionBar();
         actionBar.setTitle("Deal Details");

@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.ascentsmartwaves.andealr.R;
-import com.ascentsmartwaves.andealr.async.RegisterMerchant;
+import com.ascentsmartwaves.andealr.async.RegisterMerchantAsyncTask;
 import com.ascentsmartwaves.andealr.utils.Constants;
 
 import java.util.regex.Pattern;
@@ -71,7 +71,7 @@ public class SignUpActivity extends Activity {
                         {
                             if (password.length() >= 6)
                             {
-                                new RegisterMerchant(getApplicationContext(),new RegisterMerchant.RegisterMerchantCallback() {
+                                new RegisterMerchantAsyncTask(getApplicationContext(),new RegisterMerchantAsyncTask.RegisterMerchantCallback() {
                                     @Override
                                     public void onStart(boolean a) {
                                         dialog = new ProgressDialog(SignUpActivity.this);

@@ -23,6 +23,7 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
     Context context;
     HttpEntity responseEntity;
     String responseString;
+    private CheckValidityCallback listener;
 
     public interface CheckValidityCallback{
 
@@ -30,7 +31,6 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
         public void onResult(boolean b);
     }
 
-    private CheckValidityCallback listener;
 
     public CheckValidityAsyncTask(Context context, CheckValidityCallback listener) {
         this.context = context;
@@ -47,6 +47,8 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
 
     @Override
     protected Boolean doInBackground(String... url) {
+
+        Log.d(Constants.LOG_TAG,Constants.CheckValidityAsyncTask);
 
         try {
             HttpGet httpGet = new HttpGet(url[0]);

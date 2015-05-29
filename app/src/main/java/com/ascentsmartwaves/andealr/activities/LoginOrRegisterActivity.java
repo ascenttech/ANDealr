@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.ascentsmartwaves.andealr.GCM.RegisterApp;
 import com.ascentsmartwaves.andealr.R;
-import com.ascentsmartwaves.andealr.async.RegisterMerchant;
+import com.ascentsmartwaves.andealr.async.RegisterMerchantAsyncTask;
 import com.ascentsmartwaves.andealr.utils.Constants;
 import com.facebook.Request;
 import com.facebook.Response;
@@ -217,7 +217,7 @@ public class LoginOrRegisterActivity extends Activity implements ConnectionCallb
                                 dialog.dismiss();
                                 String finalurl = Constants.facebookRegistrationURL+fbemail+"&firstName="+fbfname+"&lastName="+fblname+"&gender="+fbgender+"&fbID="+fbid+"&fbLink="+fblink+"&fbImageURL="+fbimgurl+"&registrationID="+Constants.GCMRegID+"&latitude=0.0&longitude=0.0";
                                 Log.d(Constants.LOG_TAG, finalurl);
-                                new RegisterMerchant(getApplicationContext(), new RegisterMerchant.RegisterMerchantCallback() {
+                                new RegisterMerchantAsyncTask(getApplicationContext(), new RegisterMerchantAsyncTask.RegisterMerchantCallback() {
                                     @Override
                                     public void onStart(boolean a)
                                     {
@@ -466,7 +466,7 @@ public class LoginOrRegisterActivity extends Activity implements ConnectionCallb
                         dialog.dismiss();
                         String finalurl = Constants.googleRegistrationURL + googlefname + "&lastName="+googlelname+"&emailID="+googleemail+"&googleProfileImage="+googlePhotoUrl+"&googleProfileLink="+googlePlusProfile+"&displayName="+googledisplayname+"&googleID=&language=&birthday=&name=&plusProfile=&image=&gender=&city=&registrationID="+Constants.GCMRegID+"&latitude=0.0&longitude=0.0";
                         Log.d(Constants.LOG_TAG, finalurl);
-                        new RegisterMerchant(getApplicationContext(), new RegisterMerchant.RegisterMerchantCallback()
+                        new RegisterMerchantAsyncTask(getApplicationContext(), new RegisterMerchantAsyncTask.RegisterMerchantCallback()
                         {
                             @Override
                             public void onStart(boolean a)

@@ -45,6 +45,9 @@ public class AddDealAsyncTask extends AsyncTask<String,Void,Boolean> {
 
     @Override
     protected Boolean doInBackground(String... url) {
+
+        Log.d(Constants.LOG_TAG,Constants.AddDealAsyncTask);
+
         try {
             HttpGet httpGet = new HttpGet(url[0]);
             HttpClient httpClient = new DefaultHttpClient();

@@ -46,7 +46,7 @@ private UpdateProfileAsyncTaskCallback mListener;
     @Override
     protected Boolean doInBackground(String... url)
     {
-        Log.d(Constants.LOG_TAG, "UPDATE_USER_PROFILE_ASYNC_TASK");
+        Log.d(Constants.LOG_TAG,Constants.UpdateProfileAsyncTask);
         try {
             //------------------>>
             HttpGet httppost = new HttpGet(url[0]);

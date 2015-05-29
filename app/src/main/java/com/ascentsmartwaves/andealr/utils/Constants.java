@@ -75,7 +75,27 @@ public class Constants
 
 
     // Log Tags for all the adapters
+    public static final String CustomDrawerListAdapter = " CUSTOM_DRAWER_LIST_ADAPTER ";
+    public static final String FollowersAdapter = " FOLLOWERS_ADAPTER ";
+    public static final String LandingFragmentAdapter = " LANDING_FRAGMENT_ADAPTER ";
+    public static final String NotificationsFragmentAdapter = " NOTIFICATIONS_FRAGMENT_ADAPTER ";
+    public static final String PaymentsAdapter = " PAYMENTS_ADAPTER ";
+
     // Log Tags for all the asyncTask
+
+    public static final String AddDealAsyncTask = " ADD_DEAL_ASYNC_TASK ";
+    public static final String CheckValidityAsyncTask = " ADD_DEAL_ASYNC_TASK ";
+    public static final String CheckProfileValidityAsyncTask = " CHECK_PROFILE_VALIDITY_ASYNC_TASK ";
+    public static final String FetchDealAsyncTask = " FETCH_DEAL_ASYNC_TASK ";
+    public static final String FetchDealDetailsAsyncTask = " FETCH_DEAL_DETAILS_ASYNC_TASK ";
+    public static final String FetchFollowersAsyncTask = " FETCH_FOLLOWERS_ASYNC_TASK ";
+    public static final String FetchNotificationsAsyncTask = " FETCH_NOTIFICATIONS_ASYNC_TASK ";
+    public static final String FetchPaymentsAsyncTask = " FETCH_PAYMENTS_ASYNC_TASK ";
+    public static final String FetchProfileAsyncTask = " FETCH_PROFILE_ASYNC_TASK ";
+    public static final String MerchantProfileAsyncTask = " MERCHANT_PROFILE_ASYNC_TASK ";
+    public static final String RegisterMerchantAsyncTask = " REGISTER_MERCHANT_ASYNC_TASK ";
+    public static final String UpdateProfileAsyncTask = " UPDATE_PROFILE_ASYNC_TASK ";
+    public static final String UploadProfileImageAsyncTask = " UPDATE_PROFILE_IMAGE_ASYNC_TASK ";
 
 
     // All the Data arraylist
@@ -88,6 +108,7 @@ public class Constants
     public static ArrayList<NotificationsDataPrevious> notificationsDataPrevious;
 
     // All the links to fetch the data
+
 
 //    TEST ENVIROMENT
 //    public static String registerMerchant = "http://integration.andealr.com/apps/v1.0/andealr/test/merchantRegistration.php?emailID=";

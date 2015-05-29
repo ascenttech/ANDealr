@@ -38,7 +38,7 @@ import android.widget.Toast;
 import com.ascentsmartwaves.andealr.R;
 import com.ascentsmartwaves.andealr.adapters.CustomDrawerListAdapter;
 import com.ascentsmartwaves.andealr.async.FetchProfileAsyncTask;
-import com.ascentsmartwaves.andealr.async.ProfileValidAsyncTask;
+import com.ascentsmartwaves.andealr.async.CheckProfileValidityAsyncTask;
 import com.ascentsmartwaves.andealr.data.DrawerListData;
 import com.ascentsmartwaves.andealr.data.LandingFragmentData;
 import com.ascentsmartwaves.andealr.fragments.FollowersFragment;
@@ -313,7 +313,7 @@ public class LandingActivity extends ActionBarActivity {
     {
 
 
-        new ProfileValidAsyncTask(getApplicationContext().getApplicationContext(),new ProfileValidAsyncTask.ProfileValidAsyncTaskCallback() {
+        new CheckProfileValidityAsyncTask(getApplicationContext().getApplicationContext(),new CheckProfileValidityAsyncTask.ProfileValidAsyncTaskCallback() {
             @Override
             public void onStart(boolean a) {
 

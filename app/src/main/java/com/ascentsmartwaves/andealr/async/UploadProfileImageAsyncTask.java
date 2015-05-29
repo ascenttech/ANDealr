@@ -39,94 +39,97 @@ public class UploadProfileImageAsyncTask extends AsyncTask<String,Void,Boolean>
 
     public UploadProfileImageAsyncTask(String imagePath,Context context, UploadProfileImageAsyncTaskCallback listener)
     {
-    this.context = context;
-    this.listener = listener;
-    this.imagePath = imagePath;
+        this.context = context;
+        this.listener = listener;
+        this.imagePath = imagePath;
     }
 
     @Override
     protected void onPreExecute()
     {
-    super.onPreExecute();
-    listener.onStart(true);
+        super.onPreExecute();
+        listener.onStart(true);
     }
 
     @Override
     protected Boolean doInBackground(String... urls) {
-    try
-    {
-        String responseString = null;
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost(Constants.FILE_UPLOAD_URL_MERCHANTPROFILE+Constants.merchantId);
-        Log.d(Constants.LOG_TAG,"url: "+Constants.FILE_UPLOAD_URL_MERCHANTPROFILE+Constants.merchantId);
-        AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
-                new AndroidMultiPartEntity.ProgressListener() {
-                    @Override
-                    public void transferred(long num)
-                    {
 
-                    }
-                });
-        if(imagePath!=null)
+        Log.d(Constants.LOG_TAG,Constants.UploadProfileImageAsyncTask);
+
+        try
         {
-            sourceFile = new File(imagePath);
-        }
-        else
-        {
-            sourceFile=new File("NO DATA");
-        }
-        // Adding file data to http body
-        entity.addPart("image", new FileBody(sourceFile));
-        totalSize = entity.getContentLength();
-        httppost.setEntity(entity);
-        // Making server call
-        HttpResponse response = httpclient.execute(httppost);
-        HttpEntity r_entity = response.getEntity();
-        int statusCode = response.getStatusLine().getStatusCode();
-        if (statusCode == 200)
-        {
-            // Server response
-            responseString = EntityUtils.toString(r_entity);
-            Log.d(Constants.LOG_TAG, "RESPONSE STRING " + responseString);
-            try
+            String responseString = null;
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(Constants.FILE_UPLOAD_URL_MERCHANTPROFILE+Constants.merchantId);
+            Log.d(Constants.LOG_TAG,"url: "+Constants.FILE_UPLOAD_URL_MERCHANTPROFILE+Constants.merchantId);
+            AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
+                    new AndroidMultiPartEntity.ProgressListener() {
+                        @Override
+                        public void transferred(long num)
+                        {
+
+                        }
+                    });
+            if(imagePath!=null)
             {
-                JSONObject jsonObject = new JSONObject(responseString);
-                status = jsonObject.getString("statusMessage");
-                JSONArray jsonArray = jsonObject.getJSONArray("photo");
-                JSONObject jObject = jsonArray.getJSONObject(0);
-                String res = jObject.getString("updatePhoto");
+                sourceFile = new File(imagePath);
             }
-            catch(Exception e)
+            else
             {
-                // do something
+                sourceFile=new File("NO DATA");
             }
-            return true;
-        }
-        else if(statusCode == 201)
-        {
-            // Server response
-            responseString = EntityUtils.toString(r_entity);
-            Log.d(Constants.LOG_TAG, "RESPONSE STRING " + responseString);
-            try
+            // Adding file data to http body
+            entity.addPart("image", new FileBody(sourceFile));
+            totalSize = entity.getContentLength();
+            httppost.setEntity(entity);
+            // Making server call
+            HttpResponse response = httpclient.execute(httppost);
+            HttpEntity r_entity = response.getEntity();
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == 200)
             {
-                JSONObject jsonObject = new JSONObject(responseString);
-                status = jsonObject.getString("statusMessage");
-                JSONArray jsonArray = jsonObject.getJSONArray("photo");
-                JSONObject jObject = jsonArray.getJSONObject(0);
-                String res = jObject.getString("updatePhoto");
+                // Server response
+                responseString = EntityUtils.toString(r_entity);
+                Log.d(Constants.LOG_TAG, "RESPONSE STRING " + responseString);
+                try
+                {
+                    JSONObject jsonObject = new JSONObject(responseString);
+                    status = jsonObject.getString("statusMessage");
+                    JSONArray jsonArray = jsonObject.getJSONArray("photo");
+                    JSONObject jObject = jsonArray.getJSONObject(0);
+                    String res = jObject.getString("updatePhoto");
+                }
+                catch(Exception e)
+                {
+                    // do something
+                }
+                return true;
             }
-            catch(Exception e)
+            else if(statusCode == 201)
             {
-                // do something
+                // Server response
+                responseString = EntityUtils.toString(r_entity);
+                Log.d(Constants.LOG_TAG, "RESPONSE STRING " + responseString);
+                try
+                {
+                    JSONObject jsonObject = new JSONObject(responseString);
+                    status = jsonObject.getString("statusMessage");
+                    JSONArray jsonArray = jsonObject.getJSONArray("photo");
+                    JSONObject jObject = jsonArray.getJSONObject(0);
+                    String res = jObject.getString("updatePhoto");
+                }
+                catch(Exception e)
+                {
+                    // do something
+                }
+                return true;
             }
-            return true;
-        }
-        else
-        {
-            responseString = "Error occurred! Http Status Code: "+ statusCode;
-            Log.d(Constants.LOG_TAG, "responseString " + responseString);
-            return false;
-        }
+            else
+            {
+                responseString = "Error occurred! Http Status Code: "+ statusCode;
+                Log.d(Constants.LOG_TAG, "responseString " + responseString);
+                return false;
+            }
         }
         catch (Exception e)
         {
@@ -134,7 +137,7 @@ public class UploadProfileImageAsyncTask extends AsyncTask<String,Void,Boolean>
         }
 
         return false;
-        }
+    }
 
     protected void onPostExecute(Boolean result)
     {

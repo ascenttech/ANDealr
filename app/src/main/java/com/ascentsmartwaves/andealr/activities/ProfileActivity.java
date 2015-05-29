@@ -29,6 +29,7 @@ import com.ascentsmartwaves.andealr.R;
 import com.ascentsmartwaves.andealr.async.FetchProfileAsyncTask;
 import com.ascentsmartwaves.andealr.async.UpdateProfileAsyncTask;
 import com.ascentsmartwaves.andealr.async.UploadProfileImageAsyncTask;
+import com.ascentsmartwaves.andealr.data.UserProfileData;
 import com.ascentsmartwaves.andealr.imagecaching.ImageLoader;
 import com.ascentsmartwaves.andealr.utils.Constants;
 
@@ -36,6 +37,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 
 public class ProfileActivity extends ActionBarActivity
@@ -58,14 +60,14 @@ public class ProfileActivity extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        Constants.userProfileData.clear();
+
+        Constants.userProfileData = new ArrayList<UserProfileData>();
         actionBar = getSupportActionBar();
         actionBar.setTitle("Profile");
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         findViews();
         profileImg.setImageResource(R.drawable.templogo);
-
 
         final ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final android.net.NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);

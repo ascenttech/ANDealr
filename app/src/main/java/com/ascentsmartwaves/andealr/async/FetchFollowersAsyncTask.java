@@ -2,6 +2,7 @@ package com.ascentsmartwaves.andealr.async;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.ascentsmartwaves.andealr.data.FollowersData;
 import com.ascentsmartwaves.andealr.utils.Constants;
@@ -45,6 +46,8 @@ public class FetchFollowersAsyncTask extends AsyncTask<String, Void, Boolean> {
 
     @Override
     protected Boolean doInBackground(String... urls) {
+
+        Log.d(Constants.LOG_TAG, Constants.FetchFollowersAsyncTask);
         try {
 
             //------------------>>
