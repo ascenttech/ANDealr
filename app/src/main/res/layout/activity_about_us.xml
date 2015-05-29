@@ -1,43 +1,48 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/about_us_background"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
-    <com.ascentsmartwaves.andealr.custom.CustomTextView
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_version"
-        android:id="@+id/version"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:layout_marginTop="360dp"
-        android:textColor="#FFF"
-        android:textSize="12pt"/>
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        >
 
-    <com.ascentsmartwaves.andealr.custom.CustomTextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Crafted with love!"
-        android:id="@+id/message"
-        android:gravity="center"
-        android:textColor="#FFF"
-        android:textSize="10pt"
-        android:layout_below="@id/version"
-        android:layout_marginTop="20dp"/>
+        <com.ascentsmartwaves.andealr.custom.CustomTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_version"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/twelve_pt"/>
 
-    <com.ascentsmartwaves.andealr.custom.CustomTextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="We are keen to hear from you!\nConnect with us at shoot@andealr.com"
-        android:id="@+id/contactus"
-        android:layout_below="@+id/message"
-        android:textColor="#FFF"
-        android:gravity="center"
-        android:textSize="10pt"
-        android:layout_marginTop="25dp" />
+        <com.ascentsmartwaves.andealr.custom.CustomTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/crafted_text"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/ten_pt"
+            android:layout_marginTop="@dimen/twenty_dp"/>
 
+        <com.ascentsmartwaves.andealr.custom.CustomTextView
+            android:id="@+id/contact_us_text_about_us_activity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="We are keen to hear from you!\nConnect with us at shoot@andealr.com"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="@dimen/ten_pt"
+            android:layout_marginTop="@dimen/twenty_five_dp" />
+    </LinearLayout>
 
 </RelativeLayout>

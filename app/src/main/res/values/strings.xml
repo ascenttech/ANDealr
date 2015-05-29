@@ -10,6 +10,7 @@
     <string name="hello_world">Hello world!</string>
     <!--<string name="app_version">Version 1.3.2</string>-->
     <string name="app_version">Version 1.4</string>
+    <string name="crafted_text">Crafted with love!</string>
 
 
     <string name="action_settings">

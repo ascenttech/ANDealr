@@ -17,7 +17,7 @@ import com.ascentsmartwaves.andealr.utils.Constants;
 public class AboutUsActivity extends Activity {
 
     ActionBar actionBar;
-    TextView version,message,contactus;
+    TextView contactUs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +38,13 @@ public class AboutUsActivity extends Activity {
 
     private void findViews(){
 
-        version=(TextView) findViewById(R.id.version);
-        message=(TextView) findViewById(R.id.message);
-        contactus=(TextView) findViewById(R.id.contactus);
+        contactUs =(TextView) findViewById(R.id.contact_us_text_about_us_activity);
 
     }
 
     private void setViews(){
 
-        contactus.setOnClickListener(listener);
+        contactUs.setOnClickListener(listener);
 
     }
 
@@ -67,7 +65,7 @@ public class AboutUsActivity extends Activity {
 
             switch(v.getId()){
 
-                case R.id.contactus: modeOfContact();
+                case R.id.contact_us_text_about_us_activity: modeOfContact();
                     break;
 
                 default:break;
