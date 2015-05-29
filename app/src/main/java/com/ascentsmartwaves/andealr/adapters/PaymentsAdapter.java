@@ -2,6 +2,7 @@ package com.ascentsmartwaves.andealr.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,16 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.ViewHo
     TextView generalText,dealTittle,amount,date,time;
     ImageView paymentStatusImage;
 
+    // Provide a suitable constructor (depends on the kind of dataset)
+    public PaymentsAdapter(Context context) {
+        this.context = context;
+    }
+
+    // Provide a suitable constructor (depends on the kind of dataset)
+    public PaymentsAdapter(ArrayList<PaymentsData> paymentsData, Context context) {
+        this.paymentsData = paymentsData;
+        this.context = context;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -34,12 +45,6 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.ViewHo
             super(v);
             view = v;
         }
-    }
-
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public PaymentsAdapter(ArrayList<PaymentsData> paymentsData, Context context) {
-        this.paymentsData = paymentsData;
-        this.context = context;
     }
 
     @Override
@@ -78,17 +83,23 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.ViewHo
         // isHePaid() checks if he paid us a specified amount
         if(Constants.paymentsData.get(position).isHePaid()){
 
-            generalText.setText("Payment of Rs "+context.getString(R.string.Rs)+" "+Constants.paymentsData.get(position).getAmount()+" has been added to your account");
+            generalText.setText("Payment of Rs "+context.getString(R.string.Rs)+" "+Constants.paymentsData.get(position).getAmount()+" has \nbeen  added to your account");
+            Log.d(Constants.LOG_TAG,"Setting general text" +Constants.paymentsData.get(position).getAmount());
+
+            date.setText(Constants.paymentsData.get(position).getDate());
+            Log.d(Constants.LOG_TAG," Setting date text "+Constants.paymentsData.get(position).getDate());
+
             dealTittle.setVisibility(View.INVISIBLE);
             amount.setVisibility(View.INVISIBLE);
-            date.setText(Constants.paymentsData.get(position).getDate());
             time.setVisibility(View.INVISIBLE);
             paymentStatusImage.setImageResource(R.drawable.tick);
         }
         else{
 
             generalText.setText("Invoice # "+Constants.paymentsData.get(position).getOrderID());
+            dealTittle.setVisibility(View.VISIBLE);
             dealTittle.setText("Deal Title : "+Constants.paymentsData.get(position).getDealTitle());
+            amount.setVisibility(View.VISIBLE);
             amount.setText("Amount : "+context.getString(R.string.Rs)+" "+Constants.paymentsData.get(position).getAmount());
             date.setText(Constants.paymentsData.get(position).getDate());
             time.setVisibility(View.INVISIBLE);

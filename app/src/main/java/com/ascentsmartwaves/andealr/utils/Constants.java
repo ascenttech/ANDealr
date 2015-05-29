@@ -107,7 +107,7 @@ public class Constants
 //    public static final String facebookRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/test/merchantRegistrationFacebook.php?emailID=";
 //    public static final String googleRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/test/merchantRegistrationGoogle.php?firstName=";
 //    public static final String fetchNotificationsForDealerURL ="http://integration.andealr.com/apps/v1.0/andealr/test/merchantNotifications.php?merchantID=";
-//
+
 
 
 //  PRODUCTION ENVIROMENT

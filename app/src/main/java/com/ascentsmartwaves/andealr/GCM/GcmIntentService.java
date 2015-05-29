@@ -89,7 +89,9 @@ public class GcmIntentService extends IntentService
                 .setContentTitle("ANDealr")
                 .setSmallIcon(R.drawable.andealr_logo)
                 .setLargeIcon(notificationsLogo)
-                .setContentText(msg);
+                .setContentText(msg)
+                .setDefaults(Notification.DEFAULT_ALL);
+
 
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
         bigText.bigText(msg);

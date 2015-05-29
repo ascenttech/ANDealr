@@ -34,22 +34,24 @@ public class PaymentsFragment extends Fragment {
     String id;
     ActionBar actionBar;
     ProgressDialog dialog;
-    TextView currentBalance;
+    TextView currentBalance,balanceText;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.payment,null);
+        currentBalance = (TextView) rootView.findViewById(R.id.current_balance);
+        balanceText = (TextView) rootView.findViewById(R.id.balance_static_text);
 
         paymentsRecyclerView = (RecyclerView) rootView.findViewById(R.id.payments_recycler_view);
-        currentBalance = (TextView) rootView.findViewById(R.id.current_balance);
+        Constants.paymentsData = new ArrayList<PaymentsData>();
 
-
-
-        paymentsLayoutManager = new LinearLayoutManager(rootView.getContext());
-        paymentsRecyclerView.setLayoutManager(paymentsLayoutManager);
         paymentsRecyclerView.setHasFixedSize(true);
+
+        paymentsLayoutManager = new LinearLayoutManager(getActivity());
+        paymentsRecyclerView.setLayoutManager(paymentsLayoutManager);
+
 
         new FetchPaymentAsyncTask(getActivity().getApplicationContext(),new FetchPaymentAsyncTask.FetchPaymentCallback() {
             @Override
@@ -67,10 +69,12 @@ public class PaymentsFragment extends Fragment {
 
                 if(b){
                     dialog.dismiss();
-                    paymentsAdapter = new PaymentsAdapter(Constants.paymentsData, getActivity());
+
+                    balanceText.setText("Balance");
+                    currentBalance.setText(getActivity().getApplicationContext().getString(R.string.Rs)+" "+Constants.currentBalance);
+                    paymentsAdapter = new PaymentsAdapter(Constants.paymentsData, getActivity().getApplicationContext());
                     paymentsRecyclerView.setAdapter(paymentsAdapter);
 
-                    currentBalance.setText(getActivity().getApplicationContext().getString(R.string.Rs)+" "+Constants.currentBalance);
                 }
                 else{
                     dialog.dismiss();

@@ -20,21 +20,14 @@
            >
 
            <TextView
+               android:id="@+id/balance_static_text"
                android:layout_width="0dp"
                android:layout_height="wrap_content"
-               android:text="Balance"
                android:textColor="@color/black"
                android:layout_weight="4"
                android:textSize="@dimen/twenty_dp"
                android:padding="@dimen/five_dp"
                />
-           <!--<ImageView-->
-               <!--android:layout_width="0dp"-->
-               <!--android:layout_height="fill_parent"-->
-               <!--android:src="@drawable/rupee"-->
-               <!--android:layout_weight="1"-->
-               <!--android:padding="@dimen/five_dp"-->
-               <!--/>-->
 
            <TextView
                android:id="@+id/current_balance"

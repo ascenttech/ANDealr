@@ -89,8 +89,6 @@ public class FetchPaymentAsyncTask extends AsyncTask<String, Void, Boolean> {
                     String time=nestedJSONObject.getString("time");
                     Constants.currentBalance = nestedJSONObject.getString("currentBalance");
 
-                    Log.d(Constants.LOG_TAG,Constants.currentBalance);
-
                     Constants.paymentsData.add(new PaymentsData(orderID,dealTitle,amount,date,time,hePaid));
                 }
 

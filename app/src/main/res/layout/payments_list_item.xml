@@ -42,6 +42,7 @@
         android:textSize="@dimen/twenty_sp"
         android:textColor="#000"
         android:layout_below="@id/general_text_payments_fragment"
+        android:visibility="visible"
         />
     <com.ascentsmartwaves.andealr.custom.CustomTextView
         android:id="@+id/amount_text_payments_fragment"
@@ -52,6 +53,7 @@
         android:textSize="@dimen/twenty_sp"
         android:textColor="#000"
         android:layout_below="@id/deal_tittle_text_payments_fragment"
+        android:visibility="visible"
         />
 
 
