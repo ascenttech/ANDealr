@@ -30,7 +30,7 @@
             />
         <include
             android:id="@+id/likes_redeem_included_landing_fragment"
-            layout="@layout/include_reach_likes_and_redeem"
+            layout="@layout/include_reach_likes_redeem"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_background_image_andealr_fragment"
