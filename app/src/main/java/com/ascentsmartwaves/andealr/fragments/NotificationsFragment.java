@@ -39,7 +39,7 @@ public class NotificationsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        View rootView = inflater.inflate(R.layout.notifications_fragment,null);
+        View rootView = inflater.inflate(R.layout.fragment_notifications,null);
         Constants.notificationsData = new ArrayList<NotificationsData>();
 
         notificationsFragmentRecyclerView = (RecyclerView) rootView.findViewById(R.id.notifications_recycler_view);

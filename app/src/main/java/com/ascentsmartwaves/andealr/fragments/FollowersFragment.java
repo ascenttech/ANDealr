@@ -33,7 +33,7 @@ public class FollowersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View rootView = inflater.inflate(R.layout.followers,null);
+        View rootView = inflater.inflate(R.layout.fragment_followers,null);
         followersRecyclerView = (RecyclerView) rootView.findViewById(R.id.followers_recycler_view);
 
 

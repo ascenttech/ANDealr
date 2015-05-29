@@ -55,7 +55,7 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
 
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.landing_fragment_list_item, parent, false);
+                .inflate(R.layout.row_landing_fragment, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }

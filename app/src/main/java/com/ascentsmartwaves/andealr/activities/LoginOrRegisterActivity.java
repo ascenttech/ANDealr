@@ -72,7 +72,7 @@ public class LoginOrRegisterActivity extends Activity implements ConnectionCallb
         super.onCreate(savedInstanceState);
         Log.d(Constants.LOG_TAG,"REGISTER LOGIN STARTED");
 
-        setContentView(R.layout.login_or_register);
+        setContentView(R.layout.activity_login_or_register);
         btntext = "Connect with Google +";
 
         googleSignIn = (SignInButton) findViewById(R.id.google_btn_sign_in_login_or_register_activity);

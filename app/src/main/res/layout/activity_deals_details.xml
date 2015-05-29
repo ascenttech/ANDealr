@@ -32,7 +32,7 @@
 
                 <include
                     android:id="@+id/tittle_bottom_strip_andealr_details_activity"
-                    layout="@layout/tittle_bottom_strip"
+                    layout="@layout/include_tittle_locality"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/details_background_andealr_details_activity"
@@ -40,7 +40,7 @@
 
                 <include
                     android:id="@+id/details_bottom_strip_andealr_details_activity"
-                    layout="@layout/reach_likes_and_redeem"
+                    layout="@layout/include_reach_likes_and_redeem"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/details_background_andealr_details_activity"

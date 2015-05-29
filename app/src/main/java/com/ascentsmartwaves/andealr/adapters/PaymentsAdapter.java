@@ -6,9 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ascentsmartwaves.andealr.R;
@@ -50,7 +48,7 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.ViewHo
     @Override
     public PaymentsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.payments_list_item, parent, false);
+                .inflate(R.layout.row_payments, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -100,7 +98,7 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.ViewHo
             dealTittle.setVisibility(View.VISIBLE);
             dealTittle.setText("Deal Title : "+Constants.paymentsData.get(position).getDealTitle());
             amount.setVisibility(View.VISIBLE);
-            amount.setText("Amount : "+context.getString(R.string.Rs)+" "+Constants.paymentsData.get(position).getAmount());
+            amount.setText("Amount : " + context.getString(R.string.Rs) + " " + Constants.paymentsData.get(position).getAmount());
             date.setText(Constants.paymentsData.get(position).getDate());
             time.setVisibility(View.INVISIBLE);
             paymentStatusImage.setImageResource(R.drawable.invoice);

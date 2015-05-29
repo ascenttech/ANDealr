@@ -40,7 +40,7 @@ public class PaymentsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.payment,null);
+        View rootView = inflater.inflate(R.layout.fragment_payment,null);
         currentBalance = (TextView) rootView.findViewById(R.id.current_balance);
         balanceText = (TextView) rootView.findViewById(R.id.balance_static_text);
 

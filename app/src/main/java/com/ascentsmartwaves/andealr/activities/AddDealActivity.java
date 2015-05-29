@@ -90,7 +90,7 @@ public class AddDealActivity extends ActionBarActivity {
         // This will create a custom ActionBar for this activity
         customActionbar();
 
-        setContentView(R.layout.add_deal);
+        setContentView(R.layout.activity_add_deal);
 
         // This is used to find all the views
         findViews();

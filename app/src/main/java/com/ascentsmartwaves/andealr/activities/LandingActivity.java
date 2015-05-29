@@ -86,7 +86,7 @@ public class LandingActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         Constants.landingFragmentData = new ArrayList<LandingFragmentData>();
-        setContentView(R.layout.landing_activity);
+        setContentView(R.layout.activity_landing);
 
         mTitle = mDrawerTitle = getTitle();
 

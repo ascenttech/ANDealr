@@ -50,7 +50,7 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersAdapter.View
 
 
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.followers_list_item, parent, false);
+                .inflate(R.layout.row_followers_fragment, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }

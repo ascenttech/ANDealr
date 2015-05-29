@@ -26,7 +26,7 @@ public class SettingsActivity extends ActionBarActivity {
         actionBar = getSupportActionBar();
         actionBar.setTitle("Settings");
 
-        setContentView(R.layout.settings_activity);
+        setContentView(R.layout.activity_settings);
 
         aboutUs = (TextView) findViewById(R.id.about_us_static_text);
         privacyPolicy = (TextView) findViewById(R.id.privacy_policy_static_text);

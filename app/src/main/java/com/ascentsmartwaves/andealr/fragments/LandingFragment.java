@@ -49,7 +49,7 @@ public class LandingFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
 
-        View rootView = inflater.inflate(R.layout.landing_fragment,null);
+        View rootView = inflater.inflate(R.layout.fragment_landing,null);
         landingFragmentRecyclerView = (RecyclerView) rootView.findViewById(R.id.landing_recycler_view);
 
         landingFragmentLayoutManager = new LinearLayoutManager(getActivity());

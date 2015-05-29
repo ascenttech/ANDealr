@@ -23,14 +23,14 @@
             />
 
         <include
-            layout="@layout/tittle_bottom_strip"
+            layout="@layout/include_tittle_locality"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/card_background_image_andealr_fragment"
             />
         <include
             android:id="@+id/likes_redeem_included_landing_fragment"
-            layout="@layout/reach_likes_and_redeem"
+            layout="@layout/include_reach_likes_and_redeem"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_background_image_andealr_fragment"

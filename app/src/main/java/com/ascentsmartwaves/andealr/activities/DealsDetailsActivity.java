@@ -102,7 +102,7 @@ public class DealsDetailsActivity extends ActionBarActivity{
         }).execute(finalUrl);
 
 
-        setContentView(R.layout.deals_details_activity);
+        setContentView(R.layout.activity_deals_details);
 
 
 

@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.ascentsmartwaves.andealr.R;
 import com.ascentsmartwaves.andealr.data.NotificationsData;
-import com.ascentsmartwaves.andealr.data.NotificationsDataPrevious;
 import com.ascentsmartwaves.andealr.utils.Constants;
 
 import java.util.ArrayList;
@@ -58,7 +57,7 @@ public class NotificationsFragmentAdapter extends RecyclerView.Adapter<Notificat
 
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.notifications_fragment_list_item, parent, false);
+                .inflate(R.layout.row_notifications_fragment, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
