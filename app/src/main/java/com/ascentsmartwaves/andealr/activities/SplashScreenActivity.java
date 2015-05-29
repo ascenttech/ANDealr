@@ -36,7 +36,7 @@ public class SplashScreenActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_splash_screen);
         SharedPreferences prefs =getSharedPreferences("Shortcut", Context.MODE_PRIVATE);
         shortcutstatus = prefs.getString("created", "FALSE");
 
