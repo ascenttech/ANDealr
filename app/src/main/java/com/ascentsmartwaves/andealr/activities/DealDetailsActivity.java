@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -18,7 +19,7 @@ import com.ascentsmartwaves.andealr.utils.Constants;
 /**
  * Created by ADMIN on 18-02-2015.
  */
-public class DealsDetailsActivity extends ActionBarActivity{
+public class DealDetailsActivity extends ActionBarActivity{
 
     ActionBar actionBar;
     Intent i ;
@@ -35,6 +36,8 @@ public class DealsDetailsActivity extends ActionBarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.d(Constants.LOG_TAG,Constants.DealDetailsActivity)
+
         actionBar = getSupportActionBar();
         actionBar.setTitle("Deal Details");
 
@@ -48,7 +51,7 @@ public class DealsDetailsActivity extends ActionBarActivity{
             @Override
             public void onStart(boolean a) {
 
-                dialog = new ProgressDialog(DealsDetailsActivity.this);
+                dialog = new ProgressDialog(DealDetailsActivity.this);
                 dialog.setTitle("Getting Deal");
                 dialog.setMessage("Getting The Required Deal");
                 dialog.show();

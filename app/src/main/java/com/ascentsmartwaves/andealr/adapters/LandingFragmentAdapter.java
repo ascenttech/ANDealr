@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.ascentsmartwaves.andealr.R;
 import com.ascentsmartwaves.andealr.imagecaching.ImageLoader;
-import com.ascentsmartwaves.andealr.activities.DealsDetailsActivity;
+import com.ascentsmartwaves.andealr.activities.DealDetailsActivity;
 import com.ascentsmartwaves.andealr.data.LandingFragmentData;
 import com.ascentsmartwaves.andealr.utils.Constants;
 
@@ -114,7 +114,7 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
 
             switch (v.getId()){
 
-                case R.id.card_background_image_andealr_fragment: i = new Intent(context, DealsDetailsActivity.class);
+                case R.id.card_background_image_andealr_fragment: i = new Intent(context, DealDetailsActivity.class);
                     i.putExtra("position",identifier[1]);
                     i.putExtra("deal id",Constants.landingFragmentData.get(Integer.parseInt(identifier[1])).getDealId());
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

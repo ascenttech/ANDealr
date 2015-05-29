@@ -83,7 +83,7 @@
         <activity android:name="com.ascentsmartwaves.andealr.activities.TermsAndConditionActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.ascentsmartwaves.andealr.activities.DealsDetailsActivity"
+        <activity android:name=".activities.DealDetailsActivity"
             android:screenOrientation="portrait"
             />
 
