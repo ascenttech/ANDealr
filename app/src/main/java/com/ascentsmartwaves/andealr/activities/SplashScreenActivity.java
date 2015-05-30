@@ -97,7 +97,7 @@ public class SplashScreenActivity extends Activity {
     public void findViews(){
 
         screen = (LinearLayout) findViewById(R.id.main);
-        logo = (ImageView) findViewById(R.id.logo_splashscreen);
+        logo = (ImageView) findViewById(R.id.logo_splash_screen);
     }
 
     public void setViews(){
