@@ -27,11 +27,17 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.ViewHo
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public PaymentsAdapter(Context context) {
+
+        Log.d(Constants.LOG_TAG,Constants.PaymentsAdapter);
+
         this.context = context;
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public PaymentsAdapter(ArrayList<PaymentsData> paymentsData, Context context) {
+
+        Log.d(Constants.LOG_TAG,Constants.PaymentsAdapter);
+
         this.paymentsData = paymentsData;
         this.context = context;
     }

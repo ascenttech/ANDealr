@@ -2,6 +2,7 @@ package com.ascentsmartwaves.andealr.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,14 @@ public class NotificationsFragmentAdapter extends RecyclerView.Adapter<Notificat
     TextView dealName,dealDescription,dealDate,likes,redeem,dealTime;
     RelativeLayout likesRedeemLayout;
 
+    // Provide a suitable constructor (depends on the kind of dataset)
+    public NotificationsFragmentAdapter(ArrayList<NotificationsData> notificationsFragmentDatas, Context context) {
+
+        Log.d(Constants.LOG_TAG, Constants.NotificationsFragmentAdapter);
+        this.notificationsFragmentDatas = notificationsFragmentDatas;
+        this.context = context;
+    }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -39,16 +48,6 @@ public class NotificationsFragmentAdapter extends RecyclerView.Adapter<Notificat
         }
     }
 
-//    // Provide a suitable constructor (depends on the kind of dataset)
-//    public NotificationsFragmentAdapter(ArrayList<NotificationsDataPrevious> notificationsFragmentDatas, Context context) {
-//        this.notificationsFragmentDatas = notificationsFragmentDatas;
-//        this.context = context;
-//    }
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public NotificationsFragmentAdapter(ArrayList<NotificationsData> notificationsFragmentDatas, Context context) {
-        this.notificationsFragmentDatas = notificationsFragmentDatas;
-        this.context = context;
-    }
 
     // Create new views (invoked by the layout manager)
     @Override

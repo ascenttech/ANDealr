@@ -6,10 +6,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.ascentsmartwaves.andealr.R;
+import com.ascentsmartwaves.andealr.utils.Constants;
 
 /**
  * Created by ADMIN on 16-02-2015.
@@ -22,6 +24,8 @@ public class SettingsActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.d(Constants.LOG_TAG, Constants.SettingsActivity);
 
         actionBar = getSupportActionBar();
         actionBar.setTitle("Settings");

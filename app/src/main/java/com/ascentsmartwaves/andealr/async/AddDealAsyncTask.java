@@ -21,15 +21,13 @@ import org.json.JSONObject;
 public class AddDealAsyncTask extends AsyncTask<String,Void,Boolean> {
 
     Context context;
+    private AddDealAsyncTaskCallback mListener;
 
     /** Implement this somewhere to get the result */
     public interface AddDealAsyncTaskCallback {
         void onStart(boolean a);
         void onResult(boolean b);
     }
-
-    private AddDealAsyncTaskCallback mListener;
-
 
     public AddDealAsyncTask(Context context,AddDealAsyncTaskCallback listener) {
         this.context = context;

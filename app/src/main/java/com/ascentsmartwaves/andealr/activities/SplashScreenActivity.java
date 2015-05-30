@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -36,6 +37,9 @@ public class SplashScreenActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.d(Constants.LOG_TAG, Constants.SplashScreenActivity);
+
         setContentView(R.layout.activity_splash_screen);
         SharedPreferences prefs =getSharedPreferences("Shortcut", Context.MODE_PRIVATE);
         shortcutstatus = prefs.getString("created", "FALSE");

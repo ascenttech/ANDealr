@@ -3,6 +3,7 @@ package com.ascentsmartwaves.andealr.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,16 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
     RelativeLayout likesRedeemLayout;
     TextView likesCounter,redeemCounter,reachCounter;
 
+    // Provide a suitable constructor (depends on the kind of dataset)
+    public LandingFragmentAdapter(ArrayList<LandingFragmentData> landingFragmentData, Context context) {
+
+        Log.d(Constants.LOG_TAG, Constants.LandingFragmentAdapter);
+
+        this.landingFragmentData = landingFragmentData;
+        this.context = context;
+        imageLoader = new ImageLoader(context.getApplicationContext());
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public View view;
@@ -41,12 +52,7 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public LandingFragmentAdapter(ArrayList<LandingFragmentData> landingFragmentData, Context context) {
-        this.landingFragmentData = landingFragmentData;
-        this.context = context;
-        imageLoader = new ImageLoader(context.getApplicationContext());
-    }
+
 
     // Create new views (invoked by the layout manager)
     @Override

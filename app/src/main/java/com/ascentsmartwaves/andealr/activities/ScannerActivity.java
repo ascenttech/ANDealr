@@ -27,6 +27,9 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
+
+        Log.d(Constants.LOG_TAG,Constants.ScannerActivity);
+
         mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
         setContentView(mScannerView);                // Set the scanner view as the content view
     }

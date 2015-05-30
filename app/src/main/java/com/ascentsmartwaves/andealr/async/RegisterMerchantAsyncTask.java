@@ -34,6 +34,7 @@ public class RegisterMerchantAsyncTask extends AsyncTask<String, Void, Boolean> 
         this.listener = listener;
     }
 
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();

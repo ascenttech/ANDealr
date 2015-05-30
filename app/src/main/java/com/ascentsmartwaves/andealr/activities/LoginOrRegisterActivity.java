@@ -70,7 +70,7 @@ public class LoginOrRegisterActivity extends Activity implements ConnectionCallb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(Constants.LOG_TAG,"REGISTER LOGIN STARTED");
+        Log.d(Constants.LOG_TAG,Constants.LoginOrRegisterActivity);
 
         setContentView(R.layout.activity_login_or_register);
         btntext = "Connect with Google +";

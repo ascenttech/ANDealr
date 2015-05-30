@@ -21,6 +21,7 @@ public class CheckProfileValidityAsyncTask extends AsyncTask<String,Void,Boolean
     Context context;
     HttpEntity responseEntity;
     String responseString;
+    private ProfileValidAsyncTaskCallback listener;
 
     public interface ProfileValidAsyncTaskCallback{
 
@@ -28,7 +29,6 @@ public class CheckProfileValidityAsyncTask extends AsyncTask<String,Void,Boolean
         public void onResult(boolean b);
     }
 
-    private ProfileValidAsyncTaskCallback listener;
 
     public CheckProfileValidityAsyncTask(Context context, ProfileValidAsyncTaskCallback listener) {
         this.context = context;

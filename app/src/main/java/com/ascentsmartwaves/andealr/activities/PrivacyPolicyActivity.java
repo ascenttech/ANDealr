@@ -2,12 +2,14 @@ package com.ascentsmartwaves.andealr.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.ascentsmartwaves.andealr.R;
+import com.ascentsmartwaves.andealr.utils.Constants;
 
 /**
  * Created by ADMIN on 17-02-2015.
@@ -19,6 +21,9 @@ public class PrivacyPolicyActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.d(Constants.LOG_TAG, Constants.PrivacyPolicyActivity);
+
         setContentView(R.layout.activity_privacy_policy);
         browser = (WebView)findViewById(R.id.webView1);
         browser.setWebViewClient(new MyBrowser());

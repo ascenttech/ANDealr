@@ -23,6 +23,7 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
     int position;
     HttpEntity responseEntity;
     String responseString;
+
     public interface FetchDealDetailsCallback{
         public void onStart(boolean a);
         public void onResult(boolean b);

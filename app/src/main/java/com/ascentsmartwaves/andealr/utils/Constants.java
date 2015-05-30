@@ -72,6 +72,7 @@ public class Constants
     public static final String SignUpActivity = " SIGN_UP_ACTIVITY ";
     public static final String SplashScreenActivity = " SPLASH_SCREEN_ACTIVITY ";
     public static final String TermsAndConditionActivity = " TERMS_AND_CONDITION_ACTIVITY ";
+    public static final String SettingsActivity = " SETTINGS_ACTIVITY ";
 
 
     // Log Tags for all the adapters
@@ -97,6 +98,13 @@ public class Constants
     public static final String UpdateProfileAsyncTask = " UPDATE_PROFILE_ASYNC_TASK ";
     public static final String UploadProfileImageAsyncTask = " UPDATE_PROFILE_IMAGE_ASYNC_TASK ";
 
+
+    // Log Tags for all the fragments
+    public static final String FollowersFragment = " FOLLOWERS_FRAGMENT ";
+    public static final String LandingFragment = " LANDING_FRAGMENT ";
+    public static final String NotificationsFragment = " NOTIFICATIONS_FRAGMENT ";
+    public static final String PaymentsFragment = " PAYMENTS_FRAGMENT ";
+    public static final String UserProfileFragment = " USER_PROFILE_FRAGMENT ";
 
     // All the Data arraylist
     public static ArrayList<LandingFragmentData> landingFragmentData;

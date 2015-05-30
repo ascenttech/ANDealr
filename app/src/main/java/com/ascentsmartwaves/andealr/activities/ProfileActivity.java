@@ -59,6 +59,9 @@ public class ProfileActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        Log.d(Constants.LOG_TAG,Constants.ProfileActivity);
+
         setContentView(R.layout.activity_profile);
 
         Constants.userProfileData = new ArrayList<UserProfileData>();

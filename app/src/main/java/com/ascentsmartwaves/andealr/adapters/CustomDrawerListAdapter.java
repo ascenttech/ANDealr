@@ -1,6 +1,7 @@
 package com.ascentsmartwaves.andealr.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.ascentsmartwaves.andealr.R;
 import com.ascentsmartwaves.andealr.data.DrawerListData;
+import com.ascentsmartwaves.andealr.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,9 @@ public class CustomDrawerListAdapter extends BaseAdapter {
     TextView drawerListItemName;
 
     public CustomDrawerListAdapter(Context context, ArrayList<DrawerListData> drawerListData) {
+
+        Log.d(Constants.LOG_TAG,Constants.CustomDrawerListAdapter);
+
         this.context = context;
         this.drawerListData = drawerListData;
     }

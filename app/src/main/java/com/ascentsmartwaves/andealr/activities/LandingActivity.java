@@ -85,6 +85,8 @@ public class LandingActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.d(Constants.LOG_TAG,Constants.LandingActivity);
+
         Constants.landingFragmentData = new ArrayList<LandingFragmentData>();
         setContentView(R.layout.activity_landing);
 

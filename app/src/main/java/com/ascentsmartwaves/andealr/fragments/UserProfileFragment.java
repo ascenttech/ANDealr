@@ -85,7 +85,7 @@ public class UserProfileFragment extends Fragment {
 
 
 
-        Log.d(Constants.LOG_TAG,"USER PROFILE FRAGMENT STARTED");
+        Log.d(Constants.LOG_TAG,Constants.UserProfileFragment);
         View v = inflater.inflate(R.layout.activity_user_profile, container, false);
         editprofile = (ImageView) v.findViewById(R.id.editprofile);
         profiledet = (LinearLayout) v.findViewById(R.id.profile_details_layout);
