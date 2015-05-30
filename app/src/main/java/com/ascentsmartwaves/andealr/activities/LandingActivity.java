@@ -296,8 +296,9 @@ public class LandingActivity extends ActionBarActivity {
 
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager
-                    .beginTransaction().replace(R.id.content_frame, fragment).commit();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, fragment)
+                    .commit();
 
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
@@ -311,7 +312,9 @@ public class LandingActivity extends ActionBarActivity {
     }
 
 
-    public void AddDeal(View v)
+    // this function is written on the click of the button
+    // The id for this button is from LANDING FRAGMENT
+    public void addDeal(View v)
     {
 
 
@@ -336,7 +339,8 @@ public class LandingActivity extends ActionBarActivity {
                     {
                         dialog.dismiss();
                         AlertDialog.Builder builder = new AlertDialog.Builder(LandingActivity.this);
-                        builder.setMessage("Please complete your profile").setPositiveButton("OK", dialogClickListener)
+                        builder.setMessage("Please complete your profile")
+                                .setPositiveButton("OK", dialogClickListener)
                                 .setNegativeButton("Cancel", dialogClickListener).show();
                     }
                     else if(Constants.accountStatus.equals("Account not verified"))
@@ -356,7 +360,7 @@ public class LandingActivity extends ActionBarActivity {
                     else
                     {
                         dialog.dismiss();
-                      Toast.makeText(getApplicationContext(),"Cannot connect to the server",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Cannot connect to the server",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -409,7 +413,7 @@ public class LandingActivity extends ActionBarActivity {
                     Intent mailer = Intent.createChooser(share , null);
                     mailer.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(mailer);
-                 break;
+                    break;
 
 //                z.putExtra(android.content.Intent.EXTRA_SUBJECT, "Important Message");
 

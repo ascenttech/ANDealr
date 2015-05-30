@@ -22,7 +22,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:elevation="5dp"
-        android:onClick="AddDeal"
+        android:onClick="addDeal"
         android:layout_marginRight="@dimen/fifteen_dp"
         android:layout_marginBottom="@dimen/fifteen_dp"
         />

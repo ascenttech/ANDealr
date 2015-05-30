@@ -34,6 +34,8 @@ public class SplashScreenActivity extends Activity {
     int i;
     String shortcutstatus;
     SharedPreferences.Editor shorcut;
+    ImageView logo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,14 +46,17 @@ public class SplashScreenActivity extends Activity {
         SharedPreferences prefs =getSharedPreferences("Shortcut", Context.MODE_PRIVATE);
         shortcutstatus = prefs.getString("created", "FALSE");
 
-        Constants.landingFragmentData = new ArrayList<LandingFragmentData>();
-        Constants.landingFragmentDetail = new ArrayList<LandingFragmentDetail>();
-        Constants.notificationsDataPrevious = new ArrayList<NotificationsDataPrevious>();
-        Constants.userProfileData = new ArrayList<UserProfileData>();
-        Constants.followersData = new ArrayList<FollowersData>();
-        Constants.paymentsData = new ArrayList<PaymentsData>();
-        Constants.notificationsData = new ArrayList<NotificationsData>();
-        screen = (LinearLayout) findViewById(R.id.main);
+
+        // This is used to initialize all the Json data
+        intializeJsonData();
+
+        // find all the view
+        findViews();
+
+        // This is used to set the views
+        setViews();
+
+
         shorcut = getSharedPreferences("Shortcut", MODE_PRIVATE).edit();
 
 //        if(shortcutstatus.equals("FALSE"))
@@ -75,8 +80,29 @@ public class SplashScreenActivity extends Activity {
             new FetchData().execute();
         }
 
+    }
 
+    public void intializeJsonData(){
 
+        Constants.landingFragmentData = new ArrayList<LandingFragmentData>();
+        Constants.landingFragmentDetail = new ArrayList<LandingFragmentDetail>();
+        Constants.notificationsDataPrevious = new ArrayList<NotificationsDataPrevious>();
+        Constants.userProfileData = new ArrayList<UserProfileData>();
+        Constants.followersData = new ArrayList<FollowersData>();
+        Constants.paymentsData = new ArrayList<PaymentsData>();
+        Constants.notificationsData = new ArrayList<NotificationsData>();
+
+    }
+
+    public void findViews(){
+
+        screen = (LinearLayout) findViewById(R.id.main);
+        logo = (ImageView) findViewById(R.id.logo_splashscreen);
+    }
+
+    public void setViews(){
+
+        logo.setImageResource(R.drawable.splashlogo);
 
     }
 
@@ -94,13 +120,8 @@ public class SplashScreenActivity extends Activity {
         @Override
         protected Void doInBackground(Void... params) {
             try {
+                logo.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale));
 
-                for(int i=0;i<=1;i++)
-                {
-                    ImageView iv = (ImageView) findViewById(R.id.logo_splashscreen);
-                    iv.setImageResource(R.drawable.splashlogo);
-                    iv.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate));
-                }
                 (new Thread(){
                     @Override
                     public void run(){
@@ -112,8 +133,11 @@ public class SplashScreenActivity extends Activity {
                             });
                             // next will pause the thread for some time
                             try{ sleep(10); }
-                            catch(Exception r)
-                            { break; }
+                            catch(Exception e)
+                            {
+
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }).start();
