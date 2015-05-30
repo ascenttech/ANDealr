@@ -25,12 +25,25 @@ public class PrivacyPolicyActivity extends Activity {
         Log.d(Constants.LOG_TAG, Constants.PrivacyPolicyActivity);
 
         setContentView(R.layout.activity_privacy_policy);
-        browser = (WebView)findViewById(R.id.webView1);
-        browser.setWebViewClient(new MyBrowser());
+
+        // This is used to find the IDs
+        findViews();
+
+        // this is used to set data
+        setViews();
+
         open(v);
     }
 
+    public void findViews(){
 
+        browser = (WebView)findViewById(R.id.webView1);
+    }
+
+    public void setViews(){
+
+        browser.setWebViewClient(new MyBrowser());
+    }
 
     public void open(View view){
         String url = "http://andealr.com/PrivacyPolicy.html";
