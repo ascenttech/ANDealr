@@ -59,116 +59,134 @@
 
             </RelativeLayout>
 
-            <LinearLayout
+            <include
                 android:id="@+id/counterlayout"
+                layout="@layout/include_counter"
                 android:layout_below="@+id/profile_Img_Layout"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#80FFFFFF">
+                />
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/counterlayout"-->
+            <!--android:layout_below="@+id/profile_Img_Layout"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:background="#80FFFFFF">-->
 
 
-                <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:text="0"
-                    android:id="@+id/counterfollowers"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="15pt"
-                    android:textStyle="bold"
-                    android:gravity="center" />
+            <!--<com.ascentsmartwaves.andealr.custom.CustomTextView-->
+            <!--android:text="0"-->
+            <!--android:id="@+id/counterfollowers"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="15pt"-->
+            <!--android:textStyle="bold"-->
+            <!--android:gravity="center" />-->
 
-                <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:text="0"
-                    android:id="@+id/counterAdded"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="15pt"
-                    android:textStyle="bold"
-                    android:gravity="center" />
-
-
-                <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:text="0"
-                    android:id="@+id/counterliked"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_weight="1"
-                    android:textSize="15pt"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:gravity="center" />
+            <!--<com.ascentsmartwaves.andealr.custom.CustomTextView-->
+            <!--android:text="0"-->
+            <!--android:id="@+id/counterAdded"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="15pt"-->
+            <!--android:textStyle="bold"-->
+            <!--android:gravity="center" />-->
 
 
-                <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:text="0"
-                    android:id="@+id/counterredeem"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="15pt"
-                    android:textStyle="bold"
-                    android:gravity="center" />
+            <!--<com.ascentsmartwaves.andealr.custom.CustomTextView-->
+            <!--android:text="0"-->
+            <!--android:id="@+id/counterliked"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="15pt"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:gravity="center" />-->
 
 
-            </LinearLayout>
+            <!--<com.ascentsmartwaves.andealr.custom.CustomTextView-->
+            <!--android:text="0"-->
+            <!--android:id="@+id/counterredeem"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="15pt"-->
+            <!--android:textStyle="bold"-->
+            <!--android:gravity="center" />-->
 
 
+            <!--</LinearLayout>-->
 
-
-            <LinearLayout
+            <include
+                layout="@layout/include_counter_text"
                 android:id="@+id/counternames"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/counterlayout"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#80FFFFFF"
-                >
-
-                <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:text="Total\nFollowers"
-                    android:id="@+id/followers"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="8pt"
-                    android:gravity="center" />
-
-                <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:text="Deals\nAdded"
-                    android:id="@+id/followed"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="8pt"
-                    android:gravity="center" />
-
-                <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:text="Deals\nLiked"
-                    android:id="@+id/liked"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_weight="1"
-                    android:textSize="8pt"
-                    android:layout_gravity="center"
-                    android:gravity="center" />
-
-                <com.ascentsmartwaves.andealr.custom.CustomTextView
-                    android:text="Deals\nRedeemed"
-                    android:id="@+id/redeem"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="8pt"
-                    android:gravity="center" />
+                />
 
 
-            </LinearLayout>
+            <!--<LinearLayout-->
+            <!--android:id="@+id/counternames"-->
+            <!--android:layout_below="@+id/counterlayout"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:background="#80FFFFFF"-->
+            <!-->-->
+
+            <!--<com.ascentsmartwaves.andealr.custom.CustomTextView-->
+            <!--android:text="Total\nFollowers"-->
+            <!--android:id="@+id/followers"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="8pt"-->
+            <!--android:gravity="center" />-->
+
+            <!--<com.ascentsmartwaves.andealr.custom.CustomTextView-->
+            <!--android:text="Deals\nAdded"-->
+            <!--android:id="@+id/followed"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="8pt"-->
+            <!--android:gravity="center" />-->
+
+            <!--<com.ascentsmartwaves.andealr.custom.CustomTextView-->
+            <!--android:text="Deals\nLiked"-->
+            <!--android:id="@+id/liked"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="8pt"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:gravity="center" />-->
+
+            <!--<com.ascentsmartwaves.andealr.custom.CustomTextView-->
+            <!--android:text="Deals\nRedeemed"-->
+            <!--android:id="@+id/redeem"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="8pt"-->
+            <!--android:gravity="center" />-->
+
+
+            <!--</LinearLayout>-->
 
 
             <LinearLayout
@@ -268,14 +286,14 @@
                 android:layout_width="fill_parent">
 
 
-               <com.ascentsmartwaves.andealr.custom.CustomEditText
-                   android:id="@+id/merchant_companyname_edittext_profile"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_margin="10dp"
-                   android:height="50dp"
-                   android:layout_below="@+id/name_layout"
-                   android:hint="Company Name *"/>
+                <com.ascentsmartwaves.andealr.custom.CustomEditText
+                    android:id="@+id/merchant_companyname_edittext_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:height="50dp"
+                    android:layout_below="@+id/name_layout"
+                    android:hint="Company Name *"/>
 
 
                 <com.ascentsmartwaves.andealr.custom.CustomEditText

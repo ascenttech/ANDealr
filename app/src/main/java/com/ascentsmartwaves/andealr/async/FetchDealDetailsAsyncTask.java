@@ -74,6 +74,7 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
 
                 String likes = nestedJsonObject.getString("noOfLikes");
                 String redeem = nestedJsonObject.getString("noOfRedeems");
+                String encashed = nestedJsonObject.getString("noOfEncashes");
                 String photoURL = nestedJsonObject.getString("photoURL");
 
                 // dealId is converted into INT
@@ -86,7 +87,7 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
                 String redeemString = String.valueOf(redeem);
 
 
-                Constants.landingFragmentDetail.add(new LandingFragmentDetail(dealId,dealDescription,likes,redeem,startdate,enddate,photoURL,dealTittle,city,reach));
+                Constants.landingFragmentDetail.add(new LandingFragmentDetail(dealId,dealDescription,likes,redeem,startdate,enddate,photoURL,dealTittle,city,reach,encashed));
 
 
                 return true;

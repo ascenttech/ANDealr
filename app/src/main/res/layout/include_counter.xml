@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#80FFFFFF">
+
+
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
+        android:text="0"
+        android:id="@+id/counterfollowers"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="15pt"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
+        android:text="0"
+        android:id="@+id/counterAdded"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="15pt"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
+        android:text="0"
+        android:id="@+id/counterliked"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:textSize="15pt"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
+        android:text="0"
+        android:id="@+id/counterredeem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="15pt"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+
+</LinearLayout>

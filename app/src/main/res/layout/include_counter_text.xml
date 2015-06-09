@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#80FFFFFF"
+    >
+
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
+        android:text="Total\nFollowers"
+        android:id="@+id/followers"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="8pt"
+        android:gravity="center" />
+
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
+        android:text="Deals\nAdded"
+        android:id="@+id/followed"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="8pt"
+        android:gravity="center" />
+
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
+        android:text="Deals\nLiked"
+        android:id="@+id/liked"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:textSize="8pt"
+        android:gravity="center" />
+
+    <com.ascentsmartwaves.andealr.custom.CustomTextView
+        android:text="Deals\nRedeemed"
+        android:id="@+id/redeem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="8pt"
+        android:gravity="center" />
+
+
+</LinearLayout>

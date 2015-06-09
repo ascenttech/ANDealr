@@ -125,6 +125,14 @@ public class ProfileActivity extends ActionBarActivity
         editcompanyprofile = (ImageView) findViewById(R.id.editcompanyprofile);
         profileImg = (ImageView) findViewById(R.id.companyimg);
 
+        profileImg.post(new Runnable() {
+            @Override
+            public void run() {
+
+                Log.d(Constants.LOG_TAG,"Height "+profileImg.getHeight()+"Weight "+profileImg.getWidth());
+            }
+        });
+
 
         update=(Button) findViewById((R.id.update_companyprofile_btn));
 

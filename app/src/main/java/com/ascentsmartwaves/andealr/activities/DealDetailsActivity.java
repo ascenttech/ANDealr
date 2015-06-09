@@ -27,7 +27,7 @@ public class DealDetailsActivity extends ActionBarActivity{
     ImageView cardBackground;
     ImageLoader imageLoader;
     LinearLayout textStrip;
-    TextView dealTittle,dealDescription,likesCounter,redeemCounter,longDescription,start,end,dealCity,reachCounter;
+    TextView dealTittle,dealDescription,likesCounter,redeemCounter,longDescription,start,end,dealCity,reachCounter,encashedCounter;
     RelativeLayout likesRedeemStrip;
     ProgressDialog dialog;
     String finalUrl;
@@ -93,6 +93,9 @@ public class DealDetailsActivity extends ActionBarActivity{
 
                 reachCounter = (TextView) likesRedeemStrip.findViewById(R.id.reach_counter_text_include);
                 reachCounter.setText(Constants.landingFragmentDetail.get(0).getReach());
+
+                encashedCounter = (TextView) likesRedeemStrip.findViewById(R.id.encashed_counter_text_include);
+                encashedCounter.setText(Constants.landingFragmentDetail.get(0).getEncashed());
 
                 longDescription = (TextView) findViewById(R.id.deals_details_text_andnrby_fragment_details_activity);
                 longDescription.setText(Constants.landingFragmentDetail.get(0).getDealDescription());

@@ -20,6 +20,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -327,7 +328,6 @@ public class AddDealActivity extends ActionBarActivity {
                     break;
                 case R.id.cancel_button_included:
                 case R.id.upload_image_add_deal_activity:
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(AddDealActivity.this);
                     builder.setTitle(R.string.upload_photo_via)
                             .setItems(R.array.modes, new DialogInterface.OnClickListener() {
@@ -426,6 +426,7 @@ public class AddDealActivity extends ActionBarActivity {
 
 
     }
+
 
     private void uploadData(){
 
@@ -661,11 +662,19 @@ public class AddDealActivity extends ActionBarActivity {
             picturePath = cursor.getString(columnIndex);
             cursor.close();
             imagepath=picturePath;
+            decodeSampledBitmapFromResource();
+
             Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
             uploadImage.setImageBitmap(bitmap);
             uploadOrCancel.setVisibility(View.VISIBLE);
 
         }
+
+    }
+
+    public void decodeSampledBitmapFromResource(){
+
+
 
     }
 

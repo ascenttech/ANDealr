@@ -31,7 +31,7 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
     ImageView cardBackground;
     ImageLoader imageLoader;
     RelativeLayout likesRedeemLayout;
-    TextView likesCounter,redeemCounter,reachCounter;
+    TextView likesCounter,redeemCounter,reachCounter,encashedCounter;
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public LandingFragmentAdapter(ArrayList<LandingFragmentData> landingFragmentData, Context context) {
@@ -79,7 +79,7 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
         likesCounter = (TextView) likesRedeemLayout.findViewById(R.id.likes_counter_text_include);
         redeemCounter = (TextView) likesRedeemLayout.findViewById(R.id.redeem_counter_text_include);
         reachCounter = (TextView) likesRedeemLayout.findViewById(R.id.reach_counter_text_include);
-
+        encashedCounter = (TextView) likesRedeemLayout.findViewById(R.id.encashed_counter_text_include);
 
 
 
@@ -89,7 +89,7 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
         likesCounter.setText(Constants.landingFragmentData.get(position).getLikes());
         redeemCounter.setText(Constants.landingFragmentData.get(position).getRedeem());
         reachCounter.setText(Constants.landingFragmentData.get(position).getReach());
-
+        encashedCounter.setText(Constants.landingFragmentData.get(position).getEncashed());
 
 
         cardBackground.setTag("Card_"+position);
