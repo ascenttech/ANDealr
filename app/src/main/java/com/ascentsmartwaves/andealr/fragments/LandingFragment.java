@@ -78,14 +78,14 @@ public class LandingFragment extends Fragment {
 
             @Override
             public void onResult(boolean b) {
-
+                dialog.dismiss();
                 if (b) {
-                    dialog.dismiss();
+
                     landingFragmentAdapter = new LandingFragmentAdapter(Constants.landingFragmentData,getActivity().getApplicationContext());
                     landingFragmentRecyclerView.setAdapter(landingFragmentAdapter);
                 }
                 else{
-                    dialog.dismiss();
+
                     Toast.makeText(getActivity().getApplicationContext(),"No Deals Added Yet",5000).show();
                 }
             }
@@ -101,6 +101,7 @@ public class LandingFragment extends Fragment {
             switch (v.getId()){
 
                 case R.id.addItemBtn :
+                    Log.d(Constants.LOG_TAG,"Calling the Click Listener for plus button");
                     Intent i = new Intent(getActivity(),AddDealActivity.class);
                     startActivityForResult(i,10);
                     landingFragmentAdapter = new LandingFragmentAdapter(Constants.landingFragmentData,getActivity().getApplicationContext());

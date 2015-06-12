@@ -89,6 +89,7 @@ public class CheckProfileValidityAsyncTask extends AsyncTask<String,Void,Boolean
                 JSONArray jsonArray = jsonObject.getJSONArray("profileDetails");
                 JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
                 Constants.accountStatus = nestedJsonObject.getString("profile");
+                Constants.profileStatus = nestedJsonObject.getString("profileState");
                 return true;
             }
         }

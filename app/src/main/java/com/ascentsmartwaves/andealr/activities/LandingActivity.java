@@ -332,12 +332,13 @@ public class LandingActivity extends ActionBarActivity {
             @Override
             public void onResult(boolean b)
             {
+                dialog.dismiss();
 
                 if (b)
                 {
                     if(Constants.accountStatus.equals("Profile not updated"))
                     {
-                        dialog.dismiss();
+
                         AlertDialog.Builder builder = new AlertDialog.Builder(LandingActivity.this);
                         builder.setMessage("Please complete your profile")
                                 .setPositiveButton("OK", dialogClickListener)
@@ -345,21 +346,28 @@ public class LandingActivity extends ActionBarActivity {
                     }
                     else if(Constants.accountStatus.equals("Account not verified"))
                     {
-                        dialog.dismiss();
                         AlertDialog builder = new AlertDialog.Builder(LandingActivity.this).create();
                         builder.setTitle("ANDealr");
-                        builder.setMessage("Your account is under verification, you will be notified once account is approved.");
+                        if(Constants.profileStatus.equalsIgnoreCase("rejected")){
+                            builder.setMessage("Oops! We are sorry, your merchant account has been rejected.\nPlease contact us at shoot@andealr.com for more details.");
+
+                        }
+                        else{
+
+                            builder.setMessage("Your account is under verification, you will be notified once account is approved.");
+                        }
+
                         builder.show();
                     }
                     else if(Constants.accountStatus.equals("Profile updated"))
                     {
-                        dialog.dismiss();
+
                         Intent i = new Intent(LandingActivity.this, AddDealActivity.class);
                         startActivity(i);
                     }
                     else
                     {
-                        dialog.dismiss();
+
                         Toast.makeText(getApplicationContext(),"Cannot connect to the server",Toast.LENGTH_SHORT).show();
                     }
                 }

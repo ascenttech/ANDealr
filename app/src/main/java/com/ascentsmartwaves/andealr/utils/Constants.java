@@ -42,6 +42,7 @@ public class Constants
     public static String photoId;
     public static String GCMRegID;
     public static String accountStatus;
+    public static String profileStatus;
     public static final String IMAGE_DIRECTORY_NAME = "Deals Upload";
 
 
