@@ -32,6 +32,7 @@ public class AddDealAsyncTask extends AsyncTask<String,Void,Boolean> {
     public AddDealAsyncTask(Context context,AddDealAsyncTaskCallback listener) {
         this.context = context;
         mListener = listener; // save callback
+        Log.d(Constants.LOG_TAG,Constants.AddDealAsyncTask);
 
     }
 
@@ -44,7 +45,8 @@ public class AddDealAsyncTask extends AsyncTask<String,Void,Boolean> {
     @Override
     protected Boolean doInBackground(String... url) {
 
-        Log.d(Constants.LOG_TAG,Constants.AddDealAsyncTask);
+
+        Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
 
         try {
             HttpGet httpGet = new HttpGet(url[0]);

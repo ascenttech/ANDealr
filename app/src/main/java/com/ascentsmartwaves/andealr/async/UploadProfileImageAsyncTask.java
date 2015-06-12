@@ -42,6 +42,7 @@ public class UploadProfileImageAsyncTask extends AsyncTask<String,Void,Boolean>
         this.context = context;
         this.listener = listener;
         this.imagePath = imagePath;
+        Log.d(Constants.LOG_TAG,Constants.UploadProfileImageAsyncTask);
     }
 
     @Override
@@ -54,7 +55,7 @@ public class UploadProfileImageAsyncTask extends AsyncTask<String,Void,Boolean>
     @Override
     protected Boolean doInBackground(String... urls) {
 
-        Log.d(Constants.LOG_TAG,Constants.UploadProfileImageAsyncTask);
+        Log.d(Constants.LOG_TAG,"The requested url is "+urls[0]);
 
         try
         {

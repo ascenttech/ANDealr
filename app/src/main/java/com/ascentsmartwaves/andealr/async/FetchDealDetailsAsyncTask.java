@@ -33,6 +33,7 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
         this.position = position;
         this.context = context;
         this.listener = listener;
+        Log.d(Constants.LOG_TAG,Constants.FetchDealDetailsAsyncTask);
     }
 
     @Override
@@ -46,7 +47,8 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
     @Override
     protected Boolean doInBackground(String... url) {
 
-        Log.d(Constants.LOG_TAG,Constants.FetchDealDetailsAsyncTask);
+
+        Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
 
         try {
             HttpGet httpGet = new HttpGet(url[0]);

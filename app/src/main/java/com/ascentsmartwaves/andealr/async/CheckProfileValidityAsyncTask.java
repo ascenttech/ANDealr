@@ -33,6 +33,7 @@ public class CheckProfileValidityAsyncTask extends AsyncTask<String,Void,Boolean
     public CheckProfileValidityAsyncTask(Context context, ProfileValidAsyncTaskCallback listener) {
         this.context = context;
         this.listener = listener;
+        Log.d(Constants.LOG_TAG,Constants.CheckProfileValidityAsyncTask);
     }
 
 
@@ -46,7 +47,8 @@ public class CheckProfileValidityAsyncTask extends AsyncTask<String,Void,Boolean
     @Override
     protected Boolean doInBackground(String... url)
     {
-        Log.d(Constants.LOG_TAG,Constants.CheckProfileValidityAsyncTask);
+
+        Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
 
         try
         {

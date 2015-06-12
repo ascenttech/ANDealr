@@ -38,6 +38,7 @@ public class FetchNotificationsAsyncTask extends AsyncTask<String,Void,Boolean> 
     public FetchNotificationsAsyncTask(Context context, FetchNotificationsCallback listener) {
         this.context = context;
         this.listener = listener;
+        Log.d(Constants.LOG_TAG,Constants.FetchNotificationsAsyncTask);
     }
 
     @Override
@@ -49,7 +50,8 @@ public class FetchNotificationsAsyncTask extends AsyncTask<String,Void,Boolean> 
     @Override
     protected Boolean doInBackground(String... url) {
 
-        Log.d(Constants.LOG_TAG,Constants.FetchNotificationsAsyncTask);
+
+        Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
 
         try {
             HttpGet httpGet = new HttpGet(url[0]);

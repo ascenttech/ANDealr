@@ -63,16 +63,14 @@ public class Constants
     public static final String AddDealActivity = " ADD_DEAL_ACTIVITY ";
     public static final String DealDetailsActivity = " DEAL_DETAILS_ACTIVITY ";
     public static final String LandingActivity = " LANDING_ACTIVITY ";
-    public static final String LogInActivity = " LOGIN_ACTIVITY ";
     public static final String LoginOrRegisterActivity = " LOGIN_OR_REGISTER_ACTIVITY ";
-    public static final String NotificationsActivity = " NOTIFICATIONS_ACTIVITY ";
     public static final String PrivacyPolicyActivity = " PRIVACY_POLICY_ACTIVITY ";
     public static final String ProfileActivity = " PROFILE_ACTIVITY ";
     public static final String ScannerActivity = " SCANNER_ACTIVITY ";
+    public static final String SettingsActivity = " SETTINGS_ACTIVITY ";
     public static final String SignUpActivity = " SIGN_UP_ACTIVITY ";
     public static final String SplashScreenActivity = " SPLASH_SCREEN_ACTIVITY ";
     public static final String TermsAndConditionActivity = " TERMS_AND_CONDITION_ACTIVITY ";
-    public static final String SettingsActivity = " SETTINGS_ACTIVITY ";
 
 
     // Log Tags for all the adapters
@@ -97,6 +95,7 @@ public class Constants
     public static final String RegisterMerchantAsyncTask = " REGISTER_MERCHANT_ASYNC_TASK ";
     public static final String UpdateProfileAsyncTask = " UPDATE_PROFILE_ASYNC_TASK ";
     public static final String UploadProfileImageAsyncTask = " UPDATE_PROFILE_IMAGE_ASYNC_TASK ";
+
 
 
     // Log Tags for all the fragments

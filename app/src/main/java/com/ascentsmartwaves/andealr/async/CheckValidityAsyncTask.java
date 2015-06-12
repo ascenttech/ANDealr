@@ -35,6 +35,7 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
     public CheckValidityAsyncTask(Context context, CheckValidityCallback listener) {
         this.context = context;
         this.listener = listener;
+        Log.d(Constants.LOG_TAG,Constants.CheckValidityAsyncTask);
     }
 
 
@@ -48,7 +49,8 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
     @Override
     protected Boolean doInBackground(String... url) {
 
-        Log.d(Constants.LOG_TAG,Constants.CheckValidityAsyncTask);
+
+        Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
 
         try {
             HttpGet httpGet = new HttpGet(url[0]);

@@ -38,6 +38,7 @@ public class MerchantProfileAsyncTask extends AsyncTask<String,Void,Boolean>
     public MerchantProfileAsyncTask(Context context,MerchantProfileAsyncTaskCallback listener) {
         this.context = context;
         mListener = listener; // save callback
+        Log.d(Constants.LOG_TAG,Constants.MerchantProfileAsyncTask);
 
     }
 
@@ -50,7 +51,8 @@ public class MerchantProfileAsyncTask extends AsyncTask<String,Void,Boolean>
     @Override
     protected Boolean doInBackground(String... url) {
 
-        Log.d(Constants.LOG_TAG,Constants.MerchantProfileAsyncTask);
+
+        Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
 
         try {
             //------------------>>

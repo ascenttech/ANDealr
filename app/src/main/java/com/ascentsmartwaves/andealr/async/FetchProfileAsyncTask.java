@@ -41,6 +41,7 @@ public class FetchProfileAsyncTask extends AsyncTask<String, Void, Boolean> {
     public FetchProfileAsyncTask(Context context, FetchProfileAsyncTaskCallback listener) {
         this.context = context;
         mListener = listener; // save callback
+        Log.d(Constants.LOG_TAG,Constants.FetchProfileAsyncTask);
 
     }
 
@@ -53,7 +54,8 @@ public class FetchProfileAsyncTask extends AsyncTask<String, Void, Boolean> {
     @Override
     protected Boolean doInBackground(String... url) {
 
-        Log.d(Constants.LOG_TAG,Constants.FetchProfileAsyncTask);
+
+        Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
 
         try {
             //------------------>>

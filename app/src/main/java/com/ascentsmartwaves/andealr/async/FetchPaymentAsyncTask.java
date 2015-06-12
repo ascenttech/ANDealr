@@ -41,6 +41,7 @@ public class FetchPaymentAsyncTask extends AsyncTask<String, Void, Boolean> {
     public FetchPaymentAsyncTask(Context context, FetchPaymentCallback listener) {
         this.context = context;
         this.listener = listener;
+        Log.d(Constants.LOG_TAG,Constants.FetchPaymentsAsyncTask);
     }
 
     @Override
@@ -52,7 +53,8 @@ public class FetchPaymentAsyncTask extends AsyncTask<String, Void, Boolean> {
     @Override
     protected Boolean doInBackground(String... urls) {
 
-        Log.d(Constants.LOG_TAG,Constants.FetchPaymentsAsyncTask);
+
+        Log.d(Constants.LOG_TAG,"The requested url is "+urls[0]);
 
         try {
 

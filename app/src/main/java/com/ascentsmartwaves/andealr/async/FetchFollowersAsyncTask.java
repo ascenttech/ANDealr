@@ -36,6 +36,7 @@ public class FetchFollowersAsyncTask extends AsyncTask<String, Void, Boolean> {
     public FetchFollowersAsyncTask(Context context, FollowersCallback listener) {
         this.context = context;
         this.listener = listener;
+        Log.d(Constants.LOG_TAG, Constants.FetchFollowersAsyncTask);
     }
 
     @Override
@@ -47,7 +48,8 @@ public class FetchFollowersAsyncTask extends AsyncTask<String, Void, Boolean> {
     @Override
     protected Boolean doInBackground(String... urls) {
 
-        Log.d(Constants.LOG_TAG, Constants.FetchFollowersAsyncTask);
+
+        Log.d(Constants.LOG_TAG,"The requested url is "+urls[0]);
         try {
 
             //------------------>>

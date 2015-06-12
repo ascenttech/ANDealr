@@ -34,6 +34,7 @@ private UpdateProfileAsyncTaskCallback mListener;
     {
         this.context = context;
         mListener = listener; // save callback
+        Log.d(Constants.LOG_TAG,Constants.UpdateProfileAsyncTask);
     }
 
     @Override
@@ -46,7 +47,8 @@ private UpdateProfileAsyncTaskCallback mListener;
     @Override
     protected Boolean doInBackground(String... url)
     {
-        Log.d(Constants.LOG_TAG,Constants.UpdateProfileAsyncTask);
+
+        Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
         try {
             //------------------>>
             HttpGet httppost = new HttpGet(url[0]);

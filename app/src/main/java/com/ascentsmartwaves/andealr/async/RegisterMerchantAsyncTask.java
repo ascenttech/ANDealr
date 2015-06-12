@@ -32,6 +32,7 @@ public class RegisterMerchantAsyncTask extends AsyncTask<String, Void, Boolean> 
     public RegisterMerchantAsyncTask(Context context, RegisterMerchantCallback listener) {
         this.context = context;
         this.listener = listener;
+        Log.d(Constants.LOG_TAG,Constants.RegisterMerchantAsyncTask);
     }
 
 
@@ -44,8 +45,8 @@ public class RegisterMerchantAsyncTask extends AsyncTask<String, Void, Boolean> 
     @Override
     protected Boolean doInBackground(String... urls) {
 
-        Log.d(Constants.LOG_TAG,Constants.RegisterMerchantAsyncTask);
 
+        Log.d(Constants.LOG_TAG,"The requested url is "+urls[0]);
         try {
             //------------------>>
             HttpGet httppost = new HttpGet(urls[0]);
