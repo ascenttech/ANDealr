@@ -151,7 +151,7 @@ public class ProfileActivity extends ActionBarActivity
                 case R.id.companyimg:
                     i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(i, 0);
-                break;
+                    break;
 
                 case R.id.update_companyprofile_btn:
                     try
@@ -398,23 +398,24 @@ public class ProfileActivity extends ActionBarActivity
                 dialog = new ProgressDialog(ProfileActivity.this);
                 dialog.setTitle("Uploading Company Logo ");
                 dialog.setMessage("Loading... please wait");
-                dialog.show();
                 dialog.setCancelable(false);
+                dialog.show();
+
             }
             @Override
             public void onResult(boolean b)
             {
+                dialog.dismiss();
                 if (b)
                 {
-                    dialog.dismiss();
+
                     Toast.makeText(getApplicationContext(),"Logo Uploaded",Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    dialog.dismiss();
                 }
             }
-        }).execute();
+        }).execute(Constants.FILE_UPLOAD_URL_MERCHANTPROFILE+Constants.merchantId);
     }
 
 
@@ -475,7 +476,7 @@ public class ProfileActivity extends ActionBarActivity
             profileImg.setImageBitmap(getScaledBitmap(imagepathcompany, 200, 200));
             AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
             builder.setMessage("Upload this logo?").setPositiveButton("Yes", dialogClickListener)
-            .setNegativeButton("No", dialogClickListener).show();
+                    .setNegativeButton("No", dialogClickListener).show();
 
         }
     }
