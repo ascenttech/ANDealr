@@ -486,7 +486,7 @@ public class ProfileActivity extends ActionBarActivity
     public void onBackPressed()
     {
 //        super.onBackPressed();
-        Constants.landingFragmentData.clear();
+        Constants.allDealsData.clear();
         Intent i=new Intent(getApplicationContext(),LandingActivity.class);
         startActivity(i);
     }
@@ -497,7 +497,7 @@ public class ProfileActivity extends ActionBarActivity
         switch (item.getItemId())
         {
             case android.R.id.home:
-                Constants.landingFragmentData.clear();
+                Constants.allDealsData.clear();
                 Intent i=new Intent(getApplicationContext(),LandingActivity.class);
                 startActivity(i);
                 return true;

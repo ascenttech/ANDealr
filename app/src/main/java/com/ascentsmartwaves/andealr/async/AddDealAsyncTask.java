@@ -32,7 +32,6 @@ public class AddDealAsyncTask extends AsyncTask<String,Void,Boolean> {
     public AddDealAsyncTask(Context context,AddDealAsyncTaskCallback listener) {
         this.context = context;
         mListener = listener; // save callback
-        Log.d(Constants.LOG_TAG,Constants.AddDealAsyncTask);
 
     }
 
@@ -45,7 +44,7 @@ public class AddDealAsyncTask extends AsyncTask<String,Void,Boolean> {
     @Override
     protected Boolean doInBackground(String... url) {
 
-
+        Log.d(Constants.LOG_TAG,Constants.AddDealAsyncTask);
         Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
 
         try {
@@ -58,6 +57,8 @@ public class AddDealAsyncTask extends AsyncTask<String,Void,Boolean> {
 
                 HttpEntity entity = response.getEntity();
                 String data = EntityUtils.toString(entity);
+
+                Log.d(Constants.LOG_TAG," The response is "+data);
                 JSONObject jsonObject = new JSONObject(data);
                 String dealStatus = jsonObject.getString("statusMessage");
                 JSONArray jsonArray = jsonObject.getJSONArray("deals");
@@ -67,10 +68,7 @@ public class AddDealAsyncTask extends AsyncTask<String,Void,Boolean> {
 
                 // This is the latest update
                 int balance = nestedJsonObject.getInt("balance");
-                Log.d(Constants.LOG_TAG,"BALANCE IS " + balance );
-
                 Constants.balance = balance;
-                Log.d(Constants.LOG_TAG,"CONST BALANCE IS " + balance );
 
                 return true;
             }
@@ -91,6 +89,7 @@ public class AddDealAsyncTask extends AsyncTask<String,Void,Boolean> {
     @Override
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
+        Log.d(Constants.LOG_TAG," The value returned is "+result);
         mListener.onResult(result);
     }
 }

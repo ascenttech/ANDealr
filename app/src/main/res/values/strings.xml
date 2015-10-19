@@ -8,7 +8,7 @@
 
 
     <string name="hello_world">Hello world!</string>
-    <!--<string name="app_version">Version 1.3.2</string>-->
+    <!--<string productName="app_version">Version 1.3.2</string>-->
     <string name="app_version">Version 1.4.1</string>
 
     <!-- about us activity text -->

@@ -154,7 +154,7 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
             switch (which)
             {
                 case DialogInterface.BUTTON_POSITIVE:
-                    Constants.landingFragmentData.clear();
+                    Constants.allDealsData.clear();
                     i=new Intent(getApplicationContext(),LandingActivity.class);
                     startActivity(i);
                     break;

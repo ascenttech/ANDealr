@@ -38,7 +38,7 @@ public class FetchNotificationsAsyncTask extends AsyncTask<String,Void,Boolean> 
     public FetchNotificationsAsyncTask(Context context, FetchNotificationsCallback listener) {
         this.context = context;
         this.listener = listener;
-        Log.d(Constants.LOG_TAG,Constants.FetchNotificationsAsyncTask);
+
     }
 
     @Override
@@ -51,7 +51,8 @@ public class FetchNotificationsAsyncTask extends AsyncTask<String,Void,Boolean> 
     protected Boolean doInBackground(String... url) {
 
 
-        Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
+        Log.d(Constants.LOG_TAG,Constants.FetchNotificationsAsyncTask);
+        Log.d(Constants.LOG_TAG," The requested url is "+url[0]);
 
         try {
             HttpGet httpGet = new HttpGet(url[0]);
@@ -64,7 +65,8 @@ public class FetchNotificationsAsyncTask extends AsyncTask<String,Void,Boolean> 
             if (status == 200) {
                 responseEntity = response.getEntity();
                 responseString = EntityUtils.toString(responseEntity);
-                Log.d(Constants.LOG_TAG, " Response String for Fetch Notifications " + responseString);
+
+                Log.d(Constants.LOG_TAG, " The response is " + responseString);
 
                 JSONObject jsonObject = new JSONObject(responseString);
                 JSONArray jsonArray = jsonObject.getJSONArray("notification");
@@ -129,6 +131,7 @@ public class FetchNotificationsAsyncTask extends AsyncTask<String,Void,Boolean> 
     @Override
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
+        Log.d(Constants.LOG_TAG," The result is "+result);
         listener.onResult(result);
     }
 }

@@ -35,7 +35,7 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
     public CheckValidityAsyncTask(Context context, CheckValidityCallback listener) {
         this.context = context;
         this.listener = listener;
-        Log.d(Constants.LOG_TAG,Constants.CheckValidityAsyncTask);
+
     }
 
 
@@ -49,8 +49,8 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
     @Override
     protected Boolean doInBackground(String... url) {
 
-
-        Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
+        Log.d(Constants.LOG_TAG,Constants.CheckValidityAsyncTask);
+        Log.d(Constants.LOG_TAG," The requested url is "+url[0]);
 
         try {
             HttpGet httpGet = new HttpGet(url[0]);
@@ -64,7 +64,8 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
             {
                 responseEntity = response.getEntity();
                 responseString = EntityUtils.toString(responseEntity);
-                Log.d("Andealr", " " + responseString);
+
+                Log.d(Constants.LOG_TAG," The response is " + responseString);
                 JSONObject jsonObject = new JSONObject(responseString);
                 JSONArray jsonArray = jsonObject.getJSONArray("redeemStatus");
                 JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
@@ -75,7 +76,8 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
             {
                 responseEntity = response.getEntity();
                 responseString = EntityUtils.toString(responseEntity);
-                Log.d("Andealr", " " + responseString);
+
+                Log.d(Constants.LOG_TAG," The response is " + responseString);
                 JSONObject jsonObject = new JSONObject(responseString);
                 JSONArray jsonArray = jsonObject.getJSONArray("redeemStatus");
                 JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
@@ -86,7 +88,8 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
             {
                 responseEntity = response.getEntity();
                 responseString = EntityUtils.toString(responseEntity);
-                Log.d("Andealr", " " + responseString);
+
+                Log.d(Constants.LOG_TAG," The response is " + responseString);
                 JSONObject jsonObject = new JSONObject(responseString);
                 JSONArray jsonArray = jsonObject.getJSONArray("redeemStatus");
                 JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
@@ -97,7 +100,8 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
             {
                 responseEntity = response.getEntity();
                 responseString = EntityUtils.toString(responseEntity);
-                Log.d("Andealr", " " + responseString);
+
+                Log.d(Constants.LOG_TAG," The response is " + responseString);
                 JSONObject jsonObject = new JSONObject(responseString);
                 JSONArray jsonArray = jsonObject.getJSONArray("redeemStatus");
                 JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
@@ -119,6 +123,7 @@ public class CheckValidityAsyncTask extends AsyncTask<String,Void,Boolean>{
     protected void onPostExecute(Boolean result)
     {
         super.onPostExecute(result);
+        Log.d(Constants.LOG_TAG," The result is "+result);
         listener.onResult(result);
     }
 }

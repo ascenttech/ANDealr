@@ -3,11 +3,11 @@ package com.ascentsmartwaves.andealr.data;
 /**
  * Created by ADMIN on 23-12-2014.
  */
-public class LandingFragmentData {
+public class AllDealsData {
 
     String dealId,dealTittle,city,photoURL,dealDescription,likes,redeem,dealStart,dealEnd,reach,encashed;
 
-    public LandingFragmentData(String dealId, String dealTittle, String city, String likes, String redeem, String photoURL, String reach, String encashed) {
+    public AllDealsData(String dealId, String dealTittle, String city, String likes, String redeem, String photoURL, String reach, String encashed) {
         this.dealId = dealId;
         this.dealTittle = dealTittle;
         this.city = city;

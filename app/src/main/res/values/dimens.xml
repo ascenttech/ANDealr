@@ -45,5 +45,19 @@
     <dimen name = "ten_pt">10pt</dimen>
     <dimen name = "twelve_pt">12pt</dimen>
 
+    <dimen name="margin_large">10dp</dimen>
+    <dimen name="margin">8dp</dimen>
+    <dimen name="margin_small">5dp</dimen>
+
+    <dimen name="padding_large">10dp</dimen>
+    <dimen name="padding">8dp</dimen>
+    <dimen name="padding_small">5dp</dimen>
+
+
+    <dimen name="text_size_extra_large">20sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_extra_small">12sp</dimen>
 
 </resources>

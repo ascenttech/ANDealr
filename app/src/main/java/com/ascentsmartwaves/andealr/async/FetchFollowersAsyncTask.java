@@ -36,7 +36,7 @@ public class FetchFollowersAsyncTask extends AsyncTask<String, Void, Boolean> {
     public FetchFollowersAsyncTask(Context context, FollowersCallback listener) {
         this.context = context;
         this.listener = listener;
-        Log.d(Constants.LOG_TAG, Constants.FetchFollowersAsyncTask);
+
     }
 
     @Override
@@ -49,6 +49,7 @@ public class FetchFollowersAsyncTask extends AsyncTask<String, Void, Boolean> {
     protected Boolean doInBackground(String... urls) {
 
 
+        Log.d(Constants.LOG_TAG, Constants.FetchFollowersAsyncTask);
         Log.d(Constants.LOG_TAG,"The requested url is "+urls[0]);
         try {
 
@@ -64,6 +65,7 @@ public class FetchFollowersAsyncTask extends AsyncTask<String, Void, Boolean> {
                 HttpEntity entity = response.getEntity();
                 String data = EntityUtils.toString(entity);
 
+                Log.d(Constants.LOG_TAG," The response is "+data);
                 JSONObject jsonObject = new JSONObject(data);
                 JSONArray jsonArray = jsonObject.getJSONArray("followers");
 
@@ -97,6 +99,7 @@ public class FetchFollowersAsyncTask extends AsyncTask<String, Void, Boolean> {
     protected void onPostExecute(Boolean result) {
 
         super.onPostExecute(result);
+        Log.d(Constants.LOG_TAG," The result is "+result);
         listener.onResult(result);
 
     }

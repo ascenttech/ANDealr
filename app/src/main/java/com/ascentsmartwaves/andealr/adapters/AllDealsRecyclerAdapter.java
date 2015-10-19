@@ -12,9 +12,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ascentsmartwaves.andealr.R;
+import com.ascentsmartwaves.andealr.data.AllDealsData;
 import com.ascentsmartwaves.andealr.imagecaching.ImageLoader;
 import com.ascentsmartwaves.andealr.activities.DealDetailsActivity;
-import com.ascentsmartwaves.andealr.data.LandingFragmentData;
 import com.ascentsmartwaves.andealr.utils.Constants;
 
 import java.util.ArrayList;
@@ -22,10 +22,10 @@ import java.util.ArrayList;
 /**
  * Created by ADMIN on 23-12-2014.
  */
-public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragmentAdapter.ViewHolder> {
+public class AllDealsRecyclerAdapter extends RecyclerView.Adapter<AllDealsRecyclerAdapter.ViewHolder> {
 
 
-    ArrayList<LandingFragmentData> landingFragmentData;
+    ArrayList<AllDealsData> allDealsData;
     Context context;
     TextView dealTittle,dealDescription;
     ImageView cardBackground;
@@ -34,11 +34,11 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
     TextView likesCounter,redeemCounter,reachCounter,encashedCounter;
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public LandingFragmentAdapter(ArrayList<LandingFragmentData> landingFragmentData, Context context) {
+    public AllDealsRecyclerAdapter(ArrayList<AllDealsData> allDealsData, Context context) {
 
-        Log.d(Constants.LOG_TAG, Constants.LandingFragmentAdapter);
+        Log.d(Constants.LOG_TAG, Constants.AllDealsRecyclerAdapter);
 
-        this.landingFragmentData = landingFragmentData;
+        this.allDealsData = allDealsData;
         this.context = context;
         imageLoader = new ImageLoader(context.getApplicationContext());
     }
@@ -56,12 +56,12 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
 
     // Create new views (invoked by the layout manager)
     @Override
-    public LandingFragmentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+    public AllDealsRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                                 int viewType) {
 
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_landing_fragment, parent, false);
+                .inflate(R.layout.row_all_deals, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -83,13 +83,13 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
 
 
 
-        imageLoader.DisplayImage(Constants.landingFragmentData.get(position).getPhotoURL(), cardBackground);
-        dealTittle.setText(Constants.landingFragmentData.get(position).getDealTittle());
-        dealDescription.setText(Constants.landingFragmentData.get(position).getCity());
-        likesCounter.setText(Constants.landingFragmentData.get(position).getLikes());
-        redeemCounter.setText(Constants.landingFragmentData.get(position).getRedeem());
-        reachCounter.setText(Constants.landingFragmentData.get(position).getReach());
-        encashedCounter.setText(Constants.landingFragmentData.get(position).getEncashed());
+        imageLoader.DisplayImage(Constants.allDealsData.get(position).getPhotoURL(), cardBackground);
+        dealTittle.setText(Constants.allDealsData.get(position).getDealTittle());
+        dealDescription.setText(Constants.allDealsData.get(position).getCity());
+        likesCounter.setText(Constants.allDealsData.get(position).getLikes());
+        redeemCounter.setText(Constants.allDealsData.get(position).getRedeem());
+        reachCounter.setText(Constants.allDealsData.get(position).getReach());
+        encashedCounter.setText(Constants.allDealsData.get(position).getEncashed());
 
 
         cardBackground.setTag("Card_"+position);
@@ -105,7 +105,7 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
 
     @Override
     public int getItemCount() {
-        return Constants.landingFragmentData.size();
+        return Constants.allDealsData.size();
     }
 
     View.OnClickListener listener = new View.OnClickListener() {
@@ -122,7 +122,7 @@ public class LandingFragmentAdapter extends RecyclerView.Adapter<LandingFragment
 
                 case R.id.card_background_image_andealr_fragment: i = new Intent(context, DealDetailsActivity.class);
                     i.putExtra("position",identifier[1]);
-                    i.putExtra("deal id",Constants.landingFragmentData.get(Integer.parseInt(identifier[1])).getDealId());
+                    i.putExtra("deal id",Constants.allDealsData.get(Integer.parseInt(identifier[1])).getDealId());
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(i);
                     break;

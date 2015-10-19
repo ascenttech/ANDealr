@@ -38,7 +38,6 @@ public class MerchantProfileAsyncTask extends AsyncTask<String,Void,Boolean>
     public MerchantProfileAsyncTask(Context context,MerchantProfileAsyncTaskCallback listener) {
         this.context = context;
         mListener = listener; // save callback
-        Log.d(Constants.LOG_TAG,Constants.MerchantProfileAsyncTask);
 
     }
 
@@ -51,24 +50,25 @@ public class MerchantProfileAsyncTask extends AsyncTask<String,Void,Boolean>
     @Override
     protected Boolean doInBackground(String... url) {
 
-
+        Log.d(Constants.LOG_TAG,Constants.MerchantProfileAsyncTask);
         Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
 
         try {
             //------------------>>
-            HttpGet httppost = new HttpGet(url[0]);
+            HttpGet httpGet = new HttpGet(url[0]);
             HttpClient httpclient = new DefaultHttpClient();
-            HttpResponse response = httpclient.execute(httppost);
+            HttpResponse response = httpclient.execute(httpGet);
             // StatusLine stat = response.getStatusLine();
             int status = response.getStatusLine().getStatusCode();
             if (status == 200) {
                 HttpEntity entity = response.getEntity();
                 String data = EntityUtils.toString(entity);
-                Log.d("LOG", " " + data);
-                JSONObject jsono = new JSONObject(data);
-                JSONArray jarray = jsono.getJSONArray("merchantProfile");
 
-                    JSONObject object = jarray.getJSONObject(0);
+                Log.d(Constants.LOG_TAG," The response is "+data);
+                JSONObject jsonObject = new JSONObject(data);
+                JSONArray jsonArray = jsonObject.getJSONArray("merchantProfile");
+
+                    JSONObject object = jsonArray.getJSONObject(0);
                     String firstName = object.getString("firstName");
                     String lastName = object.getString("lastName");
                     String contactNo = object.getString("contactNo");
@@ -83,11 +83,7 @@ public class MerchantProfileAsyncTask extends AsyncTask<String,Void,Boolean>
                 return true;
             }
             //------------------>>
-        } catch (ParseException e1) {
-            e1.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -97,6 +93,7 @@ public class MerchantProfileAsyncTask extends AsyncTask<String,Void,Boolean>
     @Override
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
+        Log.d(Constants.LOG_TAG," The result is "+result);
         mListener.onResult(result);
     }
 }

@@ -4,8 +4,9 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 
 import com.ascentsmartwaves.andealr.R;
+import com.ascentsmartwaves.andealr.data.AllDealsData;
+import com.ascentsmartwaves.andealr.data.AllProductsData;
 import com.ascentsmartwaves.andealr.data.FollowersData;
-import com.ascentsmartwaves.andealr.data.LandingFragmentData;
 import com.ascentsmartwaves.andealr.data.LandingFragmentDetail;
 import com.ascentsmartwaves.andealr.data.NotificationsData;
 import com.ascentsmartwaves.andealr.data.NotificationsDataPrevious;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
  */
 public class Constants
 {
-    public static final String LOG_TAG = "Andealr";
+    public static final String LOG_TAG = "ANDealr";
 
     public static String[] titleOfDrawersListView ={
             "Home","Scan QR","Followers","Ledger","Notifications","Rate Us"
@@ -75,9 +76,10 @@ public class Constants
 
 
     // Log Tags for all the adapters
+    public static final String AllDealsRecyclerAdapter = " ALL DEALS RECYCLER ADAPTER ";
+    public static final String AllProductsRecyclerAdapter = " ALL PRODUCTS RECYCLER ADAPTER ";
     public static final String CustomDrawerListAdapter = " CUSTOM_DRAWER_LIST_ADAPTER ";
     public static final String FollowersAdapter = " FOLLOWERS_ADAPTER ";
-    public static final String LandingFragmentAdapter = " LANDING_FRAGMENT_ADAPTER ";
     public static final String NotificationsFragmentAdapter = " NOTIFICATIONS_FRAGMENT_ADAPTER ";
     public static final String PaymentsAdapter = " PAYMENTS_ADAPTER ";
 
@@ -107,7 +109,8 @@ public class Constants
     public static final String UserProfileFragment = " USER_PROFILE_FRAGMENT ";
 
     // All the Data arraylist
-    public static ArrayList<LandingFragmentData> landingFragmentData;
+    public static ArrayList<AllDealsData> allDealsData;
+    public static ArrayList<AllProductsData> allProductsData;
     public static ArrayList<LandingFragmentDetail> landingFragmentDetail;
     public static ArrayList<FollowersData> followersData;
     public static ArrayList<PaymentsData> paymentsData;
@@ -119,44 +122,44 @@ public class Constants
 
 
 //    TEST ENVIROMENT
-//    public static String registerMerchant = "http://integration.andealr.com/apps/v1.0/andealr/test/merchantRegistration.php?emailID=";
-//    public static String fetchDealDetailsURL = "http://integration.andealr.com/apps/v1.0/andealr/test/merchantDealDetails.php?dealID=";
-//    public static String checkValidityURL = "http://integration.andealr.com/apps/v1.0/andealr/test/redeemCheck.php?userID=";
-//    public static String fetchNotificationsURL = "http://integration.andealr.com/apps/v1.0/andealr/test/dealValidityCheck.php?merchantID=";
-//    public static String fetchProfileURL = "http://integration.andealr.com/apps/v1.0/andealr/test/merchantProfile.php?merchantID=";
-//    public static String fetchDealURL = "http://integration.andealr.com/apps/v1.0/andealr/test/merchantDeals.php?merchantID=";
-//    public static String addDealUrl ="http://integration.andealr.com/apps/v1.0/andealr/test/addDeal.php?merchantID=";
-//    public static String fetchFollowersURL = "http://integration.andealr.com/apps/v1.0/andealr/test/json_followers.php?merchantID=";
-//    public static String fetchPaymentURL = "http://integration.andealr.com/apps/v1.0/andealr/test/paymentDetails.php?merchantID=";
-//    public static String fetchMerchantProfileURL="http://integration.andealr.com/apps/v1.0/andealr/test/merchantProfile.php?merchantID=";
-//    public static String validUserURL = "http://integration.andealr.com/apps/v1.0/andealr/test/checkProfile.php?merchantID=";
-//    public static final String FILE_UPLOAD_URL_MERCHANTPROFILE = "http://integration.andealr.com/apps/v1.0/andealr/test/merchantImage.php?merchantID=";
-//    public static final String dealImageUploadURL = "http://integration.andealr.com/apps/v1.0/andealr/test/dealImageUpload.php";
-//    public static final String updateMerchantProfileURL="http://integration.andealr.com/apps/v1.0/andealr/test/updateMerchant.php?merchantID=";
-//    public static final String facebookRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/test/merchantRegistrationFacebook.php?emailID=";
-//    public static final String googleRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/test/merchantRegistrationGoogle.php?firstName=";
-//    public static final String fetchNotificationsForDealerURL ="http://integration.andealr.com/apps/v1.0/andealr/test/merchantNotifications.php?merchantID=";
+    public static String registerMerchant = "http://integration.andealr.com/apps/v1.0/andealr/test/merchantRegistration.php?emailID=";
+    public static String fetchDealDetailsURL = "http://integration.andealr.com/apps/v1.0/andealr/test/merchantDealDetails.php?dealID=";
+    public static String checkValidityURL = "http://integration.andealr.com/apps/v1.0/andealr/test/redeemCheck.php?userID=";
+    public static String fetchNotificationsURL = "http://integration.andealr.com/apps/v1.0/andealr/test/dealValidityCheck.php?merchantID=";
+    public static String fetchProfileURL = "http://integration.andealr.com/apps/v1.0/andealr/test/merchantProfile.php?merchantID=";
+    public static String fetchDealURL = "http://integration.andealr.com/apps/v1.0/andealr/test/merchantDeals.php?merchantID=";
+    public static String addDealUrl ="http://integration.andealr.com/apps/v1.0/andealr/test/addDeal.php?merchantID=";
+    public static String fetchFollowersURL = "http://integration.andealr.com/apps/v1.0/andealr/test/json_followers.php?merchantID=";
+    public static String fetchPaymentURL = "http://integration.andealr.com/apps/v1.0/andealr/test/paymentDetails.php?merchantID=";
+    public static String fetchMerchantProfileURL="http://integration.andealr.com/apps/v1.0/andealr/test/merchantProfile.php?merchantID=";
+    public static String validUserURL = "http://integration.andealr.com/apps/v1.0/andealr/test/checkProfile.php?merchantID=";
+    public static final String FILE_UPLOAD_URL_MERCHANTPROFILE = "http://integration.andealr.com/apps/v1.0/andealr/test/merchantImage.php?merchantID=";
+    public static final String dealImageUploadURL = "http://integration.andealr.com/apps/v1.0/andealr/test/dealImageUpload.php";
+    public static final String updateMerchantProfileURL="http://integration.andealr.com/apps/v1.0/andealr/test/updateMerchant.php?merchantID=";
+    public static final String facebookRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/test/merchantRegistrationFacebook.php?emailID=";
+    public static final String googleRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/test/merchantRegistrationGoogle.php?firstName=";
+    public static final String fetchNotificationsForDealerURL ="http://integration.andealr.com/apps/v1.0/andealr/test/merchantNotifications.php?merchantID=";
 
 
 
 //  PRODUCTION ENVIROMENT
-    public static String registerMerchant = "http://integration.andealr.com/apps/v1.0/andealr/json/merchantRegistration.php?emailID=";
-    public static String fetchDealDetailsURL = "http://integration.andealr.com/apps/v1.0/andealr/json/merchantDealDetails.php?dealID=";
-    public static String checkValidityURL = "http://integration.andealr.com/apps/v1.0/andealr/json/redeemCheck.php?userID=";
-    public static String fetchNotificationsURL = "http://integration.andealr.com/apps/v1.0/andealr/json/dealValidityCheck.php?merchantID=";
-    public static String fetchProfileURL = "http://integration.andealr.com/apps/v1.0/andealr/json/merchantProfile.php?merchantID=";
-    public static String fetchDealURL = "http://integration.andealr.com/apps/v1.0/andealr/json/merchantDeals.php?merchantID=";
-    public static String addDealUrl ="http://integration.andealr.com/apps/v1.0/andealr/json/addDeal.php?merchantID=";
-    public static String fetchFollowersURL = "http://integration.andealr.com/apps/v1.0/andealr/json/json_followers.php?merchantID=";
-    public static String fetchPaymentURL = "http://integration.andealr.com/apps/v1.0/andealr/json/paymentDetails.php?merchantID=";
-    public static String fetchMerchantProfileURL="http://integration.andealr.com/apps/v1.0/andealr/json/merchantProfile.php?merchantID=";
-    public static String validUserURL = "http://integration.andealr.com/apps/v1.0/andealr/json/checkProfile.php?merchantID=";
-    public static final String FILE_UPLOAD_URL_MERCHANTPROFILE = "http://integration.andealr.com/apps/v1.0/andealr/json/merchantImage.php?merchantID=";
-    public static final String dealImageUploadURL = "http://integration.andealr.com/apps/v1.0/andealr/json/dealImageUpload.php";
-    public static final String updateMerchantProfileURL="http://integration.andealr.com/apps/v1.0/andealr/json/updateMerchant.php?merchantID=";
-    public static final String facebookRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/json/merchantRegistrationFacebook.php?emailID=";
-    public static final String googleRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/json/merchantRegistrationGoogle.php?firstName=";
-    public static final String fetchNotificationsForDealerURL ="http://integration.andealr.com/apps/v1.0/andealr/json/merchantNotifications.php?merchantID=";
+//    public static String registerMerchant = "http://integration.andealr.com/apps/v1.0/andealr/json/merchantRegistration.php?emailID=";
+//    public static String fetchDealDetailsURL = "http://integration.andealr.com/apps/v1.0/andealr/json/merchantDealDetails.php?dealID=";
+//    public static String checkValidityURL = "http://integration.andealr.com/apps/v1.0/andealr/json/redeemCheck.php?userID=";
+//    public static String fetchNotificationsURL = "http://integration.andealr.com/apps/v1.0/andealr/json/dealValidityCheck.php?merchantID=";
+//    public static String fetchProfileURL = "http://integration.andealr.com/apps/v1.0/andealr/json/merchantProfile.php?merchantID=";
+//    public static String fetchDealURL = "http://integration.andealr.com/apps/v1.0/andealr/json/merchantDeals.php?merchantID=";
+//    public static String addDealUrl ="http://integration.andealr.com/apps/v1.0/andealr/json/addDeal.php?merchantID=";
+//    public static String fetchFollowersURL = "http://integration.andealr.com/apps/v1.0/andealr/json/json_followers.php?merchantID=";
+//    public static String fetchPaymentURL = "http://integration.andealr.com/apps/v1.0/andealr/json/paymentDetails.php?merchantID=";
+//    public static String fetchMerchantProfileURL="http://integration.andealr.com/apps/v1.0/andealr/json/merchantProfile.php?merchantID=";
+//    public static String validUserURL = "http://integration.andealr.com/apps/v1.0/andealr/json/checkProfile.php?merchantID=";
+//    public static final String FILE_UPLOAD_URL_MERCHANTPROFILE = "http://integration.andealr.com/apps/v1.0/andealr/json/merchantImage.php?merchantID=";
+//    public static final String dealImageUploadURL = "http://integration.andealr.com/apps/v1.0/andealr/json/dealImageUpload.php";
+//    public static final String updateMerchantProfileURL="http://integration.andealr.com/apps/v1.0/andealr/json/updateMerchant.php?merchantID=";
+//    public static final String facebookRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/json/merchantRegistrationFacebook.php?emailID=";
+//    public static final String googleRegistrationURL ="http://integration.andealr.com/apps/v1.0/andealr/json/merchantRegistrationGoogle.php?firstName=";
+//    public static final String fetchNotificationsForDealerURL ="http://integration.andealr.com/apps/v1.0/andealr/json/merchantNotifications.php?merchantID=";
 
 }
 

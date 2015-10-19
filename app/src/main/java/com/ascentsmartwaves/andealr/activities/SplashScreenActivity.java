@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.ascentsmartwaves.andealr.R;
+import com.ascentsmartwaves.andealr.data.AllDealsData;
 import com.ascentsmartwaves.andealr.data.FollowersData;
-import com.ascentsmartwaves.andealr.data.LandingFragmentData;
 import com.ascentsmartwaves.andealr.data.LandingFragmentDetail;
 import com.ascentsmartwaves.andealr.data.NotificationsData;
 import com.ascentsmartwaves.andealr.data.NotificationsDataPrevious;
@@ -84,7 +84,7 @@ public class SplashScreenActivity extends Activity {
 
     public void intializeJsonData(){
 
-        Constants.landingFragmentData = new ArrayList<LandingFragmentData>();
+        Constants.allDealsData = new ArrayList<AllDealsData>();
         Constants.landingFragmentDetail = new ArrayList<LandingFragmentDetail>();
         Constants.notificationsDataPrevious = new ArrayList<NotificationsDataPrevious>();
         Constants.userProfileData = new ArrayList<UserProfileData>();

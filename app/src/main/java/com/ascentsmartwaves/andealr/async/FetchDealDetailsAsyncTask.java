@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.ascentsmartwaves.andealr.data.LandingFragmentData;
 import com.ascentsmartwaves.andealr.data.LandingFragmentDetail;
 import com.ascentsmartwaves.andealr.utils.Constants;
 import org.apache.http.HttpEntity;
@@ -33,7 +32,7 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
         this.position = position;
         this.context = context;
         this.listener = listener;
-        Log.d(Constants.LOG_TAG,Constants.FetchDealDetailsAsyncTask);
+
     }
 
     @Override
@@ -48,6 +47,7 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
     protected Boolean doInBackground(String... url) {
 
 
+        Log.d(Constants.LOG_TAG,Constants.FetchDealDetailsAsyncTask);
         Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
 
         try {
@@ -57,11 +57,13 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
 
             // StatusLine stat = response.getStatusLine();
             int status = response.getStatusLine().getStatusCode();
-            Log.d(Constants.LOG_TAG,""+response);
+
             if (status == 200) {
                 HttpEntity entity = response.getEntity();
                 String data = EntityUtils.toString(entity);
-                Log.d("LOG", " " + data);
+
+
+                Log.d(Constants.LOG_TAG," The response is "+data);
                 JSONObject jsono = new JSONObject(data);
                 JSONArray jsonArray = jsono.getJSONArray("dealDetails");
                 JSONObject nestedJsonObject = jsonArray.getJSONObject(0);
@@ -108,6 +110,7 @@ public class FetchDealDetailsAsyncTask extends AsyncTask<String,Void,Boolean> {
     protected void onPostExecute(Boolean result)
     {
         super.onPostExecute(result);
+        Log.d(Constants.LOG_TAG," The result is "+result);
         listener.onResult(result);
     }
 }

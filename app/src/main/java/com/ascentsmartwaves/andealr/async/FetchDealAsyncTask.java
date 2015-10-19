@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.ascentsmartwaves.andealr.data.LandingFragmentData;
+import com.ascentsmartwaves.andealr.data.AllDealsData;
 import com.ascentsmartwaves.andealr.utils.Constants;
 
 import org.apache.http.HttpEntity;
@@ -37,7 +37,6 @@ public class FetchDealAsyncTask extends AsyncTask<String,Void,Boolean> {
     public FetchDealAsyncTask(Context context,FetchDealAsyncTaskCallback listener) {
         this.context = context;
         mListener = listener; // save callback
-        Log.d(Constants.LOG_TAG,Constants.FetchDealAsyncTask);
 
     }
 
@@ -52,6 +51,7 @@ public class FetchDealAsyncTask extends AsyncTask<String,Void,Boolean> {
     protected Boolean doInBackground(String... url) {
 
 
+        Log.d(Constants.LOG_TAG,Constants.FetchDealAsyncTask);
         Log.d(Constants.LOG_TAG,"The requested url is "+url[0]);
 
         try {
@@ -66,8 +66,8 @@ public class FetchDealAsyncTask extends AsyncTask<String,Void,Boolean> {
                 responseEntity = response.getEntity();
                 responseString = EntityUtils.toString(responseEntity);
 
+                Log.d(Constants.LOG_TAG," The response is "+responseString);
                 JSONObject jsonObject = new JSONObject(responseString);
-
                 JSONArray jsonArray = jsonObject.getJSONArray("dealDetails");
 
                 for(int i = 0;i< jsonArray.length();i++){
@@ -88,7 +88,7 @@ public class FetchDealAsyncTask extends AsyncTask<String,Void,Boolean> {
                     String likesString = String.valueOf(likes);
                     String redeemString = String.valueOf(redeem);
 
-                    Constants.landingFragmentData.add(new LandingFragmentData(dealId,dealTittle,city,likesString,redeemString,photoURL,reach,encashed));
+                    Constants.allDealsData.add(new AllDealsData(dealId,dealTittle,city,likesString,redeemString,photoURL,reach,encashed));
                 }
                 return true;
             }
@@ -103,6 +103,7 @@ public class FetchDealAsyncTask extends AsyncTask<String,Void,Boolean> {
     protected void onPostExecute(Boolean result)
     {
         super.onPostExecute(result);
+        Log.d(Constants.LOG_TAG," The result is "+result);
         mListener.onResult(result);
 
     }

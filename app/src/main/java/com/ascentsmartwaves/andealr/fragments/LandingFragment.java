@@ -18,9 +18,10 @@ import android.widget.Toast;
 
 import com.ascentsmartwaves.andealr.activities.AddDealActivity;
 import com.ascentsmartwaves.andealr.R;
-import com.ascentsmartwaves.andealr.adapters.LandingFragmentAdapter;
+import com.ascentsmartwaves.andealr.adapters.AllDealsRecyclerAdapter;
+import com.ascentsmartwaves.andealr.adapters.AllProductsRecyclerAdapter;
 import com.ascentsmartwaves.andealr.async.FetchDealAsyncTask;
-import com.ascentsmartwaves.andealr.data.LandingFragmentData;
+import com.ascentsmartwaves.andealr.data.AllDealsData;
 import com.ascentsmartwaves.andealr.utils.Constants;
 import java.util.ArrayList;
 
@@ -29,9 +30,18 @@ import java.util.ArrayList;
  */
 public class LandingFragment extends Fragment {
 
-    private RecyclerView landingFragmentRecyclerView;
-    private RecyclerView.Adapter landingFragmentAdapter;
-    private RecyclerView.LayoutManager landingFragmentLayoutManager;
+//
+
+    // Recycler view for all the products
+    private RecyclerView allProductsRecyclerView;
+    private RecyclerView.Adapter allProductsRecyclerAdapter;
+    private RecyclerView.LayoutManager allProductsLayoutManager;
+
+    // Recycler view for all the deals
+    private RecyclerView allDealsRecyclerView;
+    private RecyclerView.Adapter allDealsRecyclerAdapter;
+    private RecyclerView.LayoutManager allDealsLayoutManager;
+
     private Button add;
     int i,j;
     Fragment fragment;
@@ -53,15 +63,41 @@ public class LandingFragment extends Fragment {
         Log.d(Constants.LOG_TAG,Constants.LandingFragment);
 
         View rootView = inflater.inflate(R.layout.fragment_landing,null);
-        landingFragmentRecyclerView = (RecyclerView) rootView.findViewById(R.id.landing_recycler_view);
 
-        landingFragmentLayoutManager = new LinearLayoutManager(getActivity());
-        landingFragmentRecyclerView.setLayoutManager(landingFragmentLayoutManager);
-        landingFragmentRecyclerView.setHasFixedSize(true);
+        findViews(rootView);
+        settingTheAdapter();
+        getTheMerchantId();
+        fetchData();
 
+        return rootView;
+    }
+
+    public void findViews(View v){
+
+        allProductsRecyclerView = (RecyclerView) v.findViewById(R.id.all_products_recycler_view_landing_fragment);
+        allDealsRecyclerView = (RecyclerView) v.findViewById(R.id.all_deals_recycler_view_landing_fragment);
+    }
+
+    public void settingTheAdapter(){
+
+        allProductsLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        allProductsRecyclerView.setLayoutManager(allProductsLayoutManager);
+        allProductsRecyclerView.setHasFixedSize(true);
+
+        allDealsLayoutManager = new LinearLayoutManager(getActivity());
+        allDealsRecyclerView.setLayoutManager(allDealsLayoutManager);
+        allDealsRecyclerView.setHasFixedSize(true);
+
+    }
+
+    public void getTheMerchantId(){
 
         prefs = getActivity().getSharedPreferences("UserSession", Context.MODE_PRIVATE);
         id = prefs.getString("Merchant Id", "NO DATA");
+
+    }
+
+    public void fetchData(){
 
         String finalUrl = Constants.fetchDealURL + id;
 
@@ -79,19 +115,23 @@ public class LandingFragment extends Fragment {
             @Override
             public void onResult(boolean b) {
                 dialog.dismiss();
-                if (b) {
+//                if (b) {
 
-                    landingFragmentAdapter = new LandingFragmentAdapter(Constants.landingFragmentData,getActivity().getApplicationContext());
-                    landingFragmentRecyclerView.setAdapter(landingFragmentAdapter);
-                }
-                else{
+                    // This will be used to set the products recycler view
+                    allProductsRecyclerAdapter = new AllProductsRecyclerAdapter(getActivity().getApplicationContext());
+                    allProductsRecyclerView.setAdapter(allProductsRecyclerAdapter);
 
-                    Toast.makeText(getActivity().getApplicationContext(),"No Deals Added Yet",5000).show();
-                }
+                    allDealsRecyclerAdapter = new AllDealsRecyclerAdapter(Constants.allDealsData,getActivity().getApplicationContext());
+                    allDealsRecyclerView.setAdapter(allDealsRecyclerAdapter);
+//                }
+//                else{
+//
+//                    Toast.makeText(getActivity().getApplicationContext(),"No Deals Added Yet",5000).show();
+//                }
             }
         }).execute(finalUrl);
 
-        return rootView;
+
     }
 
     View.OnClickListener listener = new View.OnClickListener() {
@@ -104,8 +144,8 @@ public class LandingFragment extends Fragment {
                     Log.d(Constants.LOG_TAG,"Calling the Click Listener for plus button");
                     Intent i = new Intent(getActivity(),AddDealActivity.class);
                     startActivityForResult(i,10);
-                    landingFragmentAdapter = new LandingFragmentAdapter(Constants.landingFragmentData,getActivity().getApplicationContext());
-                    landingFragmentRecyclerView.setAdapter(landingFragmentAdapter);
+                    allDealsRecyclerAdapter = new AllDealsRecyclerAdapter(Constants.allDealsData,getActivity().getApplicationContext());
+                    allDealsRecyclerView.setAdapter(allDealsRecyclerAdapter);
                     break;
 
             }
@@ -115,13 +155,13 @@ public class LandingFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Constants.landingFragmentData = new ArrayList<LandingFragmentData>();
+        Constants.allDealsData = new ArrayList<AllDealsData>();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Constants.landingFragmentData = new ArrayList<LandingFragmentData>();
+        Constants.allDealsData = new ArrayList<AllDealsData>();
     }
 
 

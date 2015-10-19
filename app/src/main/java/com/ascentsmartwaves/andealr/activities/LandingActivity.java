@@ -40,7 +40,7 @@ import com.ascentsmartwaves.andealr.adapters.CustomDrawerListAdapter;
 import com.ascentsmartwaves.andealr.async.FetchProfileAsyncTask;
 import com.ascentsmartwaves.andealr.async.CheckProfileValidityAsyncTask;
 import com.ascentsmartwaves.andealr.data.DrawerListData;
-import com.ascentsmartwaves.andealr.data.LandingFragmentData;
+import com.ascentsmartwaves.andealr.data.AllDealsData;
 import com.ascentsmartwaves.andealr.fragments.FollowersFragment;
 import com.ascentsmartwaves.andealr.fragments.LandingFragment;
 import com.ascentsmartwaves.andealr.fragments.NotificationsFragment;
@@ -87,7 +87,7 @@ public class LandingActivity extends ActionBarActivity {
 
         Log.d(Constants.LOG_TAG,Constants.LandingActivity);
 
-        Constants.landingFragmentData = new ArrayList<LandingFragmentData>();
+        Constants.allDealsData = new ArrayList<AllDealsData>();
         setContentView(R.layout.activity_landing);
 
         mTitle = mDrawerTitle = getTitle();
@@ -198,7 +198,7 @@ public class LandingActivity extends ActionBarActivity {
 //    @Override
 //    protected void onPause() {
 //        super.onPause();
-//        Constants.landingFragmentData.clear();
+//        Constants.allDealsData.clear();
 //    }
 
     @Override
@@ -469,7 +469,7 @@ public class LandingActivity extends ActionBarActivity {
 //        mDrawerLayout.closeDrawer(mDrawer);
 //
 //
-//        Constants.landingFragmentData = new ArrayList<LandingFragmentData>();
+//        Constants.allDealsData = new ArrayList<AllDealsData>();
 //        select(0);
 //
 //    }

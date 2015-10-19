@@ -20,7 +20,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -155,7 +154,7 @@ public class AddDealActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Constants.landingFragmentData.clear();
+                Constants.allDealsData.clear();
                 Intent i=new Intent(getApplicationContext(),LandingActivity.class);
                 startActivity(i);
                 return true;
@@ -478,7 +477,7 @@ public class AddDealActivity extends ActionBarActivity {
 
                         dialog.dismiss();
                         imagepath="NO DATA";
-                        Constants.landingFragmentData.clear();
+                        Constants.allDealsData.clear();
 
                         Log.d(Constants.LOG_TAG,"CONST BALANCE IS " + Constants.balance );
                         if(Constants.balance >500){

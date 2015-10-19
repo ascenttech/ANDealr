@@ -41,7 +41,7 @@ public class FetchPaymentAsyncTask extends AsyncTask<String, Void, Boolean> {
     public FetchPaymentAsyncTask(Context context, FetchPaymentCallback listener) {
         this.context = context;
         this.listener = listener;
-        Log.d(Constants.LOG_TAG,Constants.FetchPaymentsAsyncTask);
+
     }
 
     @Override
@@ -54,16 +54,14 @@ public class FetchPaymentAsyncTask extends AsyncTask<String, Void, Boolean> {
     protected Boolean doInBackground(String... urls) {
 
 
+        Log.d(Constants.LOG_TAG,Constants.FetchPaymentsAsyncTask);
         Log.d(Constants.LOG_TAG,"The requested url is "+urls[0]);
 
         try {
 
-            Log.d(Constants.LOG_TAG," String for Payment fetch "+ urls[0]);
-
-            //------------------>>
-            HttpGet httppost = new HttpGet(urls[0]);
+            HttpGet httpGet = new HttpGet(urls[0]);
             HttpClient httpclient = new DefaultHttpClient();
-            HttpResponse response = httpclient.execute(httppost);
+            HttpResponse response = httpclient.execute(httpGet);
 
             // StatusLine stat = response.getStatusLine();
             int status = response.getStatusLine().getStatusCode();
@@ -73,6 +71,7 @@ public class FetchPaymentAsyncTask extends AsyncTask<String, Void, Boolean> {
                 entity = response.getEntity();
                 data = EntityUtils.toString(entity);
 
+                Log.d(Constants.LOG_TAG," The response is "+data);
                 JSONObject jsonObject = new JSONObject(data);
                 JSONArray jsonArray = jsonObject.getJSONArray("payment");
                 length = jsonArray.length();
@@ -113,6 +112,7 @@ public class FetchPaymentAsyncTask extends AsyncTask<String, Void, Boolean> {
     protected void onPostExecute(Boolean result) {
 
         super.onPostExecute(result);
+        Log.d(Constants.LOG_TAG, " The result is " + result);
         listener.onResult(result);
 
     }
